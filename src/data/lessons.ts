@@ -405,7 +405,12 @@ Zakry, čo chceš nájsť:
 2. Ohrievač odoberá 10 A zo siete 230 V: R = 230/10 = **23 Ω**
 3. Rezistor 1 kΩ s 5 mA: V = 0,005 × 1000 = **5 V**
 
-**Pamätaj:** Ohmov zákon platí pre *odporové* súčiastky pri konštantnej teplote. Priamo neplatí pre kondenzátory, cievky ani nelineárne prvky ako diódy.**Ohm's Law** is the fundamental relationship between voltage, current, and resistance. Discovered by Georg Simon Ohm in 1827, it states:`,
+**Pamätaj:** Ohmov zákon platí pre *odporové* súčiastky pri konštantnej teplote. Priamo neplatí pre kondenzátory, cievky ani nelineárne prvky ako diódy.
+
+**Poznámka k značeniu:**
+Napätie sa v praxi značí buď **V** alebo **U**. Oba zápisy sú správne:
+• V = I × R
+• U = R × I`,
     keyPoints: [
       { icon: '📐', text: 'V = I × R — trojuholníková metóda Ohmovho zákona' },
       { icon: '⬆️', text: 'Väčšie napätie → väčší prúd (pri pevnom odpore)' },
@@ -479,7 +484,7 @@ V₂ = V_zdroj × R₂ / (R₁ + R₂)
 
 **Využitie v praxi:** Kontrola úbytku napätia na káblovom vedení:
 V_úbytok = I × R_kábla
-Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).When you know the current (**I**) and resistance (**R**), you can calculate voltage:`,
+Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).`,
     keyPoints: [
       { icon: '🔢', text: 'V = I × R — vynásob prúd odporom' },
       { icon: '📏', text: 'Vždy uvádzaj jednotky: A × Ω = V' },
@@ -559,7 +564,7 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
 - Horúce káble
 - Vypínajúce ističe
 - Zápach horenia
-- Stmievanie svetiel pri spustení spotrebičovWhen you know voltage and resistance, solve for current:`,
+- Stmievanie svetiel pri spustení spotrebičov`,
     keyPoints: [
       { icon: '🔢', text: 'I = V / R — vydeľ napätie odporom' },
       { icon: '💡', text: '230 V / 460 Ω žiarovka → 0,5 A prúd' },
@@ -684,10 +689,17 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
     explanation: `
 **Elektrický výkon (P)** je rýchlosť, s akou sa energia spotrebúva alebo produkuje. Meria sa vo **Wattoch (W)**.
 
-**Tri vzorce pre výkon:**
+**Tri vzorce pre výkon (odporové/DC obvody):**
 • P = V × I
 • P = I² × R
 • P = V² / R
+
+**Pri striedavom prúde (AC):**
+• Činný výkon: P = U × I × cos φ
+• Zdanlivý výkon: S = U × I
+• Jalový výkon: Q = U × I × sin φ
+
+Kde φ je fázový uhol medzi napätím a prúdom. Pre čistý jednosmerný (DC) obvod platí φ = 0, takže P = U × I.
 
 **Odvodzovanie z Ohmovho zákona:** Pretože V = IR:
 - P = V × I = (IR) × I = I²R
@@ -708,7 +720,7 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
 | Nabíjačka EV | 7 400 W | 1 776 kWh |
 
 **Vzorec pre tepelné straty:**
-P_teplo = I²R — určuje minimálny prierez kábla, menovité hodnoty poistiek a nárast teploty komponentov.**Electrical Power (P)** is the rate at which energy is consumed or produced. Measured in **Watts (W)**.`,
+P_teplo = I²R — určuje minimálny prierez kábla, menovité hodnoty poistiek a nárast teploty komponentov.`,
     keyPoints: [
       { icon: '⚡', text: 'P = V × I — výkon vo Wattoch' },
       { icon: '🔌', text: 'Tiež: P = I²×R a P = V²/R' },
