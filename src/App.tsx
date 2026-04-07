@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { AppProvider, useApp } from './context/AppContext'
 import { Layout } from './components/layout/Layout'
 import { HomePage } from './pages/HomePage'
@@ -18,7 +18,7 @@ function RequireOnboarding() {
 export default function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/lesson/:lessonId" element={<LessonPage />} />
@@ -33,7 +33,7 @@ export default function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AppProvider>
   )
 }
