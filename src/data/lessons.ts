@@ -153,7 +153,7 @@ Jeden Ampér = jeden Coulomb náboja prechádzajúceho bodom za sekundu. To je a
 • Odpor = zúženie potrubia
 Bez tlaku (napätia) tečie nulový prúd — rovnako ako voda bez tlaku.
 
-**Vzorec:** V = I × R (Ohmov zákon)
+**Vzorec:** U = I × R (Ohmov zákon)
 
 **Bežné hladiny napätia:**
 | Napätie | Aplikácia |
@@ -165,7 +165,7 @@ Bez tlaku (napätia) tečie nulový prúd — rovnako ako voda bez tlaku.
 | 11 000 V+ | Distribučná sieť |
 | 400 000 V | Prenosová sústava VN |
 
-⚠️ **Bezpečnosť:** Aj nízke napätia môžu byť smrteľné za správnych podmienok (vlhkosť, priamy kontakt so srdcom). Vždy zaobchádzaj s akýmkoľvek napätím s rešpektom!**Voltage (V)** is the electrical potential difference between two points — the "pressure" that pushes electrons through a circuit. It's measured in **Volts (V)**.`,
+⚠️ **Bezpečnosť:** Aj nízke napätia môžu byť smrteľné za správnych podmienok (vlhkosť, priamy kontakt so srdcom). Vždy zaobchádzaj s akýmkoľvek napätím s rešpektom!`,
     keyPoints: [
       { icon: '💡', text: 'Napätie (V) = elektrický tlak, pohání tok prúdu' },
       { icon: '🔋', text: 'Merané vo Voltoch pomocou voltmetra' },
@@ -600,7 +600,7 @@ Každá vetva má U/R_vetvy nezávisle od ostatných vetiev.
         type: 'true_false',
         question: 'Ak sa odpor zvýši z 10 Ω na 20 Ω (napätie konštantné 100 V), prúd klesne z 10 A na 5 A.',
         correct: true,
-        explanation: 'I = V/R. Pri 10 Ω: I = 100/10 = 10 A. Pri 20 Ω: I = 100/20 = 5 A. Prúd sa znížil na polovicu, keď sa odpor zdvojnásobil.',
+        explanation: 'I = U/R. Pri 10 Ω: I = 100/10 = 10 A. Pri 20 Ω: I = 100/20 = 5 A. Prúd sa znížil na polovicu, keď sa odpor zdvojnásobil.',
       },
     ],
   },
@@ -1136,8 +1136,8 @@ Kde: B = hustota magnetického toku, I = prúd, L = dĺžka vodiča
 
 **Protinapätie (back-EMF):**
 Keď sa motor zrýchľuje, pôsobí ako generátor a produkuje "protinapätie", ktoré sa protivít napájaciemu napätiu. Tým obmedzuje prúd pri bežnej rýchlosti.
-- V kľude: protinapätie = 0, prúd je vysoký (I = V/Ra)
-- Pri plnej rýchlosti: protinapätie ≈ V_napájanie, prúd je nízky**Circuit protection devices** prevent damage and protect lives by disconnecting the circuit when a fault occurs.`,
+- V kľude: protinapätie = 0, prúd je vysoký (I = U/Ra)
+- Pri plnej rýchlosti: protinapätie ≈ U_napájanie, prúd je nízky`,
     keyPoints: [
       { icon: '🧲', text: 'Motor pracuje na Lorentzovej sile: F = BIL' },
       { icon: '🔄', text: 'Komutátor mení smer prúdu pre plynulú rotáciu' },
@@ -1284,7 +1284,7 @@ Výkon kW, napätie, prúd, RPM, pracovný cyklus, trieda izolácie (A=105 °C, 
 **Priame spustenie jednosmerného motora** okamžite priloží plné napätie — to spôsobuje veľmi vysoký záberový prúd (až 10× menovitý), ktorý môže poškodiť motor a napájaciu sústavu.
 
 **Prečo je záberový prúd nebezpečný:**
-V kľude je protinapätie = 0, takže I = V / R_kotvy
+V kľude je protinapätie = 0, takže I = U / R_kotvy
 Keďže R_kotvy je veľmi malý (typicky < 1 Ω), prúd môže byť obrovský.
 
 **Metódy spúšťania:**
