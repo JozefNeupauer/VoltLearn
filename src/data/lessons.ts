@@ -25,17 +25,7 @@ Keď sa priloží napätie na vodič, voľné elektróny sa pohybujú jedným sm
 **Kľúčové fakty:**
 • Náboj elektrónu: 1,6 × 10⁻¹⁹ Coulombov
 • Prúd = rýchlosť toku náboja: Q/t
-• Symbol náboja: Q (Coulomby)Electricity is the flow of **electric charge** — specifically, the movement of electrons through a conductor like copper wire.
-
-Every material is made of **atoms**. At the center of each atom is a nucleus containing protons (positive charge) and neutrons (neutral). Orbiting the nucleus are **electrons** (negative charge).
-
-In conductors like copper, the outermost electrons are weakly bound and can move freely between atoms. When we apply a voltage (an electromotive force), these free electrons drift from atom to atom in one direction — creating what we call **electric current**.
-
-**Why does this matter for electricians?**
-Understanding that electricity is moving electrons helps you understand:
-• Why short circuits are dangerous (too many electrons at once → extreme heat)
-• Why insulators stop current (electrons are tightly bound, can't move freely)
-• Why wires heat up under load (electron collisions → thermal energy)`,
+• Symbol náboja: Q (Coulomby)Electricity is the flow of **electric charge** — specifically, the movement of electrons through a conductor like copper wire.`,
     keyPoints: [
       { icon: '⚛️', text: 'Elektrina = tok elektrónov cez vodič' },
       { icon: '➕', text: 'Protóny sú kladné, elektróny záporné' },
@@ -105,27 +95,7 @@ Jeden Ampér = jeden Coulomb náboja prechádzajúceho bodom za sekundu. To je a
 | Elektrický sporák | 20–50 A |
 | Priemyselný motor | 100–500 A |
 
-⚠️ **Bezpečnosť:** Už len **0,1 A (100 mA)** prechádzajúce ľudským srdcom môže byť smrteľné.**Electrical current (I)** is the rate at which electric charge flows through a conductor. It's measured in **Amperes (A)**, often called "amps."
-
-**Formula:** I = Q / t
-Where Q = charge (Coulombs) and t = time (seconds)
-
-One Ampere = one Coulomb of charge passing a point per second. That's about 6.24 × 10¹⁸ electrons flowing past per second!
-
-**Types of current:**
-• **DC (Direct Current)** — electrons flow in one direction only. Used in batteries, electronics, solar panels.
-• **AC (Alternating Current)** — electrons flow back and forth, reversing direction 50–60 times per second. Used in homes and industry.
-
-**Real-world current examples:**
-| Device | Approximate Current |
-|--------|-------------------|
-| LED bulb | 0.1 A |
-| Phone charger | 1–2 A |
-| Household outlet | Up to 15–20 A |
-| Electric stove | 20–50 A |
-| Industrial motor | 100–500 A |
-
-⚠️ **Safety:** As little as **0.1 A (100 mA)** through the human heart can be fatal.`,
+⚠️ **Bezpečnosť:** Už len **0,1 A (100 mA)** prechádzajúce ľudským srdcom môže byť smrteľné.**Electrical current (I)** is the rate at which electric charge flows through a conductor. It's measured in **Amperes (A)**, often called "amps."`,
     keyPoints: [
       { icon: '🔴', text: 'Prúd (I) = tok náboja, meraný v Ampéroch (A)' },
       { icon: '🔋', text: 'Jednosmerný prúd tečie jedným smerom; striedavý sa striedavo mení' },
@@ -195,27 +165,7 @@ Bez tlaku (napätia) tečie nulový prúd — rovnako ako voda bez tlaku.
 | 11 000 V+ | Distribučná sieť |
 | 400 000 V | Prenosová sústava VN |
 
-⚠️ **Bezpečnosť:** Aj nízke napätia môžu byť smrteľné za správnych podmienok (vlhkosť, priamy kontakt so srdcom). Vždy zaobchádzaj s akýmkoľvek napätím s rešpektom!**Voltage (V)** is the electrical potential difference between two points — the "pressure" that pushes electrons through a circuit. It's measured in **Volts (V)**.
-
-Think of it like water pressure in a pipe: voltage is the pressure that makes water (electrons) flow.
-
-**Analogy:**
-🚰 Water pressure → ⚡ Voltage
-💧 Water flow rate → 🔌 Current
-🚿 Pipe resistance → 🔧 Electrical resistance
-
-**Sources of voltage:**
-• **Batteries** — chemical energy converts to electrical potential (1.5V AA to 12V car battery)
-• **Generators** — mechanical energy creates voltage through electromagnetic induction
-• **Solar panels** — photovoltaic effect converts light to voltage
-• **Wall outlet** — 120V/240V AC from the power grid
-
-**Voltage levels in practice:**
-| Level | Examples |
-|-------|---------|
-| Extra low (< 50V AC) | Doorbells, LED strips, control circuits |
-| Low (50–1000V) | Household (230V), small industrial |
-| High (> 1000V) | Power transmission, industrial |`,
+⚠️ **Bezpečnosť:** Aj nízke napätia môžu byť smrteľné za správnych podmienok (vlhkosť, priamy kontakt so srdcom). Vždy zaobchádzaj s akýmkoľvek napätím s rešpektom!**Voltage (V)** is the electrical potential difference between two points — the "pressure" that pushes electrons through a circuit. It's measured in **Volts (V)**.`,
     keyPoints: [
       { icon: '💡', text: 'Napätie (V) = elektrický tlak, pohání tok prúdu' },
       { icon: '🔋', text: 'Merané vo Voltoch pomocou voltmetra' },
@@ -292,25 +242,7 @@ Kde: ρ = merný odpor materiálu, L = dĺžka, A = plocha prierezu
 | Guma | 10¹³ |
 
 **Praktické dôsledky:**
-Tenšie a dlhšie káble majú vyšší odpor → väčší úbytok napätia a zahrievanie. Vždy vyber správny prierez vodiča!**Resistance (R)** is the opposition to the flow of electric current. Materials resist current because atoms block the movement of electrons. Resistance is measured in **Ohms (Ω)** — the Greek letter Omega.
-
-**Resistance depends on:**
-• **Material** — copper (low R), nichrome (high R), rubber (very high R)
-• **Length** — longer wire = more resistance (like a longer pipe)
-• **Cross-sectional area** — thicker wire = less resistance (like a wider pipe)
-• **Temperature** — most conductors increase in resistance as they heat up
-
-**Formula (for a conductor):**
-R = ρ × L / A
-Where ρ = resistivity (material property), L = length, A = cross-section area
-
-**Resistance color bands:**
-Resistors use color-coded bands to indicate their value. Each color represents a digit:
-🟫 Brown=1, 🔴 Red=2, 🟠 Orange=3, 🟡 Yellow=4, 🟢 Green=5
-🔵 Blue=6, 🟣 Violet=7, ⬛ Black=0, ⬜ White=9
-
-**Practical example:**
-A 100-meter run of 2.5mm² copper wire has approximately 0.7 Ω resistance — enough to cause a 7V drop at 10A current.`,
+Tenšie a dlhšie káble majú vyšší odpor → väčší úbytok napätia a zahrievanie. Vždy vyber správny prierez vodiča!**Resistance (R)** is the opposition to the flow of electric current. Materials resist current because atoms block the movement of electrons. Resistance is measured in **Ohms (Ω)** — the Greek letter Omega.`,
     keyPoints: [
       { icon: '🚧', text: 'Odpor (R) kladie odpor toku prúdu, meraný v Ohmoch (Ω)' },
       { icon: '📏', text: 'Dlhší a tenší vodič → väčší odpor' },
@@ -391,29 +323,7 @@ Elektrické komponenty môžu byť zapojené dvoma základnými spôsobmi: **sé
 | Článkové batérie | Svetlomety auta |
 | Odporové obmedzovače | Väčšina elektrických inštalácií |
 
-**Pamätaj:** Domáca inštalácia je VŽDY paralelná — každá zásuvka/svetlo funguje nezávisle pri plnom napájacím napätí.Electrical components can be connected in two fundamental ways: **series** or **parallel**.
-
----
-
-**Series Circuit:**
-Components are connected end-to-end in a single loop. The same current flows through all components.
-
-• Total resistance: R_total = R₁ + R₂ + R₃
-• Current: same through all components (I_total = I₁ = I₂)
-• Voltage: divides across components (V_total = V₁ + V₂)
-• **Problem:** If one component fails (breaks), the whole circuit stops.
-
----
-
-**Parallel Circuit:**
-Components are connected side-by-side, each on its own branch. Each component gets the full voltage.
-
-• Total resistance: 1/R_total = 1/R₁ + 1/R₂ (total R is LESS than any individual)
-• Voltage: same across all branches (V_total = V₁ = V₂)
-• Current: splits between branches (I_total = I₁ + I₂)
-• **Advantage:** If one branch fails, others continue working.
-
-**Real-world use:** House wiring uses parallel circuits — that's why turning off one light doesn't affect others!`,
+**Pamätaj:** Domáca inštalácia je VŽDY paralelná — každá zásuvka/svetlo funguje nezávisle pri plnom napájacím napätí.Electrical components can be connected in two fundamental ways: **series** or **parallel**.`,
     keyPoints: [
       { icon: '➡️', text: 'Sériové: rovnaký prúd, napätie sa delí, jedna porucha = všetko vypnuté' },
       { icon: '⬇️', text: 'Paralelné: rovnaké napätie, prúd sa delí, nezávislá prevádzka' },
@@ -495,29 +405,7 @@ Zakry, čo chceš nájsť:
 2. Ohrievač odoberá 10 A zo siete 230 V: R = 230/10 = **23 Ω**
 3. Rezistor 1 kΩ s 5 mA: V = 0,005 × 1000 = **5 V**
 
-**Pamätaj:** Ohmov zákon platí pre *odporové* súčiastky pri konštantnej teplote. Priamo neplatí pre kondenzátory, cievky ani nelineárne prvky ako diódy.**Ohm's Law** is the fundamental relationship between voltage, current, and resistance. Discovered by Georg Simon Ohm in 1827, it states:
-
-> *"The current through a conductor is directly proportional to the voltage across it and inversely proportional to its resistance."*
-
-**The Formula:**
-# V = I × R
-
-Where:
-• **V** = Voltage (Volts, V) — the electrical pressure
-• **I** = Current (Amperes, A) — the flow of charge
-• **R** = Resistance (Ohms, Ω) — the opposition to flow
-
-**The Ohm's Law Triangle:**
-Arrange V, I, R in a triangle — cover the unknown quantity and you see the formula:
-• Cover V → V = I × R
-• Cover I → I = V / R
-• Cover R → R = V / I
-
-**Key intuitions:**
-• More voltage → more current (if R stays the same)
-• More resistance → less current (if V stays the same)
-• Double the voltage → double the current
-• Double the resistance → half the current`,
+**Pamätaj:** Ohmov zákon platí pre *odporové* súčiastky pri konštantnej teplote. Priamo neplatí pre kondenzátory, cievky ani nelineárne prvky ako diódy.**Ohm's Law** is the fundamental relationship between voltage, current, and resistance. Discovered by Georg Simon Ohm in 1827, it states:`,
     keyPoints: [
       { icon: '📐', text: 'V = I × R — trojuholníková metóda Ohmovho zákona' },
       { icon: '⬆️', text: 'Väčšie napätie → väčší prúd (pri pevnom odpore)' },
@@ -531,7 +419,7 @@ Arrange V, I, R in a triangle — cover the unknown quantity and you see the for
         question: "Čo predstavuje písmeno 'I' v Ohmovom zákone?",
         options: ['Impedancia', 'Prúd', 'Izolácia', 'Indukčnosť'],
         correctIndex: 1,
-        explanation: "I stands for current (Amperes). It comes from the French word 'intensité de courant' — intensity of current.",
+        explanation: "I je symbol pre prúd (Ampéry). Pochádza z francúzskeho výrazu 'intensité de courant' — intenzita prúdu.",
       },
       {
         id: 'ol1-q2',
@@ -591,29 +479,7 @@ V₂ = V_zdroj × R₂ / (R₁ + R₂)
 
 **Využitie v praxi:** Kontrola úbytku napätia na káblovom vedení:
 V_úbytok = I × R_kábla
-Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).When you know the current (**I**) and resistance (**R**), you can calculate voltage:
-
-# V = I × R
-
-**Step-by-step method:**
-1. Identify what you know: I (amps) and R (ohms)
-2. Write the formula: V = I × R
-3. Substitute values
-4. Calculate and include the unit: Volts (V)
-
-**Example 1:** 
-A circuit has a current of 3A flowing through a 10Ω resistor. What voltage is across it?
-V = I × R = 3A × 10Ω = **30 V** ✓
-
-**Example 2:**
-An LED draws 0.02A (20mA) through a 100Ω resistor. Voltage across it?
-V = 0.02A × 100Ω = **2 V** ✓
-
-**Example 3:**
-A motor draws 15A and has an internal resistance of 0.5Ω. Voltage drop?
-V = 15A × 0.5Ω = **7.5 V** ✓
-
-**Pro tip:** In multi-component circuits, apply V = I × R to each component individually, then add the voltages (in series) or check they're equal (in parallel).`,
+Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).When you know the current (**I**) and resistance (**R**), you can calculate voltage:`,
     keyPoints: [
       { icon: '🔢', text: 'V = I × R — vynásob prúd odporom' },
       { icon: '📏', text: 'Vždy uvádzaj jednotky: A × Ω = V' },
@@ -693,34 +559,7 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
 - Horúce káble
 - Vypínajúce ističe
 - Zápach horenia
-- Stmievanie svetiel pri spustení spotrebičovWhen you know voltage and resistance, solve for current:
-
-# I = V / R
-
-**Step-by-step method:**
-1. Identify: V (volts) and R (ohms)
-2. Formula: I = V / R
-3. Divide voltage by resistance
-4. Result in Amperes (A)
-
-**Example 1: Household light bulb**
-A 230V supply powers a 460Ω bulb. What current flows?
-I = V / R = 230V / 460Ω = **0.5 A** ✓
-
-**Example 2: Emergency lighting**
-A 12V battery powers a 4Ω emergency lamp. Current?
-I = 12V / 4Ω = **3 A** ✓
-
-**Example 3: Industrial motor (simplified)**
-A 400V supply feeds a motor winding with 8Ω resistance. Current?
-I = 400V / 8Ω = **50 A** ✓
-
-**Checking cable sizes:**
-This formula is used constantly in practice — you calculate the expected current to choose the correct cable size and circuit breaker rating.
-
-**Unit conversion reminder:**
-• 1000 mA = 1 A
-• If I = 0.5 A = 500 mA (useful for small electronics)`,
+- Stmievanie svetiel pri spustení spotrebičovWhen you know voltage and resistance, solve for current:`,
     keyPoints: [
       { icon: '🔢', text: 'I = V / R — vydeľ napätie odporom' },
       { icon: '💡', text: '230 V / 460 Ω žiarovka → 0,5 A prúd' },
@@ -793,28 +632,7 @@ Tester izolácie (Megger) prikladá vysoké napätie a meria odpor izolácie. Ho
 - Nebezpečné: < 0,5 MΩ
 
 **Farebný kód odporov (pre pevné rezistory):**
-Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranžová=3, Žltá=4, Zelená=5, Modrá=6, Fialová=7, Sivá=8, Biela=9When you know voltage and current, solve for resistance:
-
-# R = V / I
-
-**Practical uses:**
-• Fault diagnosis: "Why is too much current flowing?" → Calculate R to find if something short-circuited
-• Component selection: "What resistor limits this LED to 20mA?"
-• Insulation testing: measuring very high resistance values (MΩ range)
-
-**Example 1: Fault finding**
-A 230V circuit should have 2A flowing, but 10A is measured. Expected R?
-Original: R = 230V / 2A = **115 Ω**
-Measured: R = 230V / 10A = **23 Ω** → something is wronge!
-
-**Example 2: LED resistor calculation**
-A 5V supply needs to limit an LED to 20mA (0.02A). The LED uses 2V. Resistor for remaining 3V?
-R = V / I = 3V / 0.02A = **150 Ω**
-
-**Example 3: Insulation resistance test**
-A 500V insulation tester applies 500V and records 0.001A (1mA). Insulation R?
-R = 500V / 0.001A = **500,000 Ω = 500 kΩ**
-(New cable should be > 100 MΩ)`,
+Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranžová=3, Žltá=4, Zelená=5, Modrá=6, Fialová=7, Sivá=8, Biela=9When you know voltage and current, solve for resistance:`,
     keyPoints: [
       { icon: '🔢', text: 'R = V / I — vydeľ napätie prúdom' },
       { icon: '🔍', text: 'Používa sa pri diagnostike porúch a dimenzovaní súčiastok' },
@@ -890,35 +708,7 @@ R = 500V / 0.001A = **500,000 Ω = 500 kΩ**
 | Nabíjačka EV | 7 400 W | 1 776 kWh |
 
 **Vzorec pre tepelné straty:**
-P_teplo = I²R — určuje minimálny prierez kábla, menovité hodnoty poistiek a nárast teploty komponentov.**Electrical Power (P)** is the rate at which energy is consumed or produced. Measured in **Watts (W)**.
-
-# P = V × I
-
-Other useful forms (combining with Ohm's Law):
-• P = I² × R (when you know current and resistance)
-• P = V² / R (when you know voltage and resistance)
-
-**The Power Triangle:**
-Just like Ohm's Law triangle, arrange P, V, I:
-• Cover P → P = V × I
-• Cover V → V = P / I
-• Cover I → I = P / V
-
-**Energy consumption:**
-Energy (kWh) = Power (kW) × Time (hours)
-Cost = Energy (kWh) × Price per kWh
-
-**Example 1: Household bulb**
-A 230V bulb draws 0.5A. Power?
-P = 230V × 0.5A = **115 W**
-
-**Example 2: Electric kettle**
-2000W kettle at 230V. Current drawn?
-I = P / V = 2000 / 230 = **8.7 A** → needs a 10A circuit
-
-**Example 3: Energy cost**
-2kW heater runs 5 hours: Energy = 2kW × 5h = **10 kWh**
-At €0.30/kWh: Cost = 10 × 0.30 = **€3.00**`,
+P_teplo = I²R — určuje minimálny prierez kábla, menovité hodnoty poistiek a nárast teploty komponentov.**Electrical Power (P)** is the rate at which energy is consumed or produced. Measured in **Watts (W)**.`,
     keyPoints: [
       { icon: '⚡', text: 'P = V × I — výkon vo Wattoch' },
       { icon: '🔌', text: 'Tiež: P = I²×R a P = V²/R' },
@@ -976,6 +766,89 @@ const wiringFundamentals: Lesson[] = [
     xpReward: 30,
     diagramType: 'wire-types',
     explanation: `
+**Typy vodičov a káblov v elektrickej inštalácii**
+
+Elektrikári pracujú s mnohými typmi vodičov. Správny výber závisí od aplikácie — pevná inštalácia, pohyblivé prívody, vonkajšie prostredie alebo priemysel.
+
+**Pevný vs. lankový vodič:**
+• **Pevný (jednodrotový)** — jedno plné jadro; lacnejší, menej ohybný; vhodný pre pevnú inštaláciu v rúrkach a rozvádzačoch
+• **Lankový (viacdrôtový)** — veľa jemných drôtikov; ohybnejší; vhodný pre pohyblivé prívody, miesta s vibráciami a opakovaným ohýbaním
+
+**Materiál jadra:**
+• **Meď (Cu)** — nízky merný odpor, najčastejšie používaná
+• **Hliník (Al)** — ľahší a lacnejší, ale vyšší odpor; potrebuje väčší prierez ako meď a špeciálne svorky
+
+**Izolácia:**
+• **PVC** — bežná a lacná; teplotný limit jadra 70 °C; vhodná pre väčšinu inštalácií do 1 000 V
+• **XLPE (zosieťovaný PE)** — teplotný limit 90 °C; vyššia prúdová zaťažiteľnosť pri rovnakom priereze
+• **Guma / silikón** — vysoko ohybná; odolnosť voči teplu a opakovanému ohýbaniu; pre predlžovačky a priemyselné prívody
+
+**Bežné typy káblov:**
+| Označenie | Opis | Typické použitie |
+|-----------|------|-----------------|
+| NYM | PVC izolácia + PVC plášť, pevné jadrá | Vnútorná inštalácia v stenách a rúrkach |
+| NYY | PVC + silnejší vonkajší plášť | Vonkajšia a podzemná inštalácia |
+| CYKY | PVC, lankové jadrá | Bytová inštalácia (SK/CZ štandard) |
+| H05VV-F | Flexibilný PVC obal | Pohyblivé prívody spotrebičov |
+| CYKFY | Plochý, flexibilný | Šnúry, predlžovačky |
+
+**Orientačná zaťažiteľnosť medeného kábla v rúrke:**
+• 1,5 mm² → ~15 A → osvetľovací okruh
+• 2,5 mm² → ~20 A → zásuvkový okruh 16 A
+• 4 mm²   → ~25 A → varná doska, klimatizácia
+• 6 mm²   → ~32 A → sporák, nabíjačka EV
+• 10 mm²  → ~40 A → hlavný prívod
+
+⚠️ Zaťažiteľnosť závisí od spôsobu uloženia (voľný vzduch, v rúrke, zamurovanie), teploty okolia a počtu súbežných káblov. Vždy over podľa tabuliek IEC 60364-5-52!`,
+    keyPoints: [
+      { icon: '🔩', text: 'Plný vodič: pevná inštalácia; Lanko: flexibilné aplikácie' },
+      { icon: '🔴', text: 'Meď: najlepšia voľba pre štandardnú inštaláciu' },
+      { icon: '📦', text: 'NYM = štandardný typ kábla pre domácu inštaláciu' },
+      { icon: '🌡️', text: 'PVC do 70 °C; XLPE/EPR do 90 °C' },
+    ],
+    questions: [
+      {
+        id: 'wf1-q1',
+        type: 'multiple_choice',
+        question: 'Pre flexibilný predlžovací kábel, ktorý sa často ohýba, ktorý typ vodiča je najvhodnejší?',
+        options: ['Solid copper', 'Stranded copper', 'Solid aluminium', 'Bare copper'],
+        correctIndex: 1,
+        explanation: 'Lankový vodič sa ohýba bez lámani, čo ho robí ideálnym pre prenosné prívody a flexibilné káble.',
+      },
+      {
+        id: 'wf1-q2',
+        type: 'true_false',
+        question: 'Hliník má nižší elektrický odpor na meter ako meď rovnakého prierezu.',
+        correct: false,
+        explanation: 'Hliník má vyšší merný odpor ako meď. Pre rovnaký odpor musí mať hliníkový vodič väčší prierez (asi 1,5× plochy medi).',
+      },
+      {
+        id: 'wf1-q3',
+        type: 'multiple_choice',
+        question: 'Aká je maximálna trvalá prevádzková teplota pre štandardnú PVC izoláciu?',
+        options: ['50°C', '70°C', '90°C', '120°C'],
+        correctIndex: 1,
+        explanation: 'Štandardná PVC izolácia kábla je hodnotená na 70 °C teplotu vodiča pri trvalej prevádzke. Prekročenie tejto hodnoty degraduje izoláciu.',
+      },
+      {
+        id: 'wf1-q4',
+        type: 'fill_blank',
+        question: 'Kábel NYY sa používa pre ___ a podzemné vedenie.',
+        answer: 'outdoor',
+        hint: 'Tento kábel má robustný PVC vonkajší plášť vhodný pre náročné prostredie',
+        explanation: 'Kábel NYY má odolný vonkajší PVC plášť určený pre vonkajšie a priamo zabudované podzemné inštalácie.',
+      },
+    ],
+  },
+  {
+    id: 'wf-2-color-codes',
+    topicId: 'wiring-fundamentals',
+    order: 2,
+    title: 'Farebné kódy vodičov',
+    subtitle: 'Identifikácia vodičov podľa noriem EÚ a medzinárodných',
+    xpReward: 30,
+    diagramType: 'wire-colors',
+    explanation: `
 **Farebné označenie vodičov sú normy zachraňujúce životy.** Na prvý pohľad ti povedia, čo ktorý vodič robí, čím zabraňujú nebezpečným chybám.
 
 **Európska norma IEC 60446 (Európa a mnohé iné krajiny):**
@@ -1026,103 +899,6 @@ const wiringFundamentals: Lesson[] = [
 • XLPE/EPR: 90 °C trvalá prevádzka
 • Silikón: 180 °C — pri kotloch, rúrach`,
     keyPoints: [
-      { icon: '🔩', text: 'Plný vodič: pevná inštalácia; Lanko: flexibilné aplikácie' },
-      { icon: '🔴', text: 'Meď: najlepšia voľba pre štandardnú inštaláciu' },
-      { icon: '📦', text: 'NYM = štandardný typ kábla pre domácu inštaláciu' },
-      { icon: '🌡️', text: 'PVC do 70 °C; XLPE/EPR do 90 °C' },
-    ],
-    questions: [
-      {
-        id: 'wf1-q1',
-        type: 'multiple_choice',
-        question: 'Pre flexibilný predlžovací kábel, ktorý sa často ohýba, ktorý typ vodiča je najvhodnejší?',
-        options: ['Solid copper', 'Stranded copper', 'Solid aluminium', 'Bare copper'],
-        correctIndex: 1,
-        explanation: 'Lankový vodič sa ohýba bez lámani, čo ho robí ideálnym pre prenosné prívody a flexibilné káble.',
-      },
-      {
-        id: 'wf1-q2',
-        type: 'true_false',
-        question: 'Hliník má nižší elektrický odpor na meter ako meď rovnakého prierezu.',
-        correct: false,
-        explanation: 'Hliník má vyšší merný odpor ako meď. Pre rovnaký odpor musí mať hliníkový vodič väčší prierez (asi 1,5× plochy medi).',
-      },
-      {
-        id: 'wf1-q3',
-        type: 'multiple_choice',
-        question: 'Aká je maximálna trvalá prevádzková teplota pre štandardnú PVC izoláciu?',
-        options: ['50°C', '70°C', '90°C', '120°C'],
-        correctIndex: 1,
-        explanation: 'Štandardná PVC izolácia kábla je hodnotená na 70 °C teplotu vodiča pri trvalej prevádzke. Prekročenie tejto hodnoty degraduje izoláciu.',
-      },
-      {
-        id: 'wf1-q4',
-        type: 'fill_blank',
-        question: 'Kábel NYY sa používa pre ___ a podzemné vedenie.',
-        answer: 'outdoor',
-        hint: 'Tento kábel má robustný PVC vonkajší plášť vhodný pre náročné prostredie',
-        explanation: 'Kábel NYY má odolný vonkajší PVC plášť určený pre vonkajšie a priamo zabudované podzemné inštalácie.',
-      },
-    ],
-  },
-  {
-    id: 'wf-2-color-codes',
-    topicId: 'wiring-fundamentals',
-    order: 2,
-    title: 'Farebné kódy vodičov',
-    subtitle: 'Identifikácia vodičov podľa noriem EÚ a medzinárodných',
-    xpReward: 30,
-    diagramType: 'wire-colors',
-    explanation: `
-**Dimenzovanie káblov** (zaťažiteľnosť = prúdová kapacita) je jedna z najdôležitejších zručností elektrikára.
-
-**Kľúčové pravidlo:** Zaťažiteľnosť kábla musí byť VÄČŠIA ako maximálny prúd obvodu.
-
-**Štandardná zaťažiteľnosť medeného kábla (na vzduchu, PVC, okolitá teplota 30 °C):**
-| Prierez | Typická zaťažiteľnosť | Typické použitie |
-|---------|----------------------|------------------|
-| 1,5 mm² | 15–17 A | Osvetľovacie obvody |
-| 2,5 mm² | 20–25 A | Zásuvkové obvody |
-| 4 mm² | 30–32 A | Sprchové obvody |
-| 6 mm² | 38–40 A | Sporáky |
-| 10 mm² | 52–55 A | Podradné rozvody, nabíjačky EV |
-| 16 mm² | 70 A | Veľké rozvádzače |
-
-**Korekčné faktory ZNIŽUJÚCE zaťažiteľnosť:**
-• Inštalácia v izolácii: × 0,5
-• Zviazané s inými káblami: × 0,65–0,8
-• Vysoká okolitá teplota: Použi korekčnú tabuľku
-• Uložené v zemi: Platia iné hodnoty
-
-**Výpočet úbytku napätia:**
-V_úbytok = (mV/A/m × I × L) / 1000
-Udržuj < 3 % pre záverečné obvody (odporúčanie IEC)
-
-**Zlaté pravidlo:** V prípade pochybností zvoľ väčší prierez. Cenový rozdiel je malý, ale poddimenzované káble spôsobujú požiare!**Wire color codes are life-saving standards.** They tell you at a glance which conductor does what, preventing dangerous mistakes.
-
-**European Standard (IEC 60446):**
-| Color | Function |
-|-------|----------|
-| 🟤 Brown | Live / Line (L) — Phase 1 |
-| ⬛ Black | Live / Line — Phase 2 (or switched live) |
-| ⬜ Grey | Live / Line — Phase 3 |
-| 🔵 Blue | Neutral (N) |
-| 🟢🟡 Green/Yellow | Protective Earth (PE) |
-
-**Three-phase systems:**
-Phase 1 = Brown, Phase 2 = Black, Phase 3 = Grey
-(Old UK: Red/Yellow/Blue — be careful in older installations!)
-
-**North American (NEC):**
-• Black or Red = Hot (Line)
-• White or Grey = Neutral
-• Green or Bare = Ground
-
-**Critical rules:**
-⚠️ Green/Yellow MUST only be used for earth/ground — NEVER for any other purpose
-⚠️ Always identify wires BEFORE working — old wiring may use different color codes
-⚠️ Test with a multimeter — don't rely on color alone for live circuits!`,
-    keyPoints: [
       { icon: '🟤', text: 'Hnedá = Fáza (L)' },
       { icon: '🔵', text: 'Modrá = Nulový vodič (N)' },
       { icon: '🟢', text: 'Zeleno/Žltá = IBA Uzemnenie (PE)' },
@@ -1171,62 +947,31 @@ Phase 1 = Brown, Phase 2 = Black, Phase 3 = Grey
     xpReward: 35,
     diagramType: 'cable-sizing',
     explanation: `
-**Ochranné zariadenia obvodov** zabraňujú poškodeniu a chránia životy tým, že pri poruche odpoja obvod.
+**Dimenzovanie káblov** (zaťažiteľnosť = prúdová kapacita) je jedna z najdôležitejších zručností elektrikára.
 
-**Poistky:**
-• Obsahujú drôt, ktorý sa roztaví, keď prúd prekročí menovitú hodnotu
-• Jednorazové — po vypálení ich treba vymeniť
-• Veľmi rýchle pri skratoch, pomalé pri preťažení
-• Typy: BS88 HRC, BS1361, BS3036 kazetové
+**Kľúčové pravidlo:** Zaťažiteľnosť kábla musí byť VÄČŠIA ako maximálny prúd obvodu.
 
-**Ističe (MCB):**
-• Opäť zopínateľné — vypnú a dajú sa resetovať bez výmeny
-• Dva mechanizmy vypnutia:
-  - Tepelný (bimetal): pomalý, pri trvalých preťaženiach
-  - Magnetický: rýchly, pri skratoch
-• Typy: B (3–5×In), C (5–10×In), D (10–20×In)
+**Štandardná zaťažiteľnosť medeného kábla (na vzduchu, PVC, okolitá teplota 30 °C):**
+| Prierez | Typická zaťažiteľnosť | Typické použitie |
+|---------|----------------------|------------------|
+| 1,5 mm² | 15–17 A | Osvetľovacie obvody |
+| 2,5 mm² | 20–25 A | Zásuvkové obvody |
+| 4 mm² | 30–32 A | Sprchové obvody |
+| 6 mm² | 38–40 A | Sporáky |
+| 10 mm² | 52–55 A | Podradné rozvody, nabíjačky EV |
+| 16 mm² | 70 A | Veľké rozvádzače |
 
-**Chrániče (RCD):**
-• Detekujú unikajúce prúdy do zeme ako malé ako 30 mA
-• Vypnú za < 30 ms pri 30 mA — pred zástavou srdca
-• 30 mA = osobná ochrana (zásuvkové obvody)
-• 100 mA / 300 mA = ochrana iba pred požiarom
-• Nechráni pred poruchami fáza-nulový!
+**Korekčné faktory ZNIŽUJÚCE zaťažiteľnosť:**
+• Inštalácia v izolácii: × 0,5
+• Zviazané s inými káblami: × 0,65–0,8
+• Vysoká okolitá teplota: Použi korekčnú tabuľku
+• Uložené v zemi: Platia iné hodnoty
 
-**RCBO:**
-= Istič + Chránič v jednom zariadení. Poskytuje ochranu pred nadprúdom AJ zemnou poruchou. Drahšie, ale ideálne pre jednotlivé obvody.
+**Výpočet úbytku napätia:**
+V_úbytok = (mV/A/m × I × L) / 1000
+Udržuj < 3 % pre záverečné obvody (odporúčanie IEC)
 
-**Princíp koordinácie:**
-Poistka/istič musí vypnúť PRED tým, ako kábel dosiahne maximálnu teplotu. Toto sa nazýva "koordinácia ochrany kábla".**Cable sizing** (ampacity = current-carrying capacity) is one of the most important skills for electricians.
-
-**Basic principle:** A cable must carry the load current without overheating.
-
-**Standard copper cable ampacities (approx, in conduit):**
-| Cross-section | Max Current | Typical Use |
-|--------------|------------|-------------|
-| 1.5 mm² | 14 A | Lighting circuits |
-| 2.5 mm² | 20 A | Socket outlets, small appliances |
-| 4 mm² | 27 A | Showers, large appliances |
-| 6 mm² | 34 A | Cookers, air conditioning |
-| 10 mm² | 46 A | Large equipment |
-| 16 mm² | 61 A | Sub-distribution boards |
-
-**Derating factors:**
-Reduce cable capacity when:
-• Cables are grouped/bundled together (more heat buildup)
-• Ambient temperature is high (> 30°C)
-• Cables are buried in insulation
-
-**Voltage drop:**
-Long cable runs cause voltage drop = I × R_cable
-Must keep voltage drop below 3% for final circuits (IEC standards).
-
-**Cable selection steps:**
-1. Calculate design current (Ib)
-2. Select protective device (In ≥ Ib)
-3. Choose cable with ampacity ≥ protective device rating
-4. Apply derating factors
-5. Check voltage drop`,
+**Zlaté pravidlo:** V prípade pochybností zvoľ väčší prierez. Cenový rozdiel je malý, ale poddimenzované káble spôsobujú požiare!**Wire color codes are life-saving standards.** They tell you at a glance which conductor does what, preventing dangerous mistakes.`,
     keyPoints: [
       { icon: '📏', text: '2,5 mm² meď: 20 A — štandardné zásuvkové okruhy' },
       { icon: '🌡️', text: 'Káblov zväzky, horúce miesta: aplikuj korekčné koeficienty' },
@@ -1276,47 +1021,33 @@ Must keep voltage drop below 3% for final circuits (IEC standards).
     xpReward: 35,
     diagramType: 'protection',
     explanation: `
-**Jednosmerný motor (DC motor)** premieňa elektrickú energiu na mechanickú rotačnú energiu pomocou magnetických polí.
+**Ochranné zariadenia obvodov** zabraňujú poškodeniu a chránia životy tým, že pri poruche odpoja obvod.
 
-**Základný princíp — Lorentzova sila:**
-Keď sa vodič nesúci prúd nachádza v magnetickom poli, zažíva silu:
-**F = B × I × L**
-Kde: B = hustota magnetického toku, I = prúd, L = dĺžka vodiča
+**Poistky:**
+• Obsahujú drôt, ktorý sa roztaví, keď prúd prekročí menovitú hodnotu
+• Jednorazové — po vypálení ich treba vymeniť
+• Veľmi rýchle pri skratoch, pomalé pri preťažení
+• Typy: BS88 HRC, BS1361, BS3036 kazetové
 
-**Komponenty motora:**
-• **Stator** — statická časť, vytvára magnetické pole (permanentné magnety alebo budiacie cievky)
-• **Rotor/Kotva** — rotujúca časť s vodivými cievkami
-• **Komutátor** — rotačný spínač, ktorý mení smer prúdu v kotve každú polotáčku
-• **Kefky** — uhlíkové kontakty prenášajúce prúd do/od rotujúceho komutátora
+**Ističe (MCB):**
+• Opäť zopínateľné — vypnú a dajú sa resetovať bez výmeny
+• Dva mechanizmy vypnutia:
+  - Tepelný (bimetal): pomalý, pri trvalých preťaženiach
+  - Magnetický: rýchly, pri skratoch
+• Typy: B (3–5×In), C (5–10×In), D (10–20×In)
 
-**Ako to funguje:**
-1. Prúd tečie cez cievky kotvy
-2. Cievky kotvy sú v magnetickom poli statora
-3. Lorentzova sila pôsobí na vodiče → rotácia
-4. Komutátor mení smer prúdu každých 180° → nepretržitá rotácia rovnakým smerom
+**Chrániče (RCD):**
+• Detekujú unikajúce prúdy do zeme ako malé ako 30 mA
+• Vypnú za < 30 ms pri 30 mA — pred zástavou srdca
+• 30 mA = osobná ochrana (zásuvkové obvody)
+• 100 mA / 300 mA = ochrana iba pred požiarom
+• Nechráni pred poruchami fáza-nulový!
 
-**Protinapätie (back-EMF):**
-Keď sa motor zrýchľuje, pôsobí ako generátor a produkuje "protinapätie", ktoré sa protivít napájaciemu napätiu. Tým obmedzuje prúd pri bežnej rýchlosti.
-- V kľude: protinapätie = 0, prúd je vysoký (I = V/Ra)
-- Pri plnej rýchlosti: protinapätie ≈ V_napájanie, prúd je nízky**Circuit protection devices** prevent damage and protect lives by disconnecting the circuit when a fault occurs.
+**RCBO:**
+= Istič + Chránič v jednom zariadení. Poskytuje ochranu pred nadprúdom AJ zemnou poruchou. Drahšie, ale ideálne pre jednotlivé obvody.
 
-**Types of protective devices:**
-
-🔴 **Fuse** — melts on overcurrent. One-time use. Cheap but must be replaced. Types: HRC (High Rupturing Capacity), BS88 industrial, cartridge.
-
-🔵 **MCB (Miniature Circuit Breaker)** — trips on overcurrent, can be reset. Types B, C, D based on trip characteristics:
-• Type B (×3–5 In): Residential lighting and sockets
-• Type C (×5–10 In): Motors and small transformers
-• Type D (×10–20 In): Large inductive loads
-
-🟢 **RCD (Residual Current Device)** — detects leakage current to earth and disconnects in ≤40ms. Protects against electric shock. Standard: 30mA for personal protection.
-
-🟡 **RCBO** — combined MCB + RCD in one device. Best of both protections.
-
-**Protection discrimination:**
-In a distribution system, protective devices are coordinated so only the faulty circuit's device trips — not the whole building.
-
-⚠️ **Remember:** An MCB protects the CABLE, not the person. An RCD protects the PERSON.`,
+**Princíp koordinácie:**
+Poistka/istič musí vypnúť PRED tým, ako kábel dosiahne maximálnu teplotu. Toto sa nazýva "koordinácia ochrany kábla".**Cable sizing** (ampacity = current-carrying capacity) is one of the most important skills for electricians.`,
     keyPoints: [
       { icon: '🔴', text: 'Poistka: roztaví sa raz — po poruche treba vymeniť' },
       { icon: '🔵', text: 'Istič (MCB): opakovane použiteľný, typy B/C/D' },
@@ -1328,7 +1059,7 @@ In a distribution system, protective devices are coordinated so only the faulty 
         id: 'wf4-q1',
         type: 'multiple_choice',
         question: 'Ktoré ochranné zariadenie chráni pred úrazom prúdom pri zemnej poruche?',
-        options: ['MCB', 'Fuse', 'RCD', 'Isolator switch'],
+        options: ['MCB', 'Poistka', 'RCD', 'Odpájač'],
         correctIndex: 2,
         explanation: 'RCD (Chránič) detekuje únikový prúd do zeme a odpojí do 40 ms — dostatočne rýchlo na predchádzanie smrteľnému úrazu.',
       },
@@ -1336,7 +1067,7 @@ In a distribution system, protective devices are coordinated so only the faulty 
         id: 'wf4-q2',
         type: 'multiple_choice',
         question: 'Pre motorový obvod vyžadujúci Typ C istič (MCB), aký je magnetický prahovník?',
-        options: ['2–3× rated current', '3–5× rated current', '5–10× rated current', '10–20× rated current'],
+        options: ['2–3× menovitý prúd', '3–5× menovitý prúd', '5–10× menovitý prúd', '10–20× menovitý prúd'],
         correctIndex: 2,
         explanation: 'Ističe typu C vypínajú magneticky pri 5–10× menovitom prúde, čo umožňuje záberový prúd motora pri štarte.',
       },
@@ -1373,61 +1104,33 @@ const dcMotors: Lesson[] = [
     xpReward: 30,
     diagramType: 'dc-motor',
     explanation: `
-**Jednosmerné motory majú niekoľko kľúčových komponentov**, ktoré vyžadujú údržbu a pochopenie:
+**Jednosmerný motor (DC motor)** premieňa elektrickú energiu na mechanickú rotačnú energiu pomocou magnetických polí.
 
-**Kotva (Rotor):**
-• Jadro: Laminované železo na zníženie strát víriacimi prúdmi
-• Vinutia: Medené cievky zabudované v drážkach
-• Komutátor: Medené segmenty, izolované od seba
+**Základný princíp — Lorentzova sila:**
+Keď sa vodič nesúci prúd nachádza v magnetickom poli, zažíva silu:
+**F = B × I × L**
+Kde: B = hustota magnetického toku, I = prúd, L = dĺžka vodiča
 
-**Budiaci systém (Stator):**
-• Permanentné magnety (malé motory) alebo
-• Budiace cievky (väčšie motory — umožňuje riadenie rýchlosti)
-• Typy: Sériové, Paralelné (shunt), Kombinované, Samostatné budenie
+**Komponenty motora:**
+• **Stator** — statická časť, vytvára magnetické pole (permanentné magnety alebo budiacie cievky)
+• **Rotor/Kotva** — rotujúca časť s vodivými cievkami
+• **Komutátor** — rotačný spínač, ktorý mení smer prúdu v kotve každú polotáčku
+• **Kefky** — uhlíkové kontakty prenášajúce prúd do/od rotujúceho komutátora
 
-**Kefky:**
-• Vyrobené z uhlíka/grafitu (mäkké, chránia komutátor)
-• Prúžinami pritlačené na udržanie kontaktného tlaku
-• Opotrebúvajú sa, treba kontrolovať každých 1 000–3 000 hodín
-• Príznaky problémov s kefkami: iskrenie, chvenie, hluk
+**Ako to funguje:**
+1. Prúd tečie cez cievky kotvy
+2. Cievky kotvy sú v magnetickom poli statora
+3. Lorentzova sila pôsobí na vodiče → rotácia
+4. Komutátor mení smer prúdu každých 180° → nepretržitá rotácia rovnakým smerom
 
-**Ložiská:**
-• Podopierajú hriadeľ rotora
-• Príznaky poruchy: vibrácie, hluk, prehriatie
-• Treba mazať podľa harmonogramu výrobcu
-
-**Chladenie:**
-• Ventilátor na hriadeli rotora (samochladené) alebo
-• Nútená ventilácia pre uzavreté motory
-• Prehriatie je hlavnou príčinou poruchy motora
-
-**Informácie na štítku motora:**
-Výkon kW, napätie, prúd, RPM, pracovný cyklus, trieda izolácie (A=105 °C, B=130 °C, F=155 °C, H=180 °C)A **DC (Direct Current) motor** converts electrical energy into mechanical rotational energy using magnetic fields.
-
-**The basic principle — Fleming's Left-Hand Rule:**
-When a current-carrying conductor sits in a magnetic field, it experiences a force called the **Lorentz force**:
-F = B × I × L
-Where B = magnetic flux density (Tesla), I = current (A), L = length of conductor (m)
-
-**Motor construction:**
-• **Stator** — the stationary part with permanent magnets or field windings that create the main magnetic field
-• **Rotor (Armature)** — the rotating part with windings that carry current
-• **Commutator** — a split ring that reverses current direction in the rotor windings to maintain continuous rotation
-• **Brushes** — carbon contacts that carry current to the commutator
-
-**How it rotates:**
-1. Current flows through rotor windings via brushes and commutator
-2. This creates a magnetic field around the rotor
-3. The stator's magnetic field pushes/pulls the rotor field
-4. The rotor turns
-5. The commutator ensures the force always pushes in the same rotational direction
-
-**Back-EMF:**
-As the motor speeds up, it generates a back-EMF (voltage opposing the supply). Motor current = (Supply V − Back EMF) / Armature resistance`,
+**Protinapätie (back-EMF):**
+Keď sa motor zrýchľuje, pôsobí ako generátor a produkuje "protinapätie", ktoré sa protivít napájaciemu napätiu. Tým obmedzuje prúd pri bežnej rýchlosti.
+- V kľude: protinapätie = 0, prúd je vysoký (I = V/Ra)
+- Pri plnej rýchlosti: protinapätie ≈ V_napájanie, prúd je nízky**Circuit protection devices** prevent damage and protect lives by disconnecting the circuit when a fault occurs.`,
     keyPoints: [
       { icon: '🧲', text: 'Motor pracuje na Lorentzovej sile: F = BIL' },
       { icon: '🔄', text: 'Komutátor mení smer prúdu pre plynulú rotáciu' },
-      { icon: '✋', text: "Fleming's Left-Hand Rule predicts force direction" },
+      { icon: '✋', text: 'Flemingovo pravidlo ľavej ruky predpovedá smer sily' },
       { icon: '⬅️', text: 'Protinapätie (back-EMF) obmedzuje prúd pri plnej rýchlosti' },
     ],
     questions: [
@@ -1436,10 +1139,10 @@ As the motor speeds up, it generates a back-EMF (voltage opposing the supply). M
         type: 'multiple_choice',
         question: 'Aký je účel komutátora v jednosmernom motore?',
         options: [
-          'To insulate the rotor',
-          'To reverse current direction in the rotor for continuous rotation',
-          'To measure the motor speed',
-          'To connect the motor to the power supply',
+          'Izolovať rotor',
+          'Meniť smer prúdu v rotore pre nepretržitú rotáciu',
+          'Merať rýchlosť motora',
+          'Pripojiť motor k napájaciemu zdroju',
         ],
         correctIndex: 1,
         explanation: 'Komutátor mení smer prúdu v kotvovom vinutí v správnom momente, aby rotor vždy zažíval silu v rovnakom smere rotácie.',
@@ -1483,6 +1186,90 @@ As the motor speeds up, it generates a back-EMF (voltage opposing the supply). M
     xpReward: 25,
     diagramType: 'dc-motor',
     explanation: `
+**Jednosmerné motory majú niekoľko kľúčových komponentov**, ktoré vyžadujú údržbu a pochopenie:
+
+**Kotva (Rotor):**
+• Jadro: Laminované železo na zníženie strát víriacimi prúdmi
+• Vinutia: Medené cievky zabudované v drážkach
+• Komutátor: Medené segmenty, izolované od seba
+
+**Budiaci systém (Stator):**
+• Permanentné magnety (malé motory) alebo
+• Budiace cievky (väčšie motory — umožňuje riadenie rýchlosti)
+• Typy: Sériové, Paralelné (shunt), Kombinované, Samostatné budenie
+
+**Kefky:**
+• Vyrobené z uhlíka/grafitu (mäkké, chránia komutátor)
+• Prúžinami pritlačené na udržanie kontaktného tlaku
+• Opotrebúvajú sa, treba kontrolovať každých 1 000–3 000 hodín
+• Príznaky problémov s kefkami: iskrenie, chvenie, hluk
+
+**Ložiská:**
+• Podopierajú hriadeľ rotora
+• Príznaky poruchy: vibrácie, hluk, prehriatie
+• Treba mazať podľa harmonogramu výrobcu
+
+**Chladenie:**
+• Ventilátor na hriadeli rotora (samochladené) alebo
+• Nútená ventilácia pre uzavreté motory
+• Prehriatie je hlavnou príčinou poruchy motora
+
+**Informácie na štítku motora:**
+Výkon kW, napätie, prúd, RPM, pracovný cyklus, trieda izolácie (A=105 °C, B=130 °C, F=155 °C, H=180 °C)A **DC (Direct Current) motor** converts electrical energy into mechanical rotational energy using magnetic fields.`,
+    keyPoints: [
+      { icon: '🔴', text: 'Uhlíkové kefky sa opotrebúvajú — pravidelne kontroluj a vymeň' },
+      { icon: '🧩', text: 'Laminované jadro kotvy znižuje straty víriacimi prúdmi' },
+      { icon: '⚙️', text: 'Ložiská potrebujú pravidelné kontroly mazania' },
+      { icon: '✨', text: 'Komutátor musí byť hladký a farby medi' },
+    ],
+    questions: [
+      {
+        id: 'dc2-q1',
+        type: 'multiple_choice',
+        question: 'Prečo je jadro kotvy vyrobené z laminovaných oceľových plechov a nie z plného železa?',
+        options: [
+          'Odľahčiť ho',
+          'Znížiť straty víriacimi prúdmi',
+          'Zlepšiť odvod tepla',
+          'Zvýšiť magnetické pole',
+        ],
+        correctIndex: 1,
+        explanation: 'Laminovanie prerušuje dráhy víriacich prúdov (indukovaných cirkulačných prúdov v železnom jadre), čím výrazne znižuje tepelné straty v jadre.',
+      },
+      {
+        id: 'dc2-q2',
+        type: 'true_false',
+        question: 'Kefky jednosmerného motora nikdy nepotrebujú výmenu, pretože sú vyrobené z tvrdej ocele.',
+        correct: false,
+        explanation: 'Kefky sú vyrobené z mäkkého uhlíka/grafitu a postupne sa opotrebúvajú. Pravidelná kontrola a výmena je súčasťou údržby jednosmerných motorov.',
+      },
+      {
+        id: 'dc2-q3',
+        type: 'multiple_choice',
+        question: 'Aký typ budenia poskytuje najvyšší záberový moment v jednosmernom motore?',
+        options: ['Permanentný magnet', 'Shuntové (paralelné) vinutie', 'Sériové vinutie', 'Kombinované vinutie'],
+        correctIndex: 2,
+        explanation: 'Sériové jednosmerné motory majú budiace vinutie v sérii s kotvou — pri štarte (vysoký prúd) silné pole vytvára mimoriadne vysoký moment. Používa sa v trakčných/žeriavových motoroch.',
+      },
+      {
+        id: 'dc2-q4',
+        type: 'fill_blank',
+        question: 'Zdravý komutátor by mal byť hladký a ___ farby.',
+        answer: 'medenej',
+        hint: 'Pomysli na to, z čoho je vyrobený komutátor',
+        explanation: 'Zdravý komutátor má hladký, medeno sfarbený povrch. Čierne sfarbenie môže indikovať problémy s kefkami; modré/zelené sfarbenie indikuje prehriatie.',
+      },
+    ],
+  },
+  {
+    id: 'dc-3-motor-control',
+    topicId: 'dc-motors',
+    order: 3,
+    title: 'Spúšťanie a regulácia otáčok motora',
+    subtitle: 'Spúšťacie obvody a metódy regulácie rýchlosti',
+    xpReward: 35,
+    diagramType: 'motor-control',
+    explanation: `
 **Priame spustenie jednosmerného motora** okamžite priloží plné napätie — to spôsobuje veľmi vysoký záberový prúd (až 10× menovitý), ktorý môže poškodiť motor a napájaciu sústavu.
 
 **Prečo je záberový prúd nebezpečný:**
@@ -1509,146 +1296,7 @@ Moderné jednosmerné pohony dokážu:
 1. Dopredné motorické riadenie
 2. Dopredné brzdenie (rekuperácia)
 3. Spätné motorické riadenie
-4. Spätné brzdenie (rekuperácia)**DC motors have several key components** that require maintenance and understanding:
-
-**Field System:**
-• **Permanent Magnet** (small motors) — fixed field, simple construction
-• **Shunt winding** — parallel with armature, constant field in varying loads
-• **Series winding** — in series with armature, high starting torque but speed varies with load
-• **Compound winding** — both shunt and series, balanced characteristics
-
-**Armature:**
-• Consists of laminated iron core (to reduce eddy current losses) with copper windings in slots
-• Connected to commutator segments
-• Generates back-EMF during rotation
-
-**Brushes:**
-• Made of carbon or graphite (self-lubricating)
-• Wear over time — regular maintenance item
-• Spring-loaded to maintain contact with commutator
-• Brush sparking indicates commutator wear or misalignment
-
-**Bearings:**
-• Support the shaft — usually ball or roller bearings
-• Lubricated per manufacturer schedule
-• Noisy bearings = replace before they seize
-
-**Commutator maintenance:**
-• Should be smooth and copper-colored
-• Light scoring can be polished
-• Deep grooving or burning = professional service`,
-    keyPoints: [
-      { icon: '🔴', text: 'Uhlíkové kefky sa opotrebúvajú — pravidelne kontroluj a vymeň' },
-      { icon: '🧩', text: 'Laminované jadro kotvy znižuje straty víriacimi prúdmi' },
-      { icon: '⚙️', text: 'Ložiská potrebujú pravidelné kontroly mazania' },
-      { icon: '✨', text: 'Komutátor musí byť hladký a farby medi' },
-    ],
-    questions: [
-      {
-        id: 'dc2-q1',
-        type: 'multiple_choice',
-        question: 'Prečo je jadro kotvy vyrobené z laminovaných oceľových plechov a nie z plného železa?',
-        options: [
-          'To make it lighter',
-          'To reduce eddy current losses',
-          'To improve heat dissipation',
-          'To increase the magnetic field',
-        ],
-        correctIndex: 1,
-        explanation: 'Laminovanie prerušuje dráhy víriacich prúdov (indukovaných cirkulačných prúdov v železnom jadre), čím výrazne znižuje tepelné straty v jadre.',
-      },
-      {
-        id: 'dc2-q2',
-        type: 'true_false',
-        question: 'Kefky jednosmerného motora nikdy nepotrebujú výmenu, pretože sú vyrobené z tvrdej ocele.',
-        correct: false,
-        explanation: 'Kefky sú vyrobené z mäkkého uhlíka/grafitu a postupne sa opotrebúvajú. Pravidelná kontrola a výmena je súčasťou údržby jednosmerných motorov.',
-      },
-      {
-        id: 'dc2-q3',
-        type: 'multiple_choice',
-        question: 'Aký typ budenia poskytuje najvyšší záberový moment v jednosmernom motore?',
-        options: ['Permanent magnet', 'Shunt winding', 'Series winding', 'Compound winding'],
-        correctIndex: 2,
-        explanation: 'Sériové jednosmerné motory majú budiace vinutie v sérii s kotvou — pri štarte (vysoký prúd) silné pole vytvára mimoriadne vysoký moment. Používa sa v trakčných/žeriavových motoroch.',
-      },
-      {
-        id: 'dc2-q4',
-        type: 'fill_blank',
-        question: 'Zdravý komutátor by mal byť hladký a ___ farby.',
-        answer: 'medenej',
-        hint: 'Pomysli na to, z čoho je vyrobený komutátor',
-        explanation: 'Zdravý komutátor má hladký, medeno sfarbený povrch. Čierne sfarbenie môže indikovať problémy s kefkami; modré/zelené sfarbenie indikuje prehriatie.',
-      },
-    ],
-  },
-  {
-    id: 'dc-3-motor-control',
-    topicId: 'dc-motors',
-    order: 3,
-    title: 'Spúšťanie a regulácia otáčok motora',
-    subtitle: 'Spúšťacie obvody a metódy regulácie rýchlosti',
-    xpReward: 35,
-    diagramType: 'motor-control',
-    explanation: `
-**Jednosmerné motory musia byť chránené** pred abnormálnymi stavmi, ktoré môžu motor poškodiť alebo zničiť:
-
-**Ochrana pred nadprúdom/preťažením:**
-• Tepelné relé preťaženia — bimetalové pásky zahrievané prúdom motora vypnú po trvalej preťaži
-• Nastavenie: 115–120 % menovitého prúdu motora
-• Povolenie pre záberový prúd 6× počas štartu (s časovým oneskorením)
-
-**Ochrana pred skratom:**
-• Rýchlopoistky HRC alebo ističe len s magnetickým vypnutím
-• Musia vypnúť skôr, ako prúd môže poškodiť vinutia
-• Často nastavené na 10× menovitý prúd pre motorové obvody
-
-**Teplotná ochrana:**
-• PTC termistory zabudované vo vinutiach
-• Odpor prudko vzrastie pri prahovej teplote
-• Spustí relé na vypnutie motora pred poškodením izolácie
-
-**Ochrana proti strate budiaceho poľa (shunt motory):**
-• Strata poľa spôsobuje nekontrolovateľné zvyšovanie rýchlosti (pretočenie)
-• Relé straty poľa detekuje absenciu budiaceho prúdu
-• Okamžite vypne motorový obvod
-
-**Ochrana proti podnapätiu:**
-• Strata napätia zastaví motor (bezpečné)
-• Stykač vypadne pri strate napájania
-• Zabraňuje nečakanému opätovnému spusteniu po obnovení napájania (bezpečnosť)
-
-**Strata fázy (trojfázové motory):**
-• Prevádzka na jednej fáze spôsobuje 3× nadprúd
-• Relé straty fázy detekuje nevyváženú/chýbajúcu fázu
-• Motorové ochranné spínače majú vbudovanú ochranu fázy**Starting a DC motor directly** applies full voltage instantly — this causes very high inrush current (up to 10× rated) which can damage the motor and supply.
-
-**DC Motor Starters:**
-
-**1. 4-Point Starter:**
-• Has 4 terminals: L+, L−, A, AA
-• Resistance is gradually reduced as motor speeds up
-• Separate field protection prevents motor running without field
-• Common in industry for shunt and compound motors
-
-**2. Soft Starter (Electronic):**
-• Controls armature voltage via PWM (Pulse Width Modulation) or SCR
-• Smooth current ramp-up
-• No moving parts, compact
-
-**Speed Control Methods:**
-
-| Method | How | Note |
-|--------|-----|------|
-| Armature voltage control | Vary supply voltage | Best below base speed |
-| Field weakening | Reduce field current | Above base speed, constant power |
-| Series resistance | Insert resistance | Wasteful, for starting only |
-
-**Modern approach:**
-DC drives use **thyristors (SCRs)** or **transistor PWM circuits** to control both armature voltage and field current precisely — giving excellent speed regulation from near zero to maximum speed.
-
-**Speed = (V − I×Ra) / K×Φ**
-Where Ra = armature resistance, Φ = flux, K = motor constant`,
+4. Spätné brzdenie (rekuperácia)**DC motors have several key components** that require maintenance and understanding:`,
     keyPoints: [
       { icon: '⚡', text: 'Priamy záber (DOL) spôsobuje obrovský záberový prúd' },
       { icon: '📉', text: 'Rozbeháče postupne znižujú sériový odpor pri zvyšovaní rýchlosti' },
@@ -1680,7 +1328,7 @@ Where Ra = armature resistance, Φ = flux, K = motor constant`,
         id: 'dc3-q3',
         type: 'multiple_choice',
         question: 'Akú metódu používajú moderné pohony na riadenie rýchlosti jednosmerného motora?',
-        options: ['Variable series resistors', 'Gear boxes', 'PWM (Pulse Width Modulation)', 'Changing the motor windings'],
+        options: ['Premenlivé sériové odpory', 'Prevodovky', 'PWM (Pulzná šírková modulácia)', 'Zmena vinutia motora'],
         correctIndex: 2,
         explanation: 'Moderné jednosmerné pohony používajú PWM alebo fázové riadenie SCR/tyristorov na zmenu priemerného napätia na kotve, čím poskytujú plynulé, efektívne riadenie rýchlosti bez zbytočného tepla.',
       },
@@ -1703,63 +1351,37 @@ Where Ra = armature resistance, Φ = flux, K = motor constant`,
     xpReward: 30,
     diagramType: 'dc-motor',
     explanation: `
-Elektrina je jednou z hlavných príčin pracovných úrazov s následkom smrti. Pochopenie nebezpečenstiev je prvým krokom k predchádzaniu nehodám.
+**Jednosmerné motory musia byť chránené** pred abnormálnymi stavmi, ktoré môžu motor poškodiť alebo zničiť:
 
-**Hlavné elektrické nebezpečenstvá:**
+**Ochrana pred nadprúdom/preťažením:**
+• Tepelné relé preťaženia — bimetalové pásky zahrievané prúdom motora vypnú po trvalej preťaži
+• Nastavenie: 115–120 % menovitého prúdu motora
+• Povolenie pre záberový prúd 6× počas štartu (s časovým oneskorením)
 
-**1. Úraz elektrickým prúdom**
-Prúd prechádza cez telo — môže spôsobiť:
-- Svalové stiahnutie (nemôžeš pustiť)
-- Zlyhanie dýchania
-- Zástava srdca (komorová fibrilácia)
-- Popáleniny v mieste vstupu/výstupu
+**Ochrana pred skratom:**
+• Rýchlopoistky HRC alebo ističe len s magnetickým vypnutím
+• Musia vypnúť skôr, ako prúd môže poškodiť vinutia
+• Často nastavené na 10× menovitý prúd pre motorové obvody
 
-**2. Oblúkový výboj**
-Výbušný elektrický oblúk uvoľňuje obrovskú energiu:
-- Teploty až 20 000 °C (4× povrch Slnka)
-- Intenzívne UV/IR žiarenie spôsobujúce slepotu
-- Tlaková vlna (výbuch)
-- Roztavené kovové projektily
-- Intenzívny zvuk (poškodenie sluchu)
+**Teplotná ochrana:**
+• PTC termistory zabudované vo vinutiach
+• Odpor prudko vzrastie pri prahovej teplote
+• Spustí relé na vypnutie motora pred poškodením izolácie
 
-**3. Požiar a výbuch**
-- Preťažené káble zapaľujú izoláciu
-- Iskry zapaľujú horľavé výpary/prach
-- Nevhodné zariadenia v nebezpečných priestoroch
+**Ochrana proti strate budiaceho poľa (shunt motory):**
+• Strata poľa spôsobuje nekontrolovateľné zvyšovanie rýchlosti (pretočenie)
+• Relé straty poľa detekuje absenciu budiaceho prúdu
+• Okamžite vypne motorový obvod
 
-**Bezpečné hladiny napätia:**
-- Veľmi nízke napätie (ELV): < 50 V AC / 120 V DC
-- Aj ELV môže byť nebezpečné vo vlhkých podmienkach alebo pri vysokej uloženej energii
+**Ochrana proti podnapätiu:**
+• Strata napätia zastaví motor (bezpečné)
+• Stykač vypadne pri strate napájania
+• Zabraňuje nečakanému opätovnému spusteniu po obnovení napájania (bezpečnosť)
 
-**Zlaté pravidlo elektrickej bezpečnosti:**
-**VŽDY PREDPOKLADAJ, ŽE OBVODY SÚ POD NAPÄTÍM, KÝM TO TESTOVACÍM ZARIADENÍM NEOVERÍ OPAK****DC motors must be protected** against abnormal conditions that can damage or destroy the motor:
-
-**Common faults and protection:**
-
-**1. Overcurrent / Overload:**
-• Caused by: mechanical overload, bearing seizure, voltage dip
-• Protection: **Thermal overload relay** — senses motor current via heater elements, trips after time/current characteristic is exceeded
-• Also: **Electronic overload** in modern drives
-
-**2. Short Circuit:**
-• Caused by: insulation failure, winding fault
-• Protection: **Fuse or MCB** — fast-acting, interrupts fault current
-
-**3. Loss of Field:**
-• In shunt/compound motors: losing field causes motor to overspeed dangerously ("runaway")
-• Protection: **Field failure relay** — monitors field current, trips if it drops
-
-**4. Overtemperature:**
-• Embedded **PTC thermistor** or **PT100 sensor** in windings
-• Trips drive or alarm if winding temperature exceeds limit
-
-**5. Stall Protection:**
-• If motor stalls (zero speed but current flowing), heat builds up fast
-• Electronic drives monitor speed feedback and trip on stall
-
-**Protection coordination:**
-Upstream fuse → MCB → Thermal overload → Motor
-Each device has a specific fault level it handles best.`,
+**Strata fázy (trojfázové motory):**
+• Prevádzka na jednej fáze spôsobuje 3× nadprúd
+• Relé straty fázy detekuje nevyváženú/chýbajúcu fázu
+• Motorové ochranné spínače majú vbudovanú ochranu fázy**Starting a DC motor directly** applies full voltage instantly — this causes very high inrush current (up to 10× rated) which can damage the motor and supply.`,
     keyPoints: [
       { icon: '🌡️', text: 'Tepelné relé preťaženia chráni pred trvalým preťažením' },
       { icon: '💥', text: 'Poistka/istič chráni pred skratom' },
@@ -1772,10 +1394,10 @@ Each device has a specific fault level it handles best.`,
         type: 'multiple_choice',
         question: 'Čo sa stane s jednosmerným shunt motorom, ak stratí budiaci prúd počas prevádzky?',
         options: [
-          'It stops immediately',
-          'It runs at slightly lower speed',
-          'It overspeeds dangerously (runaway)',
-          'It draws less current',
+          'Okamžite sa zastaví',
+          'Beží s mierne nižšou rýchlosťou',
+          'Nebezpečne sa pretočí (samovoľné zrýchlenie)',
+          'Odoberá menej prúdu',
         ],
         correctIndex: 2,
         explanation: 'Bez magnetického toku poľa klesá protinapätie, čo spôsobuje obrovský prúd kotvy a motor sa pokúša zrýchliť na nebezpečne vysoké otáčky — stav "pretočenia", ktorý môže motor zničiť.',
@@ -1792,10 +1414,10 @@ Each device has a specific fault level it handles best.`,
         type: 'multiple_choice',
         question: 'PTC termistor zabudovaný vo vinutí motora sa používa na:',
         options: [
-          'Measure current consumption',
-          'Monitor winding temperature',
-          'Control motor speed',
-          'Protect against field loss',
+          'Merať spotrebu prúdu',
+          'Monitorovať teplotu vinutia',
+          'Riadiť rýchlosť motora',
+          'Chrániť pred stratou budiaceho poľa',
         ],
         correctIndex: 1,
         explanation: 'PTC (Pozitívny teplotný koeficient) termistory sú zabudované vo vinutiach; ich odpor prudko vzrastie pri nastavenej teplote, čím spustia vypnutie na ochranu vinutia.',
@@ -1826,58 +1448,36 @@ const safetyRules: Lesson[] = [
     xpReward: 30,
     diagramType: 'safety',
     explanation: `
-**OOPP sú poslednou líniou obrany** — inžinierske kontroly a izolácia musia byť vždy na prvom mieste. Ale ak sú OOPP potrebné, musia byť správneho typu pre dané nebezpečenstvo.
+Elektrina je jednou z hlavných príčin pracovných úrazov s následkom smrti. Pochopenie nebezpečenstiev je prvým krokom k predchádzaniu nehodám.
 
-**Izolačné rukavice (IEC 60903):**
-| Trieda | Max. AC napätie | Max. DC napätie |
-|--------|-----------------|-----------------|
-| 00 | 500 V | 750 V |
-| 0 | 1 000 V | 1 500 V |
-| 1 | 7 500 V | 11 250 V |
-| 2 | 17 000 V | 25 500 V |
-| 3 | 26 500 V | 39 750 V |
-| 4 | 36 000 V | 54 000 V |
+**Hlavné elektrické nebezpečenstvá:**
 
-**Kontrola pred každým použitím:**
-• Zvij na zachytenie vzduchu, stlač — skontroluj diery (test nafúknutím)
-• Skontroluj rezy, odreniny, chemické poškodenie
-• Skontroluj dátum — vymeň každých 6–12 mesiacov alebo podľa výrobcu
+**1. Úraz elektrickým prúdom**
+Prúd prechádza cez telo — môže spôsobiť:
+- Svalové stiahnutie (nemôžeš pustiť)
+- Zlyhanie dýchania
+- Zástava srdca (komorová fibrilácia)
+- Popáleniny v mieste vstupu/výstupu
 
-**Kategórie OOPP pre oblúkový výboj (NFPA 70E):**
-| Kategória | Min. hodnotenie oblúka | Typické oblečenie |
-|-----------|------------------------|-------------------|
-| 1 | 4 cal/cm² | FR košeľa + nohavice |
-| 2 | 8 cal/cm² | FR košeľa + nohavice + oblek proti oblúku |
-| 3 | 25 cal/cm² | Oblek proti oblúku |
-| 4 | 40 cal/cm² | Ťažký oblek proti oblúku |
+**2. Oblúkový výboj**
+Výbušný elektrický oblúk uvoľňuje obrovskú energiu:
+- Teploty až 20 000 °C (4× povrch Slnka)
+- Intenzívne UV/IR žiarenie spôsobujúce slepotu
+- Tlaková vlna (výbuch)
+- Roztavené kovové projektily
+- Intenzívny zvuk (poškodenie sluchu)
 
-**Vždy potrebné pri elektrickej práci:**
-• Ochranné okuliare/štít
-• Ochranná helma (trieda E pre prácu na živých zariadeniach)
-• Bezpečnostná obuv (nevodivá podrážka)
-• Reflexná vesta tam, kde to vyžadujú pravidlá pracoviskaElectricity is one of the leading causes of workplace fatalities. Understanding the hazards is the first step to preventing accidents.
+**3. Požiar a výbuch**
+- Preťažené káble zapaľujú izoláciu
+- Iskry zapaľujú horľavé výpary/prach
+- Nevhodné zariadenia v nebezpečných priestoroch
 
-**Primary Electrical Hazards:**
+**Bezpečné hladiny napätia:**
+- Veľmi nízke napätie (ELV): < 50 V AC / 120 V DC
+- Aj ELV môže byť nebezpečné vo vlhkých podmienkach alebo pri vysokej uloženej energii
 
-**1. Electric Shock:**
-When current passes through the human body. Effects depend on:
-• **Magnitude of current:** < 1mA (no sensation) → 10mA (painful, can't release grip) → **50–100mA (ventricular fibrillation, potentially fatal)** → > 1A (burns, cardiac arrest)
-• **Path through body:** Hand-to-hand through the heart is most dangerous
-• **Duration of contact**
-• **Individual factors:** Body resistance, wet/dry skin (wet skin has ~R: 1,000 Ω vs dry: 100,000 Ω)
-
-**2. Arc Flash:**
-An arc flash is an explosive release of energy from an electrical fault. Temperatures reach **20,000°C** (4× hotter than the sun's surface). Can cause:
-• Severe burns (even arc-rated PPE required)
-• Blindness from UV radiation
-• Hearing damage from pressure wave
-• Shrapnel injury
-
-**3. Fire & Explosion:**
-Overloaded wiring → overheating → fire. Sparks in flammable atmospheres can cause explosion (ATEX zones in oil/gas industry).
-
-**4. Secondary Hazards:**
-Falls from height due to shock, dropped tools causing injury.`,
+**Zlaté pravidlo elektrickej bezpečnosti:**
+**VŽDY PREDPOKLADAJ, ŽE OBVODY SÚ POD NAPÄTÍM, KÝM TO TESTOVACÍM ZARIADENÍM NEOVERÍ OPAK****DC motors must be protected** against abnormal conditions that can damage or destroy the motor:`,
     keyPoints: [
       { icon: '⚡', text: '50–100 mA cez srdce môže byť smrteľné' },
       { icon: '🌊', text: 'Mokrá pokožka výrazne znižuje odpor tela' },
@@ -1927,61 +1527,36 @@ Falls from height due to shock, dropped tools causing injury.`,
     xpReward: 30,
     diagramType: 'safety',
     explanation: `
-**LOTO (Uzamknutie/Označenie)** je postup používaný na zabezpečenie, že elektrické zariadenie je bezpečne bez napätia pred začatím údržby alebo opravných prác.
+**OOPP sú poslednou líniou obrany** — inžinierske kontroly a izolácia musia byť vždy na prvom mieste. Ale ak sú OOPP potrebné, musia byť správneho typu pre dané nebezpečenstvo.
 
-**Postup LOTO krok za krokom:**
-1. **Identifikuj** všetky zdroje energie (elektrická, pneumatická, hydraulická, pružinová, gravitačná)
-2. **Oznám** dotknutému personálu
-3. **Normálne vypni** zariadenie
-4. **Izoluj** pomocou hlavného odpájača/odpojovaíča
-5. **Nasaď zámok** — každý pracovník nasadí vlastný visiaci zámok
-6. **Nasaď štítok** — výstražná nálepka vysvetľujúca uzamknutie
-7. **Uvoľni uloženú energiu** — vybi kondenzátory, uvoľni pružiny, odvzdušni tlak
-8. **Over** nulový energetický stav vhodným testovacím zariadením
+**Izolačné rukavice (IEC 60903):**
+| Trieda | Max. AC napätie | Max. DC napätie |
+|--------|-----------------|-----------------|
+| 00 | 500 V | 750 V |
+| 0 | 1 000 V | 1 500 V |
+| 1 | 7 500 V | 11 250 V |
+| 2 | 17 000 V | 25 500 V |
+| 3 | 26 500 V | 39 750 V |
+| 4 | 36 000 V | 54 000 V |
 
-**Kritické pravidlá:**
-• KAŽDÝ pracovník musí nasadiť VLASTNÝ zámok
-• Iba pracovník, ktorý nasadil zámok, ho môže odstrániť
-• Ani nadriadení nemôžu odstrániť zámok inej osoby
-• Samotné štítky (bez zámkov) NIE SÚ dostatočné
+**Kontrola pred každým použitím:**
+• Zvij na zachytenie vzduchu, stlač — skontroluj diery (test nafúknutím)
+• Skontroluj rezy, odreniny, chemické poškodenie
+• Skontroluj dátum — vymeň každých 6–12 mesiacov alebo podľa výrobcu
 
-**Skupinové uzamknutie:**
-Keď je prítomných viacero pracovníkov, použije sa skupinová konzola LOTO — každý nasadí vlastný zámok na konzolu, ktorá uzamkne izolačný bod. Práce môžu pokračovať iba keď sú VŠETKY zámky nasadené.
+**Kategórie OOPP pre oblúkový výboj (NFPA 70E):**
+| Kategória | Min. hodnotenie oblúka | Typické oblečenie |
+|-----------|------------------------|-------------------|
+| 1 | 4 cal/cm² | FR košeľa + nohavice |
+| 2 | 8 cal/cm² | FR košeľa + nohavice + oblek proti oblúku |
+| 3 | 25 cal/cm² | Oblek proti oblúku |
+| 4 | 40 cal/cm² | Ťažký oblek proti oblúku |
 
-**Overenie energie:**
-Po nasadení LOTO:
-- Testuj napätie kalibrovaným testerom napätia
-- Pokús sa stlačiť ovládacie prvky Štart/Beh
-- Iba po potvrdení nulového stavu = bezpečné na prácu**PPE is the last line of defense** — engineering controls and isolation should always come first. But when PPE is required, it must be the right type for the hazard.
-
-**Electrical PPE Categories:**
-
-**Insulating Gloves (IEC 60903):**
-| Class | Max Working Voltage |
-|-------|-------------------|
-| 00 | 500 V AC |
-| 0 | 1,000 V AC |
-| 1 | 7,500 V AC |
-| 2 | 17,000 V AC |
-| 3 | 26,500 V AC |
-| 4 | 36,000 V AC |
-
-Always wear leather protectors over insulating gloves. Check for holes before every use (inflate with air).
-
-**Eye & Face Protection:**
-• Safety glasses — flying particles
-• Face shield — arc flash, battery fluid
-• Arc-rated face shield — for work near live equipment
-
-**Arc Flash PPE (NFPA 70E / IEC 61482):**
-• Determined by **Incident Energy level** (cal/cm²)
-• Arc flash suit, hood, gloves, boots must be rated ≥ incident energy
-• Categories: CAT 1 (4 cal/cm²) through CAT 4 (40 cal/cm²)
-
-**Other PPE:**
-• Hard hat/helmet — head protection
-• Safety boots with steel toe and electrical resistance
-• FR (flame-resistant) clothing — not cotton/polyester which melts`,
+**Vždy potrebné pri elektrickej práci:**
+• Ochranné okuliare/štít
+• Ochranná helma (trieda E pre prácu na živých zariadeniach)
+• Bezpečnostná obuv (nevodivá podrážka)
+• Reflexná vesta tam, kde to vyžadujú pravidlá pracoviskaElectricity is one of the leading causes of workplace fatalities. Understanding the hazards is the first step to preventing accidents.`,
     keyPoints: [
       { icon: '🧤', text: 'Izolačné rukavice: skontroluj triedu pre príslušné napätie' },
       { icon: '👁️', text: 'Štít tváre je povinný pri práci s rizikom oblúkového výboja' },
@@ -2009,10 +1584,10 @@ Always wear leather protectors over insulating gloves. Check for holes before ev
         type: 'multiple_choice',
         question: 'Pred použitím izolačných gumených rukavíc, ako ich skontrolujete na defekty?',
         options: [
-          'Look for discoloration',
-          'Inflate with air and check for leaks',
-          'Test with a multimeter',
-          'Submerge in water',
+          'Hľadaj zmeny farby',
+          'Nafúkni vzduchom a skontroluj úniky',
+          'Otestuj multimetrom',
+          'Ponor do vody',
         ],
         correctIndex: 1,
         explanation: 'Zvij manžetu a zachyť vzduch vo vnútri rukavice, potom stlač na vytvorenie tlaku. Každá diera umožní únik vzduchu, ktorý pocítiš. Vizuálna kontrola nestačí — aj najmenší otvor môže byť smrteľný.',
@@ -2036,51 +1611,32 @@ Always wear leather protectors over insulating gloves. Check for holes before ev
     xpReward: 35,
     diagramType: 'safety',
     explanation: `
-**Oblúkový výboj** je jedno z najzávažnejších elektrických nebezpečenstiev. Pochopenie ochranných hraníc je nevyhnutné pre každého, kto pracuje v blízkosti nabytých zariadení.
+**LOTO (Uzamknutie/Označenie)** je postup používaný na zabezpečenie, že elektrické zariadenie je bezpečne bez napätia pred začatím údržby alebo opravných prác.
 
-**Hranice oblúkového výboja (NFPA 70E / IEC):**
-Obmedzený prístup (~3 m): nekvalifikované osoby sa zastavujú tu.
-Obmedzený prístup (kvalifikovaný, ~300 mm–1 m): iba kvalifikovaní pracovníci s OOPP.
-Hranica oblúkového výboja (vypočítaná): kde dopadajúca energia = 1,2 cal/cm².
-Pracovná vzdialenosť: poloha tváre/tela počas práce.
+**Postup LOTO krok za krokom:**
+1. **Identifikuj** všetky zdroje energie (elektrická, pneumatická, hydraulická, pružinová, gravitačná)
+2. **Oznám** dotknutému personálu
+3. **Normálne vypni** zariadenie
+4. **Izoluj** pomocou hlavného odpájača/odpojovaíča
+5. **Nasaď zámok** — každý pracovník nasadí vlastný visiaci zámok
+6. **Nasaď štítok** — výstražná nálepka vysvetľujúca uzamknutie
+7. **Uvoľni uloženú energiu** — vybi kondenzátory, uvoľni pružiny, odvzdušni tlak
+8. **Over** nulový energetický stav vhodným testovacím zariadením
 
-**Faktory ovplyvňujúce závažnosť oblúkového výboja:**
-1. Dostupný skratový prúd (vyšší = viac energie)
-2. Čas oblúka (dlhší oblúk = viacej dopadajúcej energie)
-3. Pracovná vzdialenosť (zákon inverzného štvorca)
-4. Napätie sústavy
-5. Vzduchová medzera/otvory zariadenia
+**Kritické pravidlá:**
+• KAŽDÝ pracovník musí nasadiť VLASTNÝ zámok
+• Iba pracovník, ktorý nasadil zámok, ho môže odstrániť
+• Ani nadriadení nemôžu odstrániť zámok inej osoby
+• Samotné štítky (bez zámkov) NIE SÚ dostatočné
 
-**Zníženie rizika oblúkového výboja:**
-• Zónová selektívna väzba (rýchlejší výpadok)
-• Diferenciálna ochrana prípojníc
-• Systémy detekcie oblúka (svetelné senzory)
-• Uzemnenie s vysokým odporom
-• Diaľkové vytiahnutie odpínačov**LOTO (Lockout/Tagout)** is the procedure used to ensure that electrical equipment is safely de-energized before maintenance or repair work begins.
+**Skupinové uzamknutie:**
+Keď je prítomných viacero pracovníkov, použije sa skupinová konzola LOTO — každý nasadí vlastný zámok na konzolu, ktorá uzamkne izolačný bod. Práce môžu pokračovať iba keď sú VŠETKY zámky nasadené.
 
-It is legally required in most countries under workplace safety regulations.
-
-**The 6 Steps of LOTO:**
-
-1. **Prepare for Shutdown** — Identify all energy sources (electrical, pneumatic, hydraulic, gravity). Gather LOTO equipment.
-
-2. **Notify Affected Employees** — Warn everyone who could be affected.
-
-3. **Shut Down** — Turn off the equipment using normal stopping procedures.
-
-4. **Isolate** — Open all disconnect switches, isolators, circuit breakers for ALL energy sources.
-
-5. **Lockout and/or Tagout** — Apply your personal lock to the isolation point. Each worker applies THEIR OWN lock. Apply warning tag.
-
-6. **Release/Verify Stored Energy** — Discharge capacitors, bleed pneumatics, block gravity loads. Then **TEST with a meter to confirm zero energy (voltage)**.
-
-**Key rules:**
-• Each person applies THEIR OWN personal lock
-• Never remove someone else's lock
-• The key stays with the person doing the work
-• Verify zero energy before touching!
-
-**Group LOTO:** When multiple workers are on the same job, each applies their own lock to a group lockout hasp.`,
+**Overenie energie:**
+Po nasadení LOTO:
+- Testuj napätie kalibrovaným testerom napätia
+- Pokús sa stlačiť ovládacie prvky Štart/Beh
+- Iba po potvrdení nulového stavu = bezpečné na prácu**PPE is the last line of defense** — engineering controls and isolation should always come first. But when PPE is required, it must be the right type for the hazard.`,
     keyPoints: [
       { icon: '🔒', text: 'Každý pracovník nasadí VLASTNÝ osobný zámok' },
       { icon: '📋', text: '6 krokov: Priprav → Notifikuj → Vypni → Izoluj → Uzamkni → Overif' },
@@ -2093,10 +1649,10 @@ It is legally required in most countries under workplace safety regulations.
         type: 'multiple_choice',
         question: 'Koľko osobných zámkov by mal pracovník nasadiť počas postupu LOTO?',
         options: [
-          'Zero — the supervisor applies one for the team',
-          'One per isolation point',
-          'One — their own personal lock',
-          'As many as there are workers on the team',
+          'Žiadny — nadriadený aplikuje zámok za celý tím',
+          'Jeden na každé izolačné miesto',
+          'Jeden — vlastný osobný zámok',
+          'Toľko, koľko je pracovníkov v tíme',
         ],
         correctIndex: 2,
         explanation: 'Každý jednotlivý pracovník nasadí VLASTNÝ osobný visací zámok. Kľúč zostáva pri ňom. Tým sa zabezpečí, že nikto nemôže opätovne nabiť zariadenie, kým na tom pracuje.',
@@ -2113,10 +1669,10 @@ It is legally required in most countries under workplace safety regulations.
         type: 'multiple_choice',
         question: 'Aký je POSLEDNÝ krok pred začatím údržby po nasadení LOTO?',
         options: [
-          'Check the work permit',
-          'Put on PPE',
-          'Test with a meter to verify zero energy',
-          'Inform the supervisor',
+          'Skontroluj pracovné povolenie',
+          'Nasaď OOPP',
+          'Testuj meradlom na overenie nulovej energie',
+          'Informuj nadriadeného',
         ],
         correctIndex: 2,
         explanation: 'Vždy over nulový energetický stav správne fungujúcim testovacím prístrojom. Nikdy nepredpokladaj — izolačné zariadenia môžu zlyhať. Zlaté pravidlo: Testuj pred dotykom.',
@@ -2138,6 +1694,86 @@ It is legally required in most countries under workplace safety regulations.
     title: 'Bezpečnosť pri oblúkovom výboji',
     subtitle: 'Hranice, kategórie OOPP a hodnotenie rizika',
     xpReward: 35,
+    diagramType: 'safety',
+    explanation: `
+**Oblúkový výboj** je jedno z najzávažnejších elektrických nebezpečenstiev. Pochopenie ochranných hraníc je nevyhnutné pre každého, kto pracuje v blízkosti nabytých zariadení.
+
+**Hranice oblúkového výboja (NFPA 70E / IEC):**
+Obmedzený prístup (~3 m): nekvalifikované osoby sa zastavujú tu.
+Obmedzený prístup (kvalifikovaný, ~300 mm–1 m): iba kvalifikovaní pracovníci s OOPP.
+Hranica oblúkového výboja (vypočítaná): kde dopadajúca energia = 1,2 cal/cm².
+Pracovná vzdialenosť: poloha tváre/tela počas práce.
+
+**Faktory ovplyvňujúce závažnosť oblúkového výboja:**
+1. Dostupný skratový prúd (vyšší = viac energie)
+2. Čas oblúka (dlhší oblúk = viacej dopadajúcej energie)
+3. Pracovná vzdialenosť (zákon inverzného štvorca)
+4. Napätie sústavy
+5. Vzduchová medzera/otvory zariadenia
+
+**Zníženie rizika oblúkového výboja:**
+• Zónová selektívna väzba (rýchlejší výpadok)
+• Diferenciálna ochrana prípojníc
+• Systémy detekcie oblúka (svetelné senzory)
+• Uzemnenie s vysokým odporom
+• Diaľkové vytiahnutie odpínačov**LOTO (Lockout/Tagout)** is the procedure used to ensure that electrical equipment is safely de-energized before maintenance or repair work begins.`,
+    keyPoints: [
+      { icon: '📍', text: '4 ochranné hranice od vnútornej po vonkajšiu' },
+      { icon: '1️⃣', text: 'Najlepšia ochrana: VŽDY najprv odpoj napájanie!' },
+      { icon: '🏷️', text: 'Nálepky oblúkového výboja na rozvádzačoch — prečítaj pred prácou' },
+      { icon: '📐', text: 'Dopadajúca energia v cal/cm² určuje kategóriu OOPP' },
+    ],
+    questions: [
+      {
+        id: 'sf4-q1',
+        type: 'multiple_choice',
+        question: 'Aký je najlepší spôsob ochrany pred rizikom oblúkového výboja?',
+        options: [
+          'Nosi OOPP s najvyšším hodnotením pre oblúkový výboj',
+          'Pracuj veľmi rýchlo v blízkosti zariadenia',
+          'De-energize and follow LOTO before working',
+          'Použi dlhšie izolované náradie',
+        ],
+        correctIndex: 2,
+        explanation: 'Eliminácia nebezpečenstva je vždy najlepšou kontrolou — odenergetizuj zariadenie. OOPP sú poslednou možnosťou, nie prvým riešením.',
+      },
+      {
+        id: 'sf4-q2',
+        type: 'true_false',
+        question: 'Hranica ochrany pred oblukom je 1,2 cal/cm² — kde popálenie 1. stupňa je najhorší možný výsledok.',
+        correct: false,
+        explanation: '1,2 cal/cm² je prah pre popálenie DRUHÉHO stupňa. Hranica ochrany pred výbojom je vonkajšia hranica, kde sú OOPP potrebné na zabránenie vážnym popáleninám.',
+      },
+      {
+        id: 'sf4-q3',
+        type: 'multiple_choice',
+        question: 'Aké informácie musia byť uvedené na nálepke rizika oblúkového výboja na elektrickom rozvádzači?',
+        options: [
+          'Iba hladinu napätia',
+          'Dopadajúca energia, hranica oblúkového výboja a požadované OOPP',
+          'Meno inštalatéra',
+          'Dátum poslednej údržby',
+        ],
+        correctIndex: 1,
+        explanation: 'NFPA 70E vyžaduje, aby nálepky oblúkového výboja obsahovali: dopadajúcu energiu (cal/cm²), hranicu oblúka, požadovanú kategóriu OOPP/hodnotenie oblúka a dostupný skratový prúd.',
+      },
+      {
+        id: 'sf4-q4',
+        type: 'fill_blank',
+        question: 'Dopadajúca energia oblúkového výboja sa vypočítava na základe skratového prúdu, doby oblúka a pracovnej ___.',
+        answer: 'vzdialenosti',
+        hint: 'Ako ďaleko je pracovník od zdroja oblúka?',
+        explanation: 'Dopadajúca energia klesá so vzdialenosťou (nepriamo úmerne druhej mocnine vzdialenosti). Pracovná vzdialenosť od zdroja oblúka je kľúčovým vstupom vo výpočtoch oblúkového výboja.',
+      },
+    ],
+  },
+  {
+    id: 'sf-5-osha',
+    topicId: 'safety-rules',
+    order: 5,
+    title: 'Predpisy a normy',
+    subtitle: 'OSHA, IEC, NEC a smernice EÚ, ktoré musíš poznať',
+    xpReward: 30,
     diagramType: 'safety',
     explanation: `
 Elektrická práca sa riadi prísnymi predpismi a normami. Ako elektrikár si zo zákona povinný ich dodržiavať.
@@ -2169,152 +1805,7 @@ Väčšina jurisdikcií vyžaduje:
 - Registráciu/licencovanie u príslušného orgánu
 - Priebežné odborné vzdelávanie (CPD)
 
-**Nikdy nerob skratky v predpisoch — elektrické poruchy spôsobujú tisíce požiarov v domácnostiach a úmrtí každý rok.****Arc Flash** is one of the most severe electrical hazards. Understanding protection boundaries is critical for anyone working near energized equipment.
-
-**Arc Flash Boundaries (NFPA 70E):**
-
-📍 **Flash Protection Boundary (Outer):** Distance at which incident energy reaches 1.2 cal/cm² — minimum at which a second-degree burn could occur. Everyone inside needs PPE.
-
-📍 **Limited Approach Boundary:** Only qualified persons may cross. Unqualified must be escorted.
-
-📍 **Restricted Approach Boundary:** Only qualified persons with proper PPE, using insulated tools.
-
-📍 **Prohibited Approach Boundary:** Treated as if making contact with the bare conductor.
-
-**Incident Energy Analysis:**
-Electrical engineers calculate the **incident energy** at each equipment location based on:
-• Available fault current
-• Clearing time of protective devices
-• Working distance from arc point
-
-**Risk Reduction Hierarchy:**
-1. ⭐ Elimination — de-energize (best option)
-2. Engineering controls — arc flash relays, current limiters
-3. PPE — last resort barrier
-
-**Arc Flash Labels:**
-Modern electrical panels must have arc flash labels showing:
-• Incident energy (cal/cm²)
-• Arc flash boundary distance
-• Required PPE CAT level
-• Available fault current`,
-    keyPoints: [
-      { icon: '📍', text: '4 ochranné hranice od vnútornej po vonkajšiu' },
-      { icon: '1️⃣', text: 'Najlepšia ochrana: VŽDY najprv odpoj napájanie!' },
-      { icon: '🏷️', text: 'Nálepky oblúkového výboja na rozvádzačoch — prečítaj pred prácou' },
-      { icon: '📐', text: 'Dopadajúca energia v cal/cm² určuje kategóriu OOPP' },
-    ],
-    questions: [
-      {
-        id: 'sf4-q1',
-        type: 'multiple_choice',
-        question: 'Aký je najlepší spôsob ochrany pred rizikom oblúkového výboja?',
-        options: [
-          'Wear the highest arc rating PPE available',
-          'Work very quickly near the equipment',
-          'De-energize and follow LOTO before working',
-          'Use longer insulated tools',
-        ],
-        correctIndex: 2,
-        explanation: 'Eliminácia nebezpečenstva je vždy najlepšou kontrolou — odenergetizuj zariadenie. OOPP sú poslednou možnosťou, nie prvým riešením.',
-      },
-      {
-        id: 'sf4-q2',
-        type: 'true_false',
-        question: 'Hranica ochrany pred oblukom je 1,2 cal/cm² — kde popálenie 1. stupňa je najhorší možný výsledok.',
-        correct: false,
-        explanation: '1,2 cal/cm² je prah pre popálenie DRUHÉHO stupňa. Hranica ochrany pred výbojom je vonkajšia hranica, kde sú OOPP potrebné na zabránenie vážnym popáleninám.',
-      },
-      {
-        id: 'sf4-q3',
-        type: 'multiple_choice',
-        question: 'Aké informácie musia byť uvedené na nálepke rizika oblúkového výboja na elektrickom rozvádzači?',
-        options: [
-          'Only the voltage level',
-          'Incident energy, arc flash boundary, and required PPE',
-          'The name of the installer',
-          'The date of last maintenance',
-        ],
-        correctIndex: 1,
-        explanation: 'NFPA 70E vyžaduje, aby nálepky oblúkového výboja obsahovali: dopadajúcu energiu (cal/cm²), hranicu oblúka, požadovanú kategóriu OOPP/hodnotenie oblúka a dostupný skratový prúd.',
-      },
-      {
-        id: 'sf4-q4',
-        type: 'fill_blank',
-        question: 'Dopadajúca energia oblúkového výboja sa vypočítava na základe skratového prúdu, doby oblúka a pracovnej ___.',
-        answer: 'vzdialenosti',
-        hint: 'Ako ďaleko je pracovník od zdroja oblúka?',
-        explanation: 'Dopadajúca energia klesá so vzdialenosťou (nepriamo úmerne druhej mocnine vzdialenosti). Pracovná vzdialenosť od zdroja oblúka je kľúčovým vstupom vo výpočtoch oblúkového výboja.',
-      },
-    ],
-  },
-  {
-    id: 'sf-5-osha',
-    topicId: 'safety-rules',
-    order: 5,
-    title: 'Predpisy a normy',
-    subtitle: 'OSHA, IEC, NEC a smernice EÚ, ktoré musíš poznať',
-    xpReward: 30,
-    diagramType: 'safety',
-    explanation: `
-Každý elektrikár potrebuje sadu kvalitného, dobre udržiavaného ručného náradia. Tu sú základné nástroje a spôsob ich bezpečného používania.
-
-**Testery napätia (vždy ako prvé!):**
-• Bezkontaktný tester napätia — detekuje striedavé napätie bez dotyku vodiča
-• Pero-tester — základná indikácia live/dead
-• Meracie káble kompatibilné s GS38 (UK) pre multimetre
-
-**Skrutkovače:**
-• Plochá a krížová hlava, rôzne veľkosti
-• Izolované podľa IEC 60900 (hodnotené 1000 V)
-• Náradie testované VDE nesie označenie oranžovej rukovätí
-
-**Kliešte:**
-• Kombinované kliešte — uchopovanie + strihanie
-• Ihlové kliešte — tiesnené priestory, tvorenie slučiek
-• Bočné nožnice (uhlopriečne kliešte) — strihanie drôtu
-• Kliešte s ohnutou čeľusťou — práca s chráničkami, poistnými maticami
-
-**Káblovnárske nástroje:**
-• Odizolátory — nastaviteľné pre rôzne priemery káblov
-• Kabelárske nožnice — čisté rezy hrubých káblov
-• Lisovacie kliešte — dutinky (bootlace ferrule), káblovéoka
-• Ťahací drôt/tyč — ťahanie káblov cez chráničky
-
-**Momentový skrutkovač:**
-Nevyhnutný pre uťahovanie svoriek — nedotiahnuté alebo predotiahnuté svorky spôsobujú poruchy a požiare!
-
-**Pravidlá bezpečnosti náradia:**
-- Skontroluj náradie pred použitím — nepoužívaj poškodené náradie
-- Používaj izolované náradie v blízkosti živých časti
-- Nikdy nepoužívaj skrutkovač ako sekáč alebo páčidloElectrical work is governed by strict regulations and standards. As an electrician, you are legally required to comply with them.
-
-**Key Standards:**
-
-🇺🇸 **NEC (NFPA 70) — National Electrical Code:**
-The primary installation standard in North America. Covers wiring methods, equipment, grounding, protection.
-
-🇺🇸 **OSHA 29 CFR 1910.269 & 1910.303:**
-US federal law governing electrical safety at work, including LOTO, arc flash, and qualified worker requirements.
-
-🇪🇺 **IEC 60364 — Low Voltage Electrical Installations:**
-The international standard used throughout Europe and most of the world. Covers design, erection, and testing of electrical installations.
-
-🇪🇺 **EU Low Voltage Directive (2014/35/EU):**
-All electrical equipment sold in EU must meet safety requirements (marked with CE mark).
-
-🇬🇧 **BS 7671 — IET Wiring Regulations:**
-UK national standard (18th Edition), based on IEC 60364.
-
-**Qualified Electrician Requirements:**
-• Must be formally trained and certified/licensed
-• Must demonstrate competence to work on live systems
-• Must keep up with changes to standards
-• Responsible for safe, compliant installations
-• Must use calibrated test equipment
-
-**Inspection and Testing:**
-Completed installations must be inspected and tested before being put into service. Electrical Installation Condition Reports (EICRs) required periodically.`,
+**Nikdy nerob skratky v predpisoch — elektrické poruchy spôsobujú tisíce požiarov v domácnostiach a úmrtí každý rok.****Arc Flash** is one of the most severe electrical hazards. Understanding protection boundaries is critical for anyone working near energized equipment.`,
     keyPoints: [
       { icon: '📜', text: 'Poznej svoju národnú normu: IEC 60364 (EÚ), NEC (USA), BS 7671 (UK)' },
       { icon: '🏛️', text: 'OSHA 1910.269: americký zákon pre elektrickú bezpečnosť' },
@@ -2342,9 +1833,9 @@ Completed installations must be inspected and tested before being put into servi
         type: 'multiple_choice',
         question: 'Čo je potrebné pred uvedením novej elektrickej inštalácie do prevádzky?',
         options: [
-          'Only a visual inspection',
-          'Inspection and testing per relevant standard',
-          'Approval from the electrical equipment supplier',
+          'Iba vizuálna prehliadka',
+          'Prehliadka a skúšanie podľa príslušnej normy',
+          'Schválenie od dodávateľa elektrického zariadenia',
           'Nothing — if installed correctly it is ready to use',
         ],
         correctIndex: 1,
