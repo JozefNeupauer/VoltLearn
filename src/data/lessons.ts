@@ -387,32 +387,31 @@ const ohmsLaw: Lesson[] = [
     explanation: `
 **Ohmov zákon** je základný vzťah medzi napätím, prúdom a odporom. Objavil ho Georg Simon Ohm v roku 1827:
 
-# V = I × R
+# U = I × R
 
 Kde:
-- **V** = Napätie (Volty)
+- **U** = Napätie (Volty)
 - **I** = Prúd (Ampéry)
 - **R** = Odpor (Ohmy)
 
 **Trojuholník Ohmovho zákona:**
 Zakry, čo chceš nájsť:
-• Zakry V → V = I × R
-• Zakry I → I = V / R
-• Zakry R → R = V / I
+• Zakry U → U = I × R
+• Zakry I → I = U / R
+• Zakry R → R = U / I
 
 **Praktické príklady:**
 1. 12 V batéria, rezistor 4 Ω: I = 12/4 = **3 A**
 2. Ohrievač odoberá 10 A zo siete 230 V: R = 230/10 = **23 Ω**
-3. Rezistor 1 kΩ s 5 mA: V = 0,005 × 1000 = **5 V**
+3. Rezistor 1 kΩ s 5 mA: U = 0,005 × 1000 = **5 V**
 
 **Pamätaj:** Ohmov zákon platí pre *odporové* súčiastky pri konštantnej teplote. Priamo neplatí pre kondenzátory, cievky ani nelineárne prvky ako diódy.
 
 **Poznámka k značeniu:**
-Napätie sa v praxi značí buď **V** alebo **U**. Oba zápisy sú správne:
-• V = I × R
-• U = R × I`,
+Napätie sa značí písmenom **U**. Písmeno **V** je jednotka (volt).
+• U = I × R`,
     keyPoints: [
-      { icon: '📐', text: 'V = I × R — trojuholníková metóda Ohmovho zákona' },
+      { icon: '📐', text: 'U = I × R — trojuholníková metóda Ohmovho zákona' },
       { icon: '⬆️', text: 'Väčšie napätie → väčší prúd (pri pevnom odpore)' },
       { icon: '⬆️', text: 'Väčší odpor → menší prúd (pri pevnom napätí)' },
       { icon: '🏆', text: 'Pomenovaný podľa Georga Simona Ohma (1789–1854)' },
@@ -429,25 +428,25 @@ Napätie sa v praxi značí buď **V** alebo **U**. Oba zápisy sú správne:
       {
         id: 'ol1-q2',
         type: 'fill_blank',
-        question: "Uveď Ohmov zákon: V = ___ × R",
+        question: "Uveď Ohmov zákon: U = ___ × R",
         answer: 'I',
         hint: 'Symbol pre prúd',
-        explanation: 'Ohmov zákon: V = I × R. Napätie sa rovná prúdu vynásobenému odporom.',
+        explanation: 'Ohmov zákon: U = I × R. Napätie sa rovná prúdu vynásobenému odporom.',
       },
       {
         id: 'ol1-q3',
         type: 'true_false',
         question: "Zdvojnásobenie odporu (pri konštantnom napätí) zdvojnásobí prúd.",
         correct: false,
-        explanation: 'Zdvojnásobenie odporu ZNIŽUJE prúd na polovicu (I = V/R). Prúd je nepriamo úmerný odporu.',
+        explanation: 'Zdvojnásobenie odporu ZNIŽUJE prúd na polovicu (I = U/R). Prúd je nepriamo úmerný odporu.',
       },
       {
         id: 'ol1-q4',
         type: 'multiple_choice',
         question: 'Ak potrebuješ nájsť prúd pomocou trojuholníka Ohmovho zákona, vzorec je:',
-        options: ['I = V × R', 'I = R / V', 'I = V / R', 'I = V + R'],
+        options: ['I = U × R', 'I = R / U', 'I = U / R', 'I = U + R'],
         correctIndex: 2,
-        explanation: 'Prúd I = V / R. V trojuholníku zakrytie I odhalí V navrchu vydelené R naspodku.',
+        explanation: 'Prúd I = U / R. V trojuholníku zakrytie I odhalí U navrchu vydelené R naspodku.',
       },
     ],
   },
@@ -456,37 +455,37 @@ Napätie sa v praxi značí buď **V** alebo **U**. Oba zápisy sú správne:
     topicId: 'ohms-law',
     order: 2,
     title: 'Výpočet napätia',
-    subtitle: 'V = I × R — príklady z praxe',
+    subtitle: 'U = I × R — príklady z praxe',
     xpReward: 30,
     diagramType: 'ohms-triangle',
     explanation: `
 Keď poznáš prúd (**I**) a odpor (**R**), môžeš vypočítať napätie:
 
-# V = I × R
+# U = I × R
 
 **Postup krok za krokom:**
 1. Identifikuj čo vieš (I a R)
-2. Použi V = I × R
+2. Použi U = I × R
 3. Skontroluj jednotky: A × Ω = V ✓
 
 **Príklady:**
-- Toster 10 A cez ohrievací článok 23 Ω: V = 10 × 23 = 230 V ✓ (európska sieť)
-- Obvod LED 0,5 A cez 240 Ω: V = 0,5 × 240 = 120 V (Severná Amerika)
-- Senzor odoberajúci 20 mA cez 500 Ω: V = 0,020 × 500 = 10 V
+- Toster 10 A cez ohrievací článok 23 Ω: U = 10 × 23 = 230 V ✓ (európska sieť)
+- Obvod LED 0,5 A cez 240 Ω: U = 0,5 × 240 = 120 V (Severná Amerika)
+- Senzor odoberajúci 20 mA cez 500 Ω: U = 0,020 × 500 = 10 V
 
 **Viacero rezistorov v sérii:**
-V_celk = I × (R₁ + R₂ + R₃)
+U_celk = I × (R₁ + R₂ + R₃)
 
 **Odporový delič (dva rezistory v sérii):**
-V₂ = V_zdroj × R₂ / (R₁ + R₂)
+U₂ = U_zdroj × R₂ / (R₁ + R₂)
 
 **Tip na zapamätanie:** Napätie si predstav ako „úsilie" — čím väčší odpor a čím viac prúdu musíš pretlačiť, tým viac napätia potrebuješ.
 
 **Využitie v praxi:** Kontrola úbytku napätia na káblovom vedení:
-V_úbytok = I × R_kábla
+U_úbytok = I × R_kábla
 Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).`,
     keyPoints: [
-      { icon: '🔢', text: 'V = I × R — vynásob prúd odporom' },
+      { icon: '🔢', text: 'U = I × R — vynásob prúd odporom' },
       { icon: '📏', text: 'Vždy uvádzaj jednotky: A × Ω = V' },
       { icon: '✅', text: '3 A cez 10 Ω = pokles napätia 30 V' },
       { icon: '💡', text: '20 mA LED cez 100 Ω → 2 V' },
@@ -498,7 +497,7 @@ Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).`,
         question: 'Cez rezistor s odporom 8 Ω tečie prúd 5 A. Aké je napätie na ňom?',
         options: ['1.6 V', '13 V', '40 V', '0.625 V'],
         correctIndex: 2,
-        explanation: 'V = I × R = 5 A × 8 Ω = 40 V',
+        explanation: 'U = I × R = 5 A × 8 Ω = 40 V',
       },
       {
         id: 'ol2-q2',
@@ -506,22 +505,22 @@ Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).`,
         question: 'Vykurovací článok odberá 10 A a má odpor 24 Ω. Vypočítaj napájacie napätie.',
         options: ['2.4 V', '240 V', '34 V', '14 V'],
         correctIndex: 1,
-        explanation: 'V = I × R = 10 A × 24 Ω = 240 V — typické európske domáce napätie.',
+        explanation: 'U = I × R = 10 A × 24 Ω = 240 V — typické európske domáce napätie.',
       },
       {
         id: 'ol2-q3',
         type: 'fill_blank',
         question: 'Cez rezistor 12 Ω tečie prúd 2 A. Napätie je ___ V.',
         answer: '24',
-        hint: 'Použi V = I × R',
-        explanation: 'V = I × R = 2 A × 12 Ω = 24 V',
+        hint: 'Použi U = I × R',
+        explanation: 'U = I × R = 2 A × 12 Ω = 24 V',
       },
       {
         id: 'ol2-q4',
         type: 'true_false',
         question: 'Ak sa prúd zdvojnásobí a odpor zostane rovnaký, napätie sa tiež zdvojnásobí.',
         correct: true,
-        explanation: 'Správne! V = I × R. Ak sa I zdvojnásobí a R zostane konštantné, V = 2I × R = dvojnásobné pôvodné napätie.',
+        explanation: 'Správne! U = I × R. Ak sa I zdvojnásobí a R zostane konštantné, U = 2I × R = dvojnásobné pôvodné napätie.',
       },
     ],
   },
@@ -530,17 +529,17 @@ Udržuj úbytok napätia < 3 % napájacieho napätia (odporúčanie IEC).`,
     topicId: 'ohms-law',
     order: 3,
     title: 'Výpočet prúdu',
-    subtitle: 'I = V / R — aplikovanie vzorca',
+    subtitle: 'I = U / R — aplikovanie vzorca',
     xpReward: 30,
     diagramType: 'ohms-triangle',
     explanation: `
 Keď poznáš napätie a odpor, vypočítaj prúd:
 
-# I = V / R
+# I = U / R
 
 **Postup krok za krokom:**
-1. Identifikuj V a R
-2. Vydeľ V hodnotou R
+1. Identifikuj U a R
+2. Vydeľ U hodnotou R
 3. Výsledok je v Ampéroch
 
 **Praktické príklady:**
@@ -552,7 +551,7 @@ Keď poznáš napätie a odpor, vypočítaj prúd:
 | Riadiaci obvod 24 V, 4,8 kΩ | I = 24/4800 | 5 mA |
 
 **Prúd v paralelných vetvách:**
-Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
+Každá vetva má U/R_vetvy nezávisle od ostatných vetiev.
 
 **Prečo prúd záleží pre elektrikára:**
 • Určuje prierez kábla (zaťažiteľnosť)
@@ -566,7 +565,7 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
 - Zápach horenia
 - Stmievanie svetiel pri spustení spotrebičov`,
     keyPoints: [
-      { icon: '🔢', text: 'I = V / R — vydeľ napätie odporom' },
+      { icon: '🔢', text: 'I = U / R — vydeľ napätie odporom' },
       { icon: '💡', text: '230 V / 460 Ω žiarovka → 0,5 A prúd' },
       { icon: '🔌', text: 'Použij na dimenzovanie káblov a ističov' },
       { icon: '📏', text: '1 A = 1000 mA' },
@@ -578,15 +577,15 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
         question: 'Napájanie 120 V je zapojené cez rezistor 30 Ω. Aký je prúd?',
         options: ['3600 A', '0,25 A', '4 A', '150 A'],
         correctIndex: 2,
-        explanation: 'I = V / R = 120 V / 30 Ω = 4 A',
+        explanation: 'I = U / R = 120 V / 30 Ω = 4 A',
       },
       {
         id: 'ol3-q2',
         type: 'fill_blank',
         question: '9V batéria je zapojená cez rezistor 3 Ω. Prúd = ___ A.',
         answer: '3',
-        hint: 'I = V / R',
-        explanation: 'I = V / R = 9 V / 3 Ω = 3 A',
+        hint: 'I = U / R',
+        explanation: 'I = U / R = 9 V / 3 Ω = 3 A',
       },
       {
         id: 'ol3-q3',
@@ -594,7 +593,7 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
         question: 'Obvod s napätím 230 V má celkový odpor 46 Ω. Aký je prúd v obvode?',
         options: ['10 A', '5 A', '46 A', '0,2 A'],
         correctIndex: 1,
-        explanation: 'I = V / R = 230 V / 46 Ω = 5 A',
+        explanation: 'I = U / R = 230 V / 46 Ω = 5 A',
       },
       {
         id: 'ol3-q4',
@@ -610,18 +609,18 @@ Každá vetva má V/R_vetvy nezávisle od ostatných vetiev.
     topicId: 'ohms-law',
     order: 4,
     title: 'Výpočet odporu',
-    subtitle: 'R = V / I — hľadanie odporu',
+    subtitle: 'R = U / I — hľadanie odporu',
     xpReward: 30,
     diagramType: 'ohms-triangle',
     explanation: `
 Keď poznáš napätie a prúd, vypočítaj odpor:
 
-# R = V / I
+# R = U / I
 
 **Postup krok za krokom:**
-1. Zmeraj alebo získaj V na komponente
+1. Zmeraj alebo získaj U na komponente
 2. Zmeraj alebo získaj I cez komponent
-3. R = V / I
+3. R = U / I
 
 **Bežné aplikácie:**
 | Problém | Vzorec | Odpoveď |
@@ -639,7 +638,7 @@ Tester izolácie (Megger) prikladá vysoké napätie a meria odpor izolácie. Ho
 **Farebný kód odporov (pre pevné rezistory):**
 Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranžová=3, Žltá=4, Zelená=5, Modrá=6, Fialová=7, Sivá=8, Biela=9When you know voltage and current, solve for resistance:`,
     keyPoints: [
-      { icon: '🔢', text: 'R = V / I — vydeľ napätie prúdom' },
+      { icon: '🔢', text: 'R = U / I — vydeľ napätie prúdom' },
       { icon: '🔍', text: 'Používa sa pri diagnostike porúch a dimenzovaní súčiastok' },
       { icon: '🧪', text: 'LED obvody: R = (napájací V − LED V) / prúd' },
       { icon: '🔬', text: 'Testovanie izolácie meria hodnoty v MΩ' },
@@ -651,15 +650,15 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
         question: 'Napájací zdroj 24 V dodáva 6 A do záťaže. Aký je odpor záťaže?',
         options: ['144 Ω', '0,25 Ω', '4 Ω', '30 Ω'],
         correctIndex: 2,
-        explanation: 'R = V / I = 24 V / 6 A = 4 Ω',
+        explanation: 'R = U / I = 24 V / 6 A = 4 Ω',
       },
       {
         id: 'ol4-q2',
         type: 'fill_blank',
         question: 'Obvodom s napätím 12 V tečie 4 A. R = ___ Ω.',
         answer: '3',
-        hint: 'R = V / I',
-        explanation: 'R = V / I = 12 V / 4 A = 3 Ω',
+        hint: 'R = U / I',
+        explanation: 'R = U / I = 12 V / 4 A = 3 Ω',
       },
       {
         id: 'ol4-q3',
@@ -667,14 +666,14 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
         question: 'Pomocou 9 V batérie meriaš 0,1 A tečúcich cez neznámy rezistor. Jeho hodnota je:',
         options: ['0,9 Ω', '90 Ω', '9,1 Ω', '900 Ω'],
         correctIndex: 1,
-        explanation: 'R = V / I = 9 V / 0,1 A = 90 Ω',
+        explanation: 'R = U / I = 9 V / 0,1 A = 90 Ω',
       },
       {
         id: 'ol4-q4',
         type: 'true_false',
-        question: 'R = V / I dáva odpor v Ohmoch, keď V je vo Voltoch a I v Ampéroch.',
+        question: 'R = U / I dáva odpor v Ohmoch, keď U je vo Voltoch a I v Ampéroch.',
         correct: true,
-        explanation: 'Správne! V/I = Volty/Ampéry = Ohmy (Ω). Jednotky sú konzistentné: 1 Ω = 1 V/A.',
+        explanation: 'Správne! U/I = Volty/Ampéry = Ohmy (Ω). Jednotky sú konzistentné: 1 Ω = 1 V/A.',
       },
     ],
   },
@@ -683,16 +682,16 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
     topicId: 'ohms-law',
     order: 5,
     title: 'Elektrický výkon',
-    subtitle: 'P = V × I — watty a spotreba energie',
+    subtitle: 'P = U × I — watty a spotreba energie',
     xpReward: 35,
     diagramType: 'power-triangle',
     explanation: `
 **Elektrický výkon (P)** je rýchlosť, s akou sa energia spotrebúva alebo produkuje. Meria sa vo **Wattoch (W)**.
 
 **Tri vzorce pre výkon (odporové/DC obvody):**
-• P = V × I
+• P = U × I
 • P = I² × R
-• P = V² / R
+• P = U² / R
 
 **Pri striedavom prúde (AC):**
 • Činný výkon: P = U × I × cos φ
@@ -701,9 +700,9 @@ Farby prúžkov predstavujú číslice. Čierna=0, Hnedá=1, Červená=2, Oranž
 
 Kde φ je fázový uhol medzi napätím a prúdom. Pre čistý jednosmerný (DC) obvod platí φ = 0, takže P = U × I.
 
-**Odvodzovanie z Ohmovho zákona:** Pretože V = IR:
-- P = V × I = (IR) × I = I²R
-- P = V × I = V × (V/R) = V²/R
+**Odvodzovanie z Ohmovho zákona:** Pretože U = IR:
+- P = U × I = (IR) × I = I²R
+- P = U × I = U × (U/R) = U²/R
 
 **Energia vs. Výkon:**
 - Výkon (P) = rýchlosť spotreby energie (W)
@@ -722,8 +721,8 @@ Kde φ je fázový uhol medzi napätím a prúdom. Pre čistý jednosmerný (DC)
 **Vzorec pre tepelné straty:**
 P_teplo = I²R — určuje minimálny prierez kábla, menovité hodnoty poistiek a nárast teploty komponentov.`,
     keyPoints: [
-      { icon: '⚡', text: 'P = V × I — výkon vo Wattoch' },
-      { icon: '🔌', text: 'Tiež: P = I²×R a P = V²/R' },
+      { icon: '⚡', text: 'P = U × I — výkon vo Wattoch' },
+      { icon: '🔌', text: 'Tiež: P = I²×R a P = U²/R' },
       { icon: '💰', text: 'Energia (kWh) = Výkon (kW) × Čas (h)' },
       { icon: '🔥', text: 'Väčší výkon = väčšie teplo vo vodičoch — skontroluj prierez!' },
     ],
