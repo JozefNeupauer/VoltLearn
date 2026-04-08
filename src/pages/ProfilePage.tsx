@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import { Zap, Flame, BookOpen, Shield, Star, Trophy, Lock } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { achievements } from '../data/achievements'
 import { ProgressBar } from '../components/ui/ProgressBar'
 
 export function ProfilePage() {
-  const navigate = useNavigate()
   const { state } = useApp()
   const { user, unlockedAchievements, completedLessons } = state
 
@@ -40,17 +38,7 @@ export function ProfilePage() {
             <span className="text-xs font-semibold text-electric-400 bg-electric-600/20 border border-electric-600/30 px-2 py-0.5 rounded-full">
               Úroveň {user.level}
             </span>
-            {user.plan !== 'free' && (
-              <span className="text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full capitalize">
-                {user.plan}
-              </span>
-            )}
-          </div>
-        </div>
 
-        {/* XP progress */}
-        <div className="w-full space-y-1.5">
-          <div className="flex items-center justify-between text-xs text-slate-400">
             <div className="flex items-center gap-1">
               <Zap className="w-3 h-3 text-amber-400" />
               <span>{user.xp} XP</span>
@@ -129,16 +117,6 @@ export function ProfilePage() {
         </div>
       </div>
 
-      {/* Upgrade CTA for free users */}
-      {user.plan === 'free' && (
-        <motion.button
-          whileTap={{ scale: 0.98 }}
-          onClick={() => navigate('/premium')}
-          className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-bold rounded-2xl shadow-lg shadow-amber-900/30"
-        >
-                    ⚡ Upgradovať na Prémium
-        </motion.button>
-      )}
     </div>
   )
 }
