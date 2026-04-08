@@ -108,7 +108,7 @@ export function HomePage() {
                     </div>
                   </div>
 
-                  <ChevronRight className={`w-4 h-4 shrink-0 ${locked ? 'text-slate-700' : 'text-slate-500'}`} />
+                  <ChevronRight className="w-4 h-4 shrink-0 text-slate-500" />
                 </button>
               </motion.div>
             )
