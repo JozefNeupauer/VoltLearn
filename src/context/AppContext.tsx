@@ -230,13 +230,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   )
 
   const isTopicLocked = useCallback(
-    (topicId: string) => {
-      const topic = topics.find((t) => t.id === topicId)
-      if (!topic) return true
-      if (!topic.isPremium) return false
-      return state.user.plan === 'free'
-    },
-    [state.user.plan],
+    (_topicId: string) => false,
+    [],
   )
 
   const value: AppContextType = {

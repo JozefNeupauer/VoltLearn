@@ -1,11 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Home, User, Crown, Settings } from 'lucide-react'
+import { Home, User, Settings } from 'lucide-react'
 
 const navItems = [
   { to: '/', icon: Home, label: 'Učiť sa', exact: true },
   { to: '/profile', icon: User, label: 'Profil', exact: false },
-  { to: '/premium', icon: Crown, label: 'Prémium', exact: false },
   { to: '/settings', icon: Settings, label: 'Nastavenia', exact: false },
 ]
 

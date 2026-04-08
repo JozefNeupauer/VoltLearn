@@ -5,7 +5,6 @@ import { HomePage } from './pages/HomePage'
 import { TopicPage } from './pages/TopicPage'
 import { LessonPage } from './pages/LessonPage'
 import { ProfilePage } from './pages/ProfilePage'
-import { PremiumPage } from './pages/PremiumPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 
@@ -27,7 +26,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/topic/:topicId" element={<TopicPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/premium" element={<PremiumPage />} />
+              <Route path="/premium" element={<Navigate to="/" replace />} />
               <Route path="/settings" element={<SettingsPage />} />
             </Route>
           </Route>

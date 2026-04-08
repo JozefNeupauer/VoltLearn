@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Lock } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { getTopicById } from '../data/topics'
 import { getLessonsByTopic } from '../data/lessons'
@@ -9,7 +9,7 @@ import { LessonCard } from '../components/lesson/LessonCard'
 export function TopicPage() {
   const { topicId } = useParams<{ topicId: string }>()
   const navigate = useNavigate()
-  const { state, isTopicLocked, isLessonCompleted } = useApp()
+  const { state, isLessonCompleted } = useApp()
 
   const topic = getTopicById(topicId ?? '')
   if (!topic) {
@@ -23,7 +23,6 @@ export function TopicPage() {
     )
   }
 
-  const locked = isTopicLocked(topic.id)
   const lessons = getLessonsByTopic(topic.id)
   const topicProgress = state.progress[topic.id]
   const completedCount = topicProgress?.completedLessonIds.length ?? 0
@@ -56,68 +55,41 @@ export function TopicPage() {
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl font-black">{topic.title}</h1>
-              {topic.isPremium && (
-                <span className="text-xs font-bold text-amber-300 bg-amber-400/20 border border-amber-300/40 px-2 py-0.5 rounded-full">
-                  PREMIUM
-                </span>
-              )}
             </div>
             <p className="text-white/80 text-sm mt-1">{topic.subtitle}</p>
 
-            {!locked && (
-              <div className="mt-3 space-y-1">
-                <div className="flex items-center justify-between text-xs text-white/70">
-                  <span>Postup</span>
-                  <span>{completedCount}/{lessons.length} lekcií</span>
-                </div>
-                <div className="h-2 bg-black/20 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-white/70 rounded-full transition-all duration-700"
-                    style={{ width: `${percent}%` }}
-                  />
-                </div>
+            <div className="mt-3 space-y-1">
+              <div className="flex items-center justify-between text-xs text-white/70">
+                <span>Postup</span>
+                <span>{completedCount}/{lessons.length} lekcií</span>
               </div>
-            )}
+              <div className="h-2 bg-black/20 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-white/70 rounded-full transition-all duration-700"
+                  style={{ width: `${percent}%` }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
-
-      {/* Locked overlay message */}
-      {locked && (
-        <div className="flex items-center gap-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4">
-          <Lock className="w-5 h-5 text-amber-400 shrink-0" />
-          <div>
-            <p className="text-amber-300 font-semibold text-sm">Prémiová téma</p>
-            <p className="text-amber-400/70 text-xs mt-0.5">
-              Upgraduj na Prémium a odomkni všetky lekcie v tejto téme.
-            </p>
-          </div>
-          <button
-            onClick={() => navigate('/premium')}
-            className="ml-auto bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs px-3 py-1.5 rounded-lg shrink-0"
-          >
-            Upgradať
-          </button>
-        </div>
-      )}
 
       {/* Lesson list */}
       <div className="space-y-2">
         {lessons.map((lesson, index) => {
           const completed = isLessonCompleted(lesson.id)
-          const isPreviousCompleted = index === 0 || isLessonCompleted(lessons[index - 1].id)
-          const isAvailable = !locked && (index === 0 || isPreviousCompleted)
-          const isCurrent = !locked && !completed && isPreviousCompleted
+          const firstUncompletedIndex = lessons.findIndex(l => !isLessonCompleted(l.id))
+          const isCurrent = index === firstUncompletedIndex
 
           return (
             <LessonCard
               key={lesson.id}
               lesson={lesson}
               isCompleted={completed}
-              isLocked={!isAvailable}
+              isLocked={false}
               isCurrent={isCurrent}
               onClick={() => {
-                if (isAvailable) navigate(`/lesson/${lesson.id}`)
+                navigate(`/lesson/${lesson.id}`)
               }}
               index={index}
             />
