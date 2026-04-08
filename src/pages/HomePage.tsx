@@ -60,61 +60,64 @@ export function HomePage() {
         </motion.button>
       )}
 
-      {/* Topics grid */}
-      <div>
-        <h2 className="text-slate-300 text-sm font-semibold uppercase tracking-wider mb-3">Témy kurzu</h2>
-        <div className="space-y-3">
-          {allTopics.map((topic, index) => {
-            const topicProgress = progress[topic.id]
-            const lessons = getLessonsByTopic(topic.id)
-            const completedCount = topicProgress?.completedLessonIds.length ?? 0
-            const percent = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0
+      {/* Topics grouped by year */}
+      {([1, 2, 3, 4] as const).map((year) => {
+        const yearTopics = allTopics.filter((t) => t.year === year)
+        if (yearTopics.length === 0) return null
+        return (
+          <div key={year}>
+            <h2 className="text-slate-300 text-sm font-semibold uppercase tracking-wider mb-3">
+              {year}. ročník
+            </h2>
+            <div className="space-y-3">
+              {yearTopics.map((topic, index) => {
+                const topicProgress = progress[topic.id]
+                const lessons = getLessonsByTopic(topic.id)
+                const completedCount = topicProgress?.completedLessonIds.length ?? 0
+                const percent = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0
 
-            return (
-              <motion.div
-                key={topic.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <button
-                  onClick={() => navigate(`/topic/${topic.id}`)}
-                  className="w-full text-left rounded-2xl border p-4 flex items-center gap-4 transition-all bg-surface-800 border-slate-700/50 hover:border-electric-700/60 hover:bg-surface-700"
-                >
-                  {/* Icon circle */}
-                  <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-gradient-to-br ${topic.color}`}
+                return (
+                  <motion.div
+                    key={topic.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {topic.icon}
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p className="font-bold text-white text-sm">{topic.title}</p>
-                    </div>
-                    <p className="text-slate-400 text-xs mt-0.5 truncate">{topic.subtitle}</p>
-
-                    {/* Progress */}
-                    <div className="mt-2 flex items-center gap-2">
-                      <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-volt-500 rounded-full transition-all duration-700"
-                          style={{ width: `${percent}%` }}
-                        />
+                    <button
+                      onClick={() => navigate(`/topic/${topic.id}`)}
+                      className="w-full text-left rounded-2xl border p-4 flex items-center gap-4 transition-all bg-surface-800 border-slate-700/50 hover:border-electric-700/60 hover:bg-surface-700"
+                    >
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-gradient-to-br ${topic.color}`}
+                      >
+                        {topic.icon}
                       </div>
-                      <span className="text-xs text-slate-500 shrink-0">
-                        {completedCount}/{lessons.length}
-                      </span>
-                    </div>
-                  </div>
 
-                  <ChevronRight className="w-4 h-4 shrink-0 text-slate-500" />
-                </button>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-white text-sm">{topic.title}</p>
+                        <p className="text-slate-400 text-xs mt-0.5 truncate">{topic.subtitle}</p>
+                        <div className="mt-2 flex items-center gap-2">
+                          <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-volt-500 rounded-full transition-all duration-700"
+                              style={{ width: `${percent}%` }}
+                            />
+                          </div>
+                          <span className="text-xs text-slate-500 shrink-0">
+                            {completedCount}/{lessons.length}
+                          </span>
+                        </div>
+                      </div>
+
+                      <ChevronRight className="w-4 h-4 shrink-0 text-slate-500" />
+                    </button>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })}
 
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3">

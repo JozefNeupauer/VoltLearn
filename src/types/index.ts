@@ -70,6 +70,7 @@ export interface Topic {
   color: string        // tailwind gradient from-to
   colorLight: string   // light bg for badges
   order: number
+  year: 1 | 2 | 3 | 4
   isPremium: boolean
   lessonIds: string[]
 }

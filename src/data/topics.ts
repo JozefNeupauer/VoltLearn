@@ -10,6 +10,7 @@ export const topics: Topic[] = [
     color: 'from-blue-600 to-blue-800',
     colorLight: 'bg-blue-500/20 text-blue-300',
     order: 1,
+    year: 1,
     isPremium: false,
     lessonIds: [
       'eb-1-what-is-electricity',
@@ -22,11 +23,12 @@ export const topics: Topic[] = [
   {
     id: 'ohms-law',
     title: 'Ohmov zákon',
-    subtitle: 'V = I × R — ovládni základný vzorec',
+    subtitle: 'U = I × R — ovládni základný vzorec',
     icon: '📐',
     color: 'from-violet-600 to-violet-800',
     colorLight: 'bg-violet-500/20 text-violet-300',
     order: 2,
+    year: 1,
     isPremium: false,
     lessonIds: [
       'ol-1-introduction',
@@ -44,6 +46,7 @@ export const topics: Topic[] = [
     color: 'from-emerald-600 to-emerald-800',
     colorLight: 'bg-emerald-500/20 text-emerald-300',
     order: 3,
+    year: 2,
     isPremium: true,
     lessonIds: [
       'wf-1-wire-types',
@@ -60,6 +63,7 @@ export const topics: Topic[] = [
     color: 'from-orange-600 to-orange-800',
     colorLight: 'bg-orange-500/20 text-orange-300',
     order: 4,
+    year: 3,
     isPremium: true,
     lessonIds: [
       'dc-1-how-motors-work',
@@ -76,6 +80,7 @@ export const topics: Topic[] = [
     color: 'from-red-600 to-red-800',
     colorLight: 'bg-red-500/20 text-red-300',
     order: 5,
+    year: 2,
     isPremium: true,
     lessonIds: [
       'sf-1-hazards',
@@ -93,6 +98,7 @@ export const topics: Topic[] = [
     color: 'from-teal-600 to-teal-800',
     colorLight: 'bg-teal-500/20 text-teal-300',
     order: 6,
+    year: 4,
     isPremium: true,
     lessonIds: [
       'ti-1-hand-tools',
