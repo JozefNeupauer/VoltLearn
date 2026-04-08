@@ -1,19 +1,18 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ChevronRight, Lock, BookOpen, Zap, Flame } from 'lucide-react'
+import { ChevronRight, BookOpen, Zap, Flame } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { topics as allTopics } from '../data/topics'
 import { getLessonsByTopic } from '../data/lessons'
 
 export function HomePage() {
   const navigate = useNavigate()
-  const { state, isTopicLocked } = useApp()
+  const { state } = useApp()
   const { user, progress } = state
 
   // Find the first incomplete lesson across topics
   function getNextLesson() {
     for (const topic of allTopics) {
-      if (isTopicLocked(topic.id)) continue
       const lessons = getLessonsByTopic(topic.id)
       const next = lessons.find((l) => !state.completedLessons.includes(l.id))
       if (next) return { lesson: next, topic }
@@ -66,7 +65,6 @@ export function HomePage() {
         <h2 className="text-slate-300 text-sm font-semibold uppercase tracking-wider mb-3">Témy kurzu</h2>
         <div className="space-y-3">
           {allTopics.map((topic, index) => {
-            const locked = isTopicLocked(topic.id)
             const topicProgress = progress[topic.id]
             const lessons = getLessonsByTopic(topic.id)
             const completedCount = topicProgress?.completedLessonIds.length ?? 0
@@ -81,48 +79,33 @@ export function HomePage() {
               >
                 <button
                   onClick={() => navigate(`/topic/${topic.id}`)}
-                  className={`w-full text-left rounded-2xl border p-4 flex items-center gap-4 transition-all ${
-                    locked
-                      ? 'bg-surface-800/40 border-slate-800/60 opacity-70'
-                      : 'bg-surface-800 border-slate-700/50 hover:border-electric-700/60 hover:bg-surface-700'
-                  }`}
+                  className="w-full text-left rounded-2xl border p-4 flex items-center gap-4 transition-all bg-surface-800 border-slate-700/50 hover:border-electric-700/60 hover:bg-surface-700"
                 >
                   {/* Icon circle */}
                   <div
                     className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-gradient-to-br ${topic.color}`}
                   >
-                    {locked ? <Lock className="w-5 h-5 text-white/70" /> : topic.icon}
+                    {topic.icon}
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="font-bold text-white text-sm">{topic.title}</p>
-                      {topic.isPremium && (
-                        <span className="text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-1.5 py-0.5 rounded-full shrink-0">
-                          PRO
-                        </span>
-                      )}
                     </div>
                     <p className="text-slate-400 text-xs mt-0.5 truncate">{topic.subtitle}</p>
 
                     {/* Progress */}
-                    {!locked && (
-                      <div className="mt-2 flex items-center gap-2">
-                        <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-volt-500 rounded-full transition-all duration-700"
-                            style={{ width: `${percent}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-slate-500 shrink-0">
-                          {completedCount}/{lessons.length}
-                        </span>
+                    <div className="mt-2 flex items-center gap-2">
+                      <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-volt-500 rounded-full transition-all duration-700"
+                          style={{ width: `${percent}%` }}
+                        />
                       </div>
-                    )}
-
-                    {locked && (
-                      <p className="text-xs text-amber-500/70 mt-1">Upgraduj na odomknutie</p>
-                    )}
+                      <span className="text-xs text-slate-500 shrink-0">
+                        {completedCount}/{lessons.length}
+                      </span>
+                    </div>
                   </div>
 
                   <ChevronRight className={`w-4 h-4 shrink-0 ${locked ? 'text-slate-700' : 'text-slate-500'}`} />
