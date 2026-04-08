@@ -46,7 +46,7 @@ body {
 
 /* Glowing text utility */
 .text-glow-blue {
-  text-shadow: 0 0 20px theme('colors.electric.500' / 60%);
+  text-shadow: 0 0 20px rgba(79,70,229,0.6);
 }
 .text-glow-green {
   text-shadow: 0 0 20px theme('colors.volt.500' / 60%);

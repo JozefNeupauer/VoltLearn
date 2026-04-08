@@ -21,7 +21,7 @@ export function Navbar() {
         <Link to="/" className="flex items-center gap-2 font-black text-xl tracking-tight">
           <span className="text-2xl">⚡</span>
           <span className="text-white">
-            Volt<span className="text-electric-400">Learn</span>
+            SOŠ<span className="text-electric-400"> Elektro</span>
           </span>
         </Link>
 
