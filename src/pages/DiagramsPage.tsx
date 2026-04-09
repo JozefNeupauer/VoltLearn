@@ -864,131 +864,271 @@ function DOLDiagram() {
 // ─── Reversal Diagram ─────────────────────────────────────────────────────────
 
 function ReversalDiagram() {
-  const [dir, setDir] = useState<'off'|'fwd'|'rev'>('off')
+  const [dir, setDir] = useState<'off' | 'fwd' | 'rev'>('off')
   const [selected, setSelected] = useState<Part | null>(null)
   function pick(p: Part) { setSelected(prev => prev?.id === p.id ? null : p) }
 
-  const WF = dir === 'fwd' ? W_ON : W_OFF
-  const WR = dir === 'rev' ? '#f59e0b' : W_OFF
+  const fwdActive = dir === 'fwd'
+  const revActive = dir === 'rev'
+
+  const C = { L1: '#ef4444', L2: '#f59e0b', L3: '#22c55e', off: '#475569' }
+
+  // Which colour reaches motor terminal U/V/W
+  //   VPRED: L1→U  L2→V  L3→W   (straight)
+  //   VZAD:  L3→U  L2→V  L1→W   (L1 and L3 swapped)
+  const uCol = fwdActive ? C.L1 : revActive ? C.L3 : C.off
+  const vCol = fwdActive ? C.L2 : revActive ? C.L2 : C.off
+  const wCol = fwdActive ? C.L3 : revActive ? C.L1 : C.off
 
   const KM1: Part = {
-    id:'km1', label:'Stýkač KM1 — VPRED', icon:'➡️',
-    description:'Priamo pripája L1→U, L2→V, L3→W na motor. Sled fáz určuje smer otáčania. KM1 a KM2 nesmú byť zopnuté súčasne — mohlo by dôjsť ku skratu medzi fázami.',
-    formula:'Sled fáz: L1-L2-L3 → motor sa otáča dopredu\nBlokovanie: NC kontakt KM2 v série s cievkou KM1',
-    value:'Vpred: L1→U, L2→V, L3→W',
+    id: 'km1', label: 'Stýkač KM1 — VPRED', icon: '➡️',
+    description:
+      'KM1 pripája fázy priamo v poradí L1→U, L2→V, L3→W. Motor sa otáča dopredu. ' +
+      'KM2 musí byť v tomto čase odpadnutý — blokuje to NC kontakt KM1 v obvode cievky KM2.',
+    formula: 'Vpred: L1→U  L2→V  L3→W\nNC kontakt KM1 blokuje cievku KM2',
+    value: 'Sled fáz: L1-L2-L3',
   }
   const KM2: Part = {
-    id:'km2', label:'Stýkač KM2 — VZAD', icon:'⬅️',
-    description:'Obracia sled fáz zmenou dvoch vodičov: L1→W, L2→V, L3→U. Zmenou dvoch fáz sa otočí magnetické pole statora → motor ide opačným smerom.',
-    formula:'Sled fáz: L1→W, L2→V, L3→U (L1 a L3 vymenené)\nBlokovanie: NC kontakt KM1 v série s cievkou KM2',
-    value:'Vzad: L1→W, L2→V, L3→U',
+    id: 'km2', label: 'Stýkač KM2 — VZAD', icon: '⬅️',
+    description:
+      'KM2 obracia sled fáz zámenou L1 a L3: L3→U, L2→V, L1→W. ' +
+      'Tým sa otočí smer rotujúceho magnetického poľa statora a motor ide opačným smerom.',
+    formula: 'Vzad: L3→U  L2→V  L1→W\nNC kontakt KM2 blokuje cievku KM1',
+    value: 'Sled fáz: L3-L2-L1 (obrátený)',
   }
   const BLOCK: Part = {
-    id:'block', label:'Elektrická blokovka', icon:'🔒',
-    description:'Každý stýkač má NC pomocný kontakt zaradený do ovládacieho obvodu druhého stýkača. Keď KM1 pritiahne, jeho NC kontakt rozopne obvod cievky KM2 — a naopak. Zabraňuje súčasnému zopnutiu.',
-    formula:'KM1 NC v sérii s cievkou KM2\nKM2 NC v sérii s cievkou KM1\n+ voliteľne mechanická blokovka (páka)',
-    value:'Ochrana pred skratom fáz!',
+    id: 'block', label: 'Elektrická blokovka (interlocking)', icon: '🔒',
+    description:
+      'Ochrana pred súčasným zopnutím KM1 a KM2, čo by spôsobilo skrat fáz L1 a L3. ' +
+      'Realizuje sa NC pomocnými kontaktmi: NC kontakt KM1 je v sérii s cievkou KM2 a naopak. ' +
+      'Voliteľne sa pridáva aj mechanická blokovka (páka).',
+    formula: 'KM1 (NC) → séria s cievkou KM2\nKM2 (NC) → séria s cievkou KM1',
+    value: 'Nikdy oba stýkače súčasne!',
   }
   const MOTOR_R: Part = {
-    id:'motorR', label:'Motor — reverzácia', icon:'🔄',
-    description:'Asymetrčný motor 3~ mení smer otáčania pri zmene sledu fáz. Pred reverzáciou je nutné motor najprv zastaviť (nechať klesať otáčky), inak nastane veľký mechanický ráz a el. prechodový jav.',
-    formula:'Zmena sledu 2 fáz → otočenie smeru\nOdporúča sa zastaviť pred reverzáciou\nPri priamej reverzácii: I až 15× In',
-    value:'Smer: závisí od sledu L1-L2-L3',
+    id: 'motorR', label: 'Asynchrónny motor 3~', icon: '🔄',
+    description:
+      'Smer rotácie závisí od sledu fáz na svorkách U-V-W. ' +
+      'Zámenou ľubovoľných dvoch fáz sa zmení smer otáčania magnetického poľa statora. ' +
+      'Pred reverzáciou je odporúčané motor zastaviť (inak: I až 15× In a mechanický ráz).',
+    formula: 'Zmena 2 fáz → opačný smer\nI_reverzácia ≈ 15 × In (priama)\nOdporúča sa: STOP → čakaj → VZAD',
+    value: 'Smer = sled fáz na U-V-W',
   }
+
+  const phaseW = (on: boolean) => on ? 3 : 1.5
+  const phaseOp = (on: boolean) => on ? 1 : 0.25
 
   return (
     <div>
-      <svg viewBox="0 0 320 230" className="w-full max-w-sm mx-auto select-none">
+      {/* ── Phase connection table ── */}
+      <div className="rounded-xl bg-slate-900/70 border border-slate-700/50 p-3 mb-4">
+        <p className="text-xs text-slate-500 mb-2 text-center">Zapojenie fáz na svorky motora</p>
+        <div className="grid grid-cols-4 gap-1 text-xs text-center">
+          <div className="text-slate-500 font-medium py-1">Svorka</div>
+          <div className="font-bold py-1" style={{color: '#ef4444'}}>U</div>
+          <div className="font-bold py-1" style={{color: '#f59e0b'}}>V</div>
+          <div className="font-bold py-1" style={{color: '#22c55e'}}>W</div>
 
-        {/* Supply L1 L2 L3 */}
-        {[0,1,2].map(i => {
-          const x = 50 + i*30
-          const col = ['#ef4444','#f59e0b','#22c55e'][i]
+          <div className="text-green-400 font-medium py-1 border-t border-slate-700/50">VPRED ➡️</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#ef4444'}}>L1</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#f59e0b'}}>L2</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#22c55e'}}>L3</div>
+
+          <div className="text-amber-400 font-medium py-1 border-t border-slate-700/50">VZAD ⬅️</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#22c55e'}}>L3 ↕</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#f59e0b'}}>L2</div>
+          <div className="py-1 border-t border-slate-700/50 font-bold" style={{color:'#ef4444'}}>L1 ↕</div>
+        </div>
+        <p className="text-xs text-slate-600 text-center mt-1.5">L1 a L3 sú vymenené → obrátený sled fáz</p>
+      </div>
+
+      {/* ── SVG schematic ── */}
+      <svg viewBox="0 0 300 260" className="w-full max-w-sm mx-auto select-none">
+
+        {/* ── Supply bar L1/L2/L3 at top ── */}
+        {[
+          { label:'L1', x:60,  col: C.L1 },
+          { label:'L2', x:115, col: C.L2 },
+          { label:'L3', x:170, col: C.L3 },
+        ].map(({ label, x, col }) => (
+          <g key={label}>
+            <circle cx={x} cy={20} r={10} fill={col} />
+            <text x={x} y={24} textAnchor="middle" fill="white" fontSize="8.5" fontWeight="bold" fontFamily="Inter">{label}</text>
+            {/* down to bus node */}
+            <line x1={x} y1={30} x2={x} y2={50} stroke={col} strokeWidth="2" strokeLinecap="round" />
+            {/* horizontal bus */}
+          </g>
+        ))}
+        {/* Bus rail */}
+        <line x1="60" y1="50" x2="170" y2="50" stroke="#475569" strokeWidth="1.5" />
+
+        {/* ── KM1 (left) ── */}
+        {/* Feed lines from bus to KM1 */}
+        {[
+          { bx:60, tx:60, col: C.L1 },
+          { bx:115, tx:95, col: C.L2 },
+          { bx:170, tx:130, col: C.L3 },
+        ].map(({ bx, tx, col }, i) => (
+          <g key={`km1in-${i}`}>
+            <line x1={bx} y1={50} x2={tx} y2={68}
+              stroke={fwdActive ? col : C.off}
+              strokeWidth={phaseW(fwdActive)} strokeLinecap="round"
+              opacity={phaseOp(fwdActive)} />
+          </g>
+        ))}
+
+        <g onClick={() => pick(KM1)} style={{cursor:'pointer'}}>
+          <rect x="35" y="68" width="115" height="34" rx="7"
+            fill={selected?.id==='km1' ? '#0f2a1a' : '#0a1a0c'}
+            stroke={selected?.id==='km1' ? '#60a5fa' : fwdActive ? '#4ade80' : '#1e4028'}
+            strokeWidth={fwdActive ? 2.5 : 1.5} />
+          <text x="93" y="80" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Inter">KM1  ➡️ VPRED</text>
+          <text x="93" y="93" textAnchor="middle"
+            fill={fwdActive ? '#4ade80' : '#475569'} fontSize="8" fontFamily="Inter">
+            {fwdActive ? 'pritiahnutý ✓' : 'odpadnutý'}
+          </text>
+        </g>
+
+        {/* KM1 output wires → straight to motor U V W */}
+        {[
+          { x: 60,  uCol },
+          { x: 95,  vCol: vCol },
+          { x: 130, wCol: wCol },
+        ].map((_,i) => {
+          const x = [60, 95, 130][i]
+          const col = [uCol, vCol, wCol][i]
           return (
-            <g key={i}>
-              <circle cx={x} cy={16} r={8} fill={col} />
-              <text x={x} y={20} textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="Inter">L{i+1}</text>
-              <line x1={x} y1={24} x2={x} y2={45} stroke="#475569" strokeWidth="2" strokeLinecap="round" />
-              {/* split to KM1 and KM2 */}
-              <line x1={x} y1={45} x2={x-5} y2={60} stroke={WF} strokeWidth="2" strokeLinecap="round" />
-              <line x1={x} y1={45} x2={x+75} y2={60} stroke={WR} strokeWidth="2" strokeLinecap="round" />
-            </g>
+            <line key={`km1out-${i}`} x1={x} y1={102} x2={x} y2={140}
+              stroke={fwdActive ? col : C.off}
+              strokeWidth={phaseW(fwdActive)} strokeLinecap="round"
+              opacity={phaseOp(fwdActive)} />
           )
         })}
 
-        {/* KM1 block — forward */}
-        <g onClick={() => pick(KM1)} style={{cursor:'pointer'}}>
-          <rect x="22" y="60" width="90" height="28" rx="6"
-            fill={selected?.id==='km1' ? '#1e293b' : '#0f172a'}
-            stroke={selected?.id==='km1' ? '#60a5fa' : (dir==='fwd' ? W_ON : '#334155')}
-            strokeWidth={selected?.id==='km1' ? 2.5 : 1.5} />
-          <text x="67" y="70" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">KM1</text>
-          <text x="67" y="81" textAnchor="middle" fill={dir==='fwd' ? '#4ade80' : '#64748b'} fontSize="7" fontFamily="Inter">VPRED</text>
-        </g>
-
-        {/* KM2 block — reverse */}
-        <g onClick={() => pick(KM2)} style={{cursor:'pointer'}}>
-          <rect x="200" y="60" width="90" height="28" rx="6"
-            fill={selected?.id==='km2' ? '#1e293b' : '#0f172a'}
-            stroke={selected?.id==='km2' ? '#60a5fa' : (dir==='rev' ? '#f59e0b' : '#334155')}
-            strokeWidth={selected?.id==='km2' ? 2.5 : 1.5} />
-          <text x="245" y="70" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">KM2</text>
-          <text x="245" y="81" textAnchor="middle" fill={dir==='rev' ? '#fbbf24' : '#64748b'} fontSize="7" fontFamily="Inter">VZAD</text>
-        </g>
-
-        {/* Blokovka symbol between */}
+        {/* ── Blokovka annotation ── */}
         <g onClick={() => pick(BLOCK)} style={{cursor:'pointer'}}>
-          <rect x="127" y="65" width="58" height="18" rx="4"
-            fill="#1c1917" stroke="#78350f" strokeWidth="1.5" />
-          <text x="156" y="77" textAnchor="middle" fill="#fbbf24" fontSize="7.5" fontWeight="bold" fontFamily="Inter">🔒 blok.</text>
+          <rect x="195" y="78" width="90" height="24" rx="6"
+            fill="#1c1400" stroke="#92400e" strokeWidth="1.5" />
+          <text x="240" y="88" textAnchor="middle" fill="#fbbf24" fontSize="8" fontWeight="bold" fontFamily="Inter">🔒 BLOKOVKA</text>
+          <text x="240" y="98" textAnchor="middle" fill="#92400e" fontSize="7" fontFamily="Inter">KM1 blok. KM2</text>
         </g>
+        {/* arrow to KM1 */}
+        <line x1="195" y1="90" x2="151" y2="85" stroke="#92400e" strokeWidth="1" markerEnd="url(#arrowOrange)" />
+        <defs>
+          <marker id="arrowOrange" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 Z" fill="#92400e" />
+          </marker>
+        </defs>
 
-        {/* Wires KM1 → motor (straight) */}
-        {[0,1,2].map(i => {
-          const x = 45 + i*30
-          return <line key={i} x1={x} y1={88} x2={x} y2={130} stroke={WF} strokeWidth="2" strokeLinecap="round" />
-        })}
-
-        {/* Wires KM2 → motor (crossed: L1↔L3) */}
-        {/* KM2 outputs: x=215,245,275 → motor U,V,W same bus x=45,75,105 but L1 and L3 swapped */}
-        <line x1="215" y1="88" x2="105" y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" strokeDasharray={dir==='rev'?'':'4,3'} />
-        <line x1="245" y1="88" x2="75"  y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" />
-        <line x1="275" y1="88" x2="45"  y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" strokeDasharray={dir==='rev'?'':'4,3'} />
-
-        {/* Phase labels at motor inputs */}
-        {['U','V','W'].map((l,i) => (
-          <text key={i} x={45+i*30} y={142} textAnchor="middle"
-            fill={dir==='fwd' ? '#4ade80' : dir==='rev' ? '#fbbf24' : '#475569'}
-            fontSize="8" fontWeight="bold" fontFamily="Inter">{l}</text>
+        {/* ── KM2 (right) ── */}
+        {/* Feed lines from bus, L1 and L3 SWAPPED */}
+        {[
+          { bx:60,  tx:200, col: C.L1 },  // L1 goes to right output (W)
+          { bx:115, tx:230, col: C.L2 },  // L2 straight (V)
+          { bx:170, tx:260, col: C.L3 },  // L3 goes to left output (U)
+        ].map(({ bx, tx, col }, i) => (
+          <line key={`km2in-${i}`}
+            x1={bx} y1={50} x2={tx} y2={145}
+            stroke={revActive ? col : C.off}
+            strokeWidth={phaseW(revActive)} strokeLinecap="round"
+            opacity={phaseOp(revActive)}
+            strokeDasharray={revActive ? '' : '4,3'} />
         ))}
 
-        {/* Motor */}
-        <g onClick={() => pick(MOTOR_R)} style={{cursor:'pointer'}}>
-          <circle cx="75" cy="175" r="30"
-            fill={selected?.id==='motorR' ? '#0c1a2e' : '#080e1a'}
-            stroke={selected?.id==='motorR' ? '#60a5fa' : (dir!=='off' ? (dir==='fwd' ? W_ON : '#f59e0b') : '#334155')}
-            strokeWidth={selected?.id==='motorR' ? 2.5 : 2} />
-          <text x="75" y="171" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Inter">M</text>
-          <text x="75" y="183" textAnchor="middle" fill="#94a3b8" fontSize="7" fontFamily="Inter">3~</text>
-          {dir === 'fwd' && (
-            <text x="75" y="196" textAnchor="middle" fill="#4ade80" fontSize="8" fontFamily="Inter">→ vpred</text>
-          )}
-          {dir === 'rev' && (
-            <text x="75" y="196" textAnchor="middle" fill="#fbbf24" fontSize="8" fontFamily="Inter">← vzad</text>
-          )}
+        <g onClick={() => pick(KM2)} style={{cursor:'pointer'}}>
+          <rect x="185" y="145" width="105" height="34" rx="7"
+            fill={selected?.id==='km2' ? '#1a1000' : '#0f0a00'}
+            stroke={selected?.id==='km2' ? '#60a5fa' : revActive ? '#fbbf24' : '#3d2e00'}
+            strokeWidth={revActive ? 2.5 : 1.5} />
+          <text x="237" y="157" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Inter">KM2  ⬅️ VZAD</text>
+          <text x="237" y="170" textAnchor="middle"
+            fill={revActive ? '#fbbf24' : '#475569'} fontSize="8" fontFamily="Inter">
+            {revActive ? 'pritiahnutý ✓' : 'odpadnutý'}
+          </text>
         </g>
 
-        {/* Swap arrows visual for reversal */}
-        {dir === 'rev' && (
-          <>
-            <text x="118" y="120" fill="#f59e0b" fontSize="8" fontFamily="Inter">L1↔L3</text>
-            <text x="118" y="130" fill="#f59e0b" fontSize="7" fontFamily="Inter">vymenené</text>
-          </>
+        {/* KM2 output wires → swapped to motor U V W */}
+        {/* L3→U(60), L2→V(95), L1→W(130): draw from km2 outputs down to motor level */}
+        {[
+          { kmx: 260, mx: 60, col: revActive ? C.L3 : C.off },  // L3→U
+          { kmx: 230, mx: 95, col: revActive ? C.L2 : C.off },  // L2→V
+          { kmx: 200, mx: 130, col: revActive ? C.L1 : C.off }, // L1→W
+        ].map(({ kmx, mx, col }, i) => (
+          <line key={`km2out-${i}`}
+            x1={kmx} y1={179} x2={mx} y2={210}
+            stroke={col}
+            strokeWidth={phaseW(revActive)} strokeLinecap="round"
+            opacity={phaseOp(revActive)} />
+        ))}
+
+        {/* ── Junction rail for motor inputs ── */}
+        <line x1="60" y1="210" x2="130" y2="210" stroke="#334155" strokeWidth="1.5" />
+
+        {/* Motor terminal labels U V W */}
+        {[
+          { x: 60,  label: 'U', col: uCol },
+          { x: 95,  label: 'V', col: vCol },
+          { x: 130, label: 'W', col: wCol },
+        ].map(({ x, label, col }) => (
+          <g key={`term-${label}`}>
+            <circle cx={x} cy={210} r={7}
+              fill={dir !== 'off' ? col : '#1e293b'}
+              stroke={dir !== 'off' ? col : '#334155'} strokeWidth="1" />
+            <text x={x} y={214} textAnchor="middle" fill="white" fontSize="7.5" fontWeight="bold" fontFamily="Inter">{label}</text>
+          </g>
+        ))}
+
+        {/* ── Motor ── */}
+        <g onClick={() => pick(MOTOR_R)} style={{cursor:'pointer'}}>
+          <circle cx="95" cy="238" r="20"
+            fill={selected?.id==='motorR' ? '#0c1a2e' : '#080e1a'}
+            stroke={
+              selected?.id==='motorR' ? '#60a5fa'
+              : fwdActive ? '#4ade80'
+              : revActive ? '#fbbf24'
+              : '#334155'
+            }
+            strokeWidth={selected?.id==='motorR' ? 2.5 : 2} />
+          <text x="95" y="234" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Inter">M</text>
+          <text x="95" y="244" textAnchor="middle" fill="#94a3b8" fontSize="6.5" fontFamily="Inter">3~</text>
+        </g>
+        {/* motor connection wires */}
+        {[60, 95, 130].map((x, i) => (
+          <line key={`mwire-${i}`} x1={x} y1={217} x2={x === 95 ? 95 : (x < 95 ? 82 : 108)} y2={220}
+            stroke={[uCol, vCol, wCol][i]}
+            strokeWidth={phaseW(dir !== 'off')} strokeLinecap="round"
+            opacity={phaseOp(dir !== 'off')} />
+        ))}
+
+        {/* rotation arrow on motor */}
+        {dir !== 'off' && (
+          <path
+            d={fwdActive
+              ? 'M82,220 A14,14 0 1,1 108,220'
+              : 'M108,220 A14,14 0 1,1 82,220'}
+            fill="none"
+            stroke={fwdActive ? '#4ade80' : '#fbbf24'}
+            strokeWidth="2.5" strokeLinecap="round"
+            markerEnd={fwdActive ? 'url(#arrowFwd)' : 'url(#arrowRev)'}
+          />
+        )}
+        <defs>
+          <marker id="arrowFwd" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 Z" fill="#4ade80" />
+          </marker>
+          <marker id="arrowRev" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 Z" fill="#fbbf24" />
+          </marker>
+        </defs>
+
+        {/* swap label */}
+        {revActive && (
+          <text x="163" y="115" textAnchor="middle" fill="#f59e0b" fontSize="8" fontWeight="bold" fontFamily="Inter">L1 ↔ L3</text>
         )}
       </svg>
 
       {/* Direction controls */}
-      <div className="flex gap-2 justify-center mt-1 mb-3">
+      <div className="flex gap-2 justify-center mt-2 mb-3">
         {(['off','fwd','rev'] as const).map(d => (
           <button key={d}
             onClick={() => { setDir(d); setSelected(null) }}
@@ -1004,7 +1144,24 @@ function ReversalDiagram() {
           </button>
         ))}
       </div>
-      <p className="text-center text-xs text-slate-500 mb-3">Klikni na súčiastky pre detaily</p>
+
+      {/* Blokovka explanation card */}
+      <div
+        className="rounded-xl bg-slate-800/60 border border-amber-900/40 p-3 cursor-pointer mb-2"
+        onClick={() => pick(BLOCK)}
+      >
+        <div className="flex items-center gap-2 mb-1">
+          <span>🔒</span>
+          <span className="text-sm font-bold text-amber-300">Prečo blokovka?</span>
+          <span className="ml-auto text-xs text-slate-500">klikni pre detail</span>
+        </div>
+        <p className="text-slate-400 text-xs leading-relaxed">
+          KM1 a KM2 <span className="text-white font-medium">nesmú byť zopnuté súčasne</span> — priamo by skratovalo L1 a L3.
+          NC kontakt každého stýkača blokuje cievku toho druhého. Pred reverzáciou vždy <span className="text-amber-300 font-medium">STOP → čakaj → opačný smer</span>.
+        </p>
+      </div>
+
+      <p className="text-center text-xs text-slate-500 mb-3">Klikni na KM1 / KM2 / motor pre detaily</p>
 
       <AnimatePresence>
         {selected && <InfoPanel part={selected} onClose={() => setSelected(null)} />}
