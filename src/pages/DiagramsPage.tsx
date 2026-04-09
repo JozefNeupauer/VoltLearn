@@ -13,7 +13,7 @@ type Part = {
   value?: string
 }
 
-type DiagramId = 'series' | 'parallel'
+type DiagramId = 'series' | 'parallel' | 'star-delta'
 
 // ─── Wire colours ───────────────────────────────────────────────────────────────
 
@@ -423,13 +423,260 @@ function ParallelCircuit() {
   )
 }
 
+// ─── Star-Delta Motor Diagram ─────────────────────────────────────────────────
+
+type Phase = { id: string; label: string; color: string; x1: number; y1: number; x2: number; y2: number; tx: number; ty: number }
+
+function StarDeltaDiagram() {
+  const [mode, setMode] = useState<'star' | 'delta'>('star')
+  const [selected, setSelected] = useState<Part | null>(null)
+
+  function pick(part: Part) {
+    setSelected(prev => (prev?.id === part.id ? null : part))
+  }
+
+  // Winding centre for star/delta SVG
+  const cx = 160, cy = 115, r = 62
+
+  // Three winding endpoints (120° apart), starting top
+  const angles = [-90, 30, 150]
+  const pts = angles.map(a => ({
+    x: cx + r * Math.cos((a * Math.PI) / 180),
+    y: cy + r * Math.sin((a * Math.PI) / 180),
+  }))
+
+  // Supply terminal positions above
+  const terminals = [
+    { x: pts[0].x,       y: 30,  label: 'L1', color: '#ef4444' },
+    { x: pts[1].x + 18,  y: 30,  label: 'L2', color: '#f59e0b' },
+    { x: pts[2].x - 18,  y: 30,  label: 'L3', color: '#22c55e' },
+  ]
+
+  const windingColors = ['#ef4444', '#f59e0b', '#22c55e']
+  const windingLabels = ['U', 'V', 'W']
+
+  // Centre point for star
+  const starCenter = { x: cx, y: cy }
+
+  const STAR_INFO: Part = {
+    id: 'star',
+    label: 'Zapojenie hviezda (Y)',
+    icon: '⭐',
+    description:
+      'Všetky tri vinutia sú spojené jedným koncom do spoločného uzla N (nulový bod). Druhý koniec každého vinutia je pripojený na fázový vodič L1, L2, L3.',
+    formula:
+      'U_vinutia = U_fázy = U_siete ÷ √3\nU_vinutia = 400 V ÷ 1,732 ≈ 231 V\nI_fázy = I_vinutia',
+    value: 'Nábeh: nižší záberový prúd (~1/3 výkonu)',
+  }
+
+  const DELTA_INFO: Part = {
+    id: 'delta',
+    label: 'Zapojenie trojuholník (Δ)',
+    icon: '🔺',
+    description:
+      'Vinutia sú zapojené do uzavretého trojuholníka — koniec jedného vinutia je spojený so začiatkom ďalšieho. Každé vinutie dostane plné sieťové napätie.',
+    formula:
+      'U_vinutia = U_fázy = U_siete = 400 V\nI_fázy = I_vinutia × √3\nI_line = I_vinutia × 1,732',
+    value: 'Beh: plný výkon a moment',
+  }
+
+  const SWITCH_INFO: Part = {
+    id: 'switch',
+    label: 'Spínanie Y → Δ',
+    icon: '⏱️',
+    description:
+      'Štartér Y–Δ automaticky prepne motor po 5–10 sekundách (keď otáčky dosiahnu ~70–80 % menovitých). Prepnutie zabezpečujú tri stýkače: hlavný (KM), hviezda (KY) a trojuholník (KD).',
+    formula:
+      'Záberový prúd v Y:  I_Y ≈ I_Δ ÷ 3\nZáberový moment v Y: M_Y ≈ M_Δ ÷ 3\n→ Vhodné pre motory ≥ 4 kW',
+    value: 'Čas prepnutia: 5–10 s',
+  }
+
+  const WINDING_INFO = (i: number): Part => ({
+    id: `w${i}`,
+    label: `Vinutie ${windingLabels[i]}`,
+    icon: '🌀',
+    description:
+      mode === 'star'
+        ? `Vinutie ${windingLabels[i]} je v hviezde — jedno napätie fázy ${terminals[i].label} (231 V). Prúd vinutia = fázový prúd.`
+        : `Vinutie ${windingLabels[i]} je v trojuholníku — dostáva plné sieťové napätie 400 V (medzi dvoma fázami). Prúd vinutia = sieťový prúd ÷ √3.`,
+    formula:
+      mode === 'star'
+        ? `U_${windingLabels[i]} = 231 V  |  I = P ÷ (3 × U_f)`
+        : `U_${windingLabels[i]} = 400 V  |  I_line = I_winding × √3`,
+    value: mode === 'star' ? 'U = 231 V' : 'U = 400 V',
+  })
+
+  return (
+    <div>
+      {/* Mode toggle */}
+      <div className="flex rounded-xl bg-slate-900/60 p-1 gap-1 mb-4">
+        {(['star', 'delta'] as const).map(m => (
+          <button
+            key={m}
+            onClick={() => { setMode(m); setSelected(null) }}
+            className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+              mode === m
+                ? m === 'star' ? 'bg-amber-500/30 border border-amber-500/60 text-amber-300' : 'bg-red-500/30 border border-red-500/60 text-red-300'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            {m === 'star' ? '⭐ Hviezda (Y)' : '🔺 Trojuholník (Δ)'}
+          </button>
+        ))}
+      </div>
+
+      <svg viewBox="0 0 320 220" className="w-full max-w-sm mx-auto select-none">
+
+        {/* Supply line wires */}
+        {terminals.map((t, i) => (
+          <line key={i} x1={t.x} y1={30} x2={pts[i].x} y2={pts[i].y}
+            stroke={t.color} strokeWidth="2" strokeDasharray="4,3" opacity="0.6" />
+        ))}
+
+        {/* Supply terminals L1/L2/L3 */}
+        {terminals.map((t, i) => (
+          <g key={i}>
+            <circle cx={t.x} cy={30} r="9" fill={t.color} opacity="0.9" />
+            <text x={t.x} y={34} textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" fontFamily="Inter, sans-serif">{t.label}</text>
+          </g>
+        ))}
+
+        {/* Windings */}
+        {pts.map((p, i) => {
+          // In delta: winding goes from pts[i] to pts[(i+1)%3]
+          const q = pts[(i + 1) % 3]
+          const mx = (p.x + q.x) / 2
+          const my = (p.y + q.y) / 2
+          // In star: winding goes from pts[i] to centre
+          const sx = starCenter.x, sy = starCenter.y
+          const smx = (p.x + sx) / 2, smy = (p.y + sy) / 2
+          const isSel = selected?.id === `w${i}`
+          return (
+            <g key={i} onClick={() => pick(WINDING_INFO(i))} style={{ cursor: 'pointer' }}>
+              {mode === 'star' ? (
+                <>
+                  <line x1={p.x} y1={p.y} x2={sx} y2={sy}
+                    stroke={isSel ? '#60a5fa' : windingColors[i]}
+                    strokeWidth={isSel ? 3.5 : 2.5} strokeLinecap="round" />
+                  {/* winding coil symbol */}
+                  <circle cx={smx} cy={smy} r="7"
+                    fill={isSel ? '#1e3a5f' : '#0f172a'}
+                    stroke={isSel ? '#60a5fa' : windingColors[i]}
+                    strokeWidth={isSel ? 2 : 1.5} />
+                  <text x={smx} y={smy + 3.5} textAnchor="middle" fill={windingColors[i]}
+                    fontSize="7" fontWeight="bold" fontFamily="Inter, sans-serif">
+                    {windingLabels[i]}
+                  </text>
+                </>
+              ) : (
+                <>
+                  <line x1={p.x} y1={p.y} x2={q.x} y2={q.y}
+                    stroke={isSel ? '#60a5fa' : windingColors[i]}
+                    strokeWidth={isSel ? 3.5 : 2.5} strokeLinecap="round" />
+                  <circle cx={mx} cy={my} r="8"
+                    fill={isSel ? '#1e3a5f' : '#0f172a'}
+                    stroke={isSel ? '#60a5fa' : windingColors[i]}
+                    strokeWidth={isSel ? 2 : 1.5} />
+                  <text x={mx} y={my + 3.5} textAnchor="middle" fill={windingColors[i]}
+                    fontSize="7" fontWeight="bold" fontFamily="Inter, sans-serif">
+                    {windingLabels[i]}
+                  </text>
+                </>
+              )}
+            </g>
+          )
+        })}
+
+        {/* Winding endpoint dots */}
+        {pts.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r="5" fill={windingColors[i]} />
+        ))}
+
+        {/* Star centre dot + N label */}
+        {mode === 'star' && (
+          <g onClick={() => pick(STAR_INFO)} style={{ cursor: 'pointer' }}>
+            <circle cx={cx} cy={cy} r="9" fill="#334155" stroke="#94a3b8" strokeWidth="1.5" />
+            <text x={cx} y={cy + 4} textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" fontFamily="Inter, sans-serif">N</text>
+          </g>
+        )}
+
+        {/* Delta corner dots */}
+        {mode === 'delta' && pts.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r="5.5" fill="#334155" stroke={windingColors[i]} strokeWidth="1.5" />
+        ))}
+
+        {/* Voltage labels */}
+        <text x="5" y="210" fill="#475569" fontSize="8" fontFamily="Inter, sans-serif">
+          {mode === 'star' ? 'U_vinutia = 231 V  |  Spoj: Y' : 'U_vinutia = 400 V  |  Spoj: Δ'}
+        </text>
+      </svg>
+
+      <p className="text-center text-xs text-slate-500 mt-1 mb-3">
+        Klikni na <span className="text-amber-400 font-medium">vinutia</span> pre detaily
+        {mode === 'star' && <> • <span className="text-slate-400 font-medium">N</span> pre info o hviezde</>}
+      </p>
+
+      {/* Explanation cards */}
+      <div className="space-y-2 mt-2">
+        {/* When to use */}
+        <div
+          className="rounded-xl bg-slate-800/60 border border-slate-700/50 p-3 cursor-pointer"
+          onClick={() => pick(SWITCH_INFO)}
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-base">⏱️</span>
+            <span className="text-sm font-bold text-white">Kedy sa používa Y–Δ štart?</span>
+            <span className="ml-auto text-xs text-slate-500">klikni pre vzorce</span>
+          </div>
+          <p className="text-slate-400 text-xs leading-relaxed">
+            Pri motoroch s <span className="text-white font-medium">väčším výkonom (≥ 4 kW)</span>, kde priamy rozjazd spôsobí
+            veľký záberový prúd (5–8× menovitý). Hviezda znižuje prúd na <span className="text-amber-300 font-medium">1/3</span>, potom
+            sa prepne na trojuholník pre plný výkon.
+          </p>
+        </div>
+
+        {/* Comparison table */}
+        <div className="rounded-xl bg-slate-800/60 border border-slate-700/50 p-3">
+          <p className="text-xs font-bold text-slate-300 mb-2">📊 Porovnanie Y vs Δ</p>
+          <div className="grid grid-cols-3 gap-1 text-xs">
+            <div className="text-slate-500 font-medium">Vlastnosť</div>
+            <div className="text-amber-400 font-bold text-center">⭐ Hviezda</div>
+            <div className="text-red-400 font-bold text-center">🔺 Trojuholník</div>
+
+            <div className="text-slate-400 py-1 border-t border-slate-700/50">Napätie na vinutí</div>
+            <div className="text-white text-center py-1 border-t border-slate-700/50">231 V</div>
+            <div className="text-white text-center py-1 border-t border-slate-700/50">400 V</div>
+
+            <div className="text-slate-400 py-1 border-t border-slate-700/50">Záberový prúd</div>
+            <div className="text-green-400 text-center py-1 border-t border-slate-700/50">~1/3 × I_Δ</div>
+            <div className="text-red-300 text-center py-1 border-t border-slate-700/50">plný</div>
+
+            <div className="text-slate-400 py-1 border-t border-slate-700/50">Záberový moment</div>
+            <div className="text-amber-300 text-center py-1 border-t border-slate-700/50">~1/3 × M_Δ</div>
+            <div className="text-red-300 text-center py-1 border-t border-slate-700/50">plný</div>
+
+            <div className="text-slate-400 py-1 border-t border-slate-700/50">Využitie</div>
+            <div className="text-green-400 text-center py-1 border-t border-slate-700/50">nábeh</div>
+            <div className="text-blue-300 text-center py-1 border-t border-slate-700/50">beh</div>
+          </div>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {selected && <InfoPanel part={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 // ─── Diagram metadata ──────────────────────────────────────────────────────────
 
 type DiagramMeta = { id: DiagramId; title: string; subtitle: string; icon: string }
 
 const DIAGRAMS: DiagramMeta[] = [
-  { id: 'series',   title: 'Sériový obvod',   subtitle: 'Spínač • Ohmov zákon • 2. Kirchhoff (KVL)', icon: '🔗' },
-  { id: 'parallel', title: 'Paralelný obvod', subtitle: '1. Kirchhoffov zákon (KCL) • Vetvy',        icon: '⚡' },
+  { id: 'series',     title: 'Sériový',     subtitle: 'Spínač • Ohmov zákon • 2. Kirchhoff (KVL)', icon: '🔗' },
+  { id: 'parallel',   title: 'Paralelný',   subtitle: '1. Kirchhoffov zákon (KCL) • Vetvy',        icon: '⚡' },
+  { id: 'star-delta', title: 'Hviezda / Δ', subtitle: 'Y–Δ štart motora • napätia • moment',       icon: '⭐' },
 ]
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
@@ -473,7 +720,7 @@ export function DiagramsPage() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.18 }}
           >
-            {active === 'series' ? <SeriesCircuit /> : <ParallelCircuit />}
+            {active === 'series' ? <SeriesCircuit /> : active === 'parallel' ? <ParallelCircuit /> : <StarDeltaDiagram />}
           </motion.div>
         </AnimatePresence>
       </div>
