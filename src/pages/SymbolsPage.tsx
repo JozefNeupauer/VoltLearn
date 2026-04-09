@@ -102,9 +102,9 @@ const SYMBOLS: Sym[] = [
     svg: (
       <SymSvg>
         <line x1="0"  y1="25" x2="10" y2="25" {...sp} />
-        <path d="M10,25 a5,5 0 0,0 10,0" {...sp} />
-        <path d="M20,25 a5,5 0 0,0 10,0" {...sp} />
-        <path d="M30,25 a5,5 0 0,0 10,0" {...sp} />
+        <path d="M10,25 a5,5 0 0,1 10,0" {...sp} />
+        <path d="M20,25 a5,5 0 0,1 10,0" {...sp} />
+        <path d="M30,25 a5,5 0 0,1 10,0" {...sp} />
         <line x1="40" y1="6"  x2="40" y2="44" {...{ ...sp, strokeDasharray: '3,2' }} />
         <path d="M42,25 a5,5 0 0,1 10,0" {...sp} />
         <path d="M52,25 a5,5 0 0,1 10,0" {...sp} />
@@ -209,8 +209,7 @@ const SYMBOLS: Sym[] = [
       <SymSvg>
         <line x1="0"  y1="30" x2="24" y2="30" {...sp} />
         <line x1="24" y1="30" x2="52" y2="12" {...sp} />
-        <line x1="52" y1="12" x2="52" y2="30" {...sp} />
-        <line x1="52" y1="30" x2="80" y2="30" {...sp} />
+        <line x1="56" y1="30" x2="80" y2="30" {...sp} />
       </SymSvg>
     ),
   },
@@ -398,7 +397,7 @@ const SYMBOLS: Sym[] = [
     usage: 'Distribučné transformátory 22/0,4 kV, trafostanice, napájanie závodov, zálohy UPS.',
     svg: (
       <SymSvg vb="0 0 70 60">
-        <path d="M4,30 a6,6 0 0,0 12,0 a6,6 0 0,0 12,0" {...sp} />
+        <path d="M4,30 a6,6 0 0,1 12,0 a6,6 0 0,1 12,0" {...sp} />
         <line x1="0"  y1="30" x2="4"  y2="30" {...sp} />
         <line x1="28" y1="30" x2="34" y2="30" {...sp} />
         <line x1="34" y1="5"  x2="34" y2="55" strokeDasharray="3,2" {...sp} />
