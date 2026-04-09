@@ -88,8 +88,6 @@ export const createDefaultState = (): AppState => {
       longestStreak: 0,
       lastActiveDate: '',
       gems: 0,
-      hearts: 5,
-      maxHearts: 5,
       plan: 'free',
       avatarEmoji: '⚡',
     },

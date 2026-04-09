@@ -39,15 +39,6 @@ export function Navbar() {
             <span className="text-sm font-bold">{user.gems}</span>
           </div>
 
-          {/* Hearts */}
-          <div className="flex items-center gap-0.5">
-            {Array.from({ length: user.maxHearts }).map((_, i) => (
-              <span key={i} className={`text-sm ${i < user.hearts ? 'text-red-500' : 'text-slate-600'}`}>
-                ♥
-              </span>
-            ))}
-          </div>
-
           {/* Level chip */}
           <div className="flex items-center gap-1.5 bg-electric-500/20 border border-electric-500/40 rounded-full px-3 py-1">
             <Zap className="w-3 h-3 text-electric-400" />

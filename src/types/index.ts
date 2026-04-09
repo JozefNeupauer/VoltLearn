@@ -89,8 +89,6 @@ export interface UserProfile {
   longestStreak: number
   lastActiveDate: string   // ISO date string
   gems: number
-  hearts: number
-  maxHearts: number
   plan: Plan
   avatarEmoji: string
 }
@@ -141,8 +139,6 @@ export type AppAction =
   | { type: 'COMPLETE_LESSON'; payload: { lessonId: string; topicId: string; xp: number; correctCount: number; totalCount: number } }
   | { type: 'ADD_XP'; payload: number }
   | { type: 'ADD_GEMS'; payload: number }
-  | { type: 'SPEND_HEART' }
-  | { type: 'RESTORE_HEARTS' }
   | { type: 'UPDATE_STREAK' }
   | { type: 'UNLOCK_ACHIEVEMENT'; payload: string }
   | { type: 'TOGGLE_DARK_MODE' }

@@ -68,14 +68,6 @@ function reducer(state: AppState, action: AppAction): AppState {
     case 'ADD_GEMS':
       return { ...state, user: { ...state.user, gems: state.user.gems + action.payload } }
 
-    case 'SPEND_HEART': {
-      const hearts = Math.max(0, state.user.hearts - 1)
-      return { ...state, user: { ...state.user, hearts } }
-    }
-
-    case 'RESTORE_HEARTS':
-      return { ...state, user: { ...state.user, hearts: state.user.maxHearts } }
-
     case 'UPDATE_STREAK': {
       const today = new Date().toISOString().split('T')[0]
       const { lastActiveDate, streak, longestStreak } = state.user
@@ -147,8 +139,6 @@ interface AppContextType {
   dispatch: React.Dispatch<AppAction>
   completeLesson: (lessonId: string, topicId: string, xp: number, correctCount: number, totalCount: number) => void
   addXP: (amount: number) => void
-  spendHeart: () => void
-  restoreHearts: () => void
   updateStreak: () => void
   unlockAchievement: (id: string) => void
   upgradePlan: (plan: Plan) => void
@@ -198,10 +188,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const addXP = useCallback((amount: number) => dispatch({ type: 'ADD_XP', payload: amount }), [])
 
-  const spendHeart = useCallback(() => dispatch({ type: 'SPEND_HEART' }), [])
-
-  const restoreHearts = useCallback(() => dispatch({ type: 'RESTORE_HEARTS' }), [])
-
   const updateStreak = useCallback(() => dispatch({ type: 'UPDATE_STREAK' }), [])
 
   const unlockAchievement = useCallback(
@@ -239,8 +225,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     dispatch,
     completeLesson,
     addXP,
-    spendHeart,
-    restoreHearts,
     updateStreak,
     unlockAchievement,
     upgradePlan,

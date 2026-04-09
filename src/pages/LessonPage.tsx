@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Heart } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { useSound } from '../hooks/useSound'
 import { getLessonById } from '../data/lessons'
@@ -14,7 +14,7 @@ type Phase = 'explanation' | 'quiz' | 'completed'
 export function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>()
   const navigate = useNavigate()
-  const { state, completeLesson, spendHeart, checkAchievements } = useApp()
+  const { state, completeLesson, checkAchievements } = useApp()
   const { play } = useSound(state.settings.soundEnabled)
 
   const lesson = getLessonById(lessonId ?? '')
@@ -41,7 +41,6 @@ export function LessonPage() {
 
   const l = lesson  // narrowed ref (lesson is defined beyond early return above)
   const questions = l.questions
-  const hearts = state.user.hearts
   const progressPct = ((currentQ) / questions.length) * 100
 
   function handleStartQuiz() {
@@ -62,7 +61,6 @@ export function LessonPage() {
     play('incorrect')
     setIsCorrect(false)
     setShowFeedback(true)
-    spendHeart()
   }
 
   function handleNext() {
@@ -125,11 +123,7 @@ export function LessonPage() {
           </span>
         )}
 
-        <div className="flex items-center gap-0.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Heart key={i} className={`w-4 h-4 ${i < hearts ? 'text-red-500 fill-red-500' : 'text-slate-700'}`} />
-          ))}
-        </div>
+
       </header>
 
       {/* Content */}
