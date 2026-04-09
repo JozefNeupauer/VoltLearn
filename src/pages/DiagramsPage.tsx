@@ -13,8 +13,6 @@ type Part = {
   value?: string
 }
 
-type DiagramId = 'series' | 'parallel' | 'star-delta'
-
 // ─── Wire colours ───────────────────────────────────────────────────────────────
 
 const W_OFF = '#475569'
@@ -669,61 +667,70 @@ function StarDeltaDiagram() {
   )
 }
 
-// ─── Diagram metadata ──────────────────────────────────────────────────────────
+type BasicDiagramId = 'series' | 'parallel'
 
-type DiagramMeta = { id: DiagramId; title: string; subtitle: string; icon: string }
-
-const DIAGRAMS: DiagramMeta[] = [
-  { id: 'series',     title: 'Sériový',     subtitle: 'Spínač • Ohmov zákon • 2. Kirchhoff (KVL)', icon: '🔗' },
-  { id: 'parallel',   title: 'Paralelný',   subtitle: '1. Kirchhoffov zákon (KCL) • Vetvy',        icon: '⚡' },
-  { id: 'star-delta', title: 'Hviezda / Δ', subtitle: 'Y–Δ štart motora • napätia • moment',       icon: '⭐' },
+const BASIC_DIAGRAMS = [
+  { id: 'series'   as BasicDiagramId, title: 'Sériový',   subtitle: 'Spínač • Ohmov zákon • 2. Kirchhoff (KVL)', icon: '🔗' },
+  { id: 'parallel' as BasicDiagramId, title: 'Paralelný', subtitle: '1. Kirchhoffov zákon (KCL) • Vetvy',        icon: '⚡' },
 ]
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 
 export function DiagramsPage() {
-  const [active, setActive] = useState<DiagramId>('series')
-  const meta = DIAGRAMS.find(d => d.id === active)!
+  const [active, setActive] = useState<BasicDiagramId>('series')
+  const meta = BASIC_DIAGRAMS.find(d => d.id === active)!
 
   return (
-    <div className="space-y-5 py-4">
+    <div className="space-y-6 py-4">
       <div>
         <h1 className="text-2xl font-black text-white">Elektrické schémy</h1>
         <p className="text-slate-400 text-sm mt-1">Interaktívne — klikni na súčiastky</p>
       </div>
 
-      {/* Tab selector */}
-      <div className="flex rounded-xl bg-slate-800/70 p-1 gap-1">
-        {DIAGRAMS.map(d => (
-          <button
-            key={d.id}
-            onClick={() => setActive(d.id)}
-            className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
-              active === d.id
-                ? 'bg-electric-600 text-white shadow'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            {d.icon} {d.title}
-          </button>
-        ))}
-      </div>
+      {/* ── Section 1: Basic circuits ── */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Základné obvody</h2>
 
-      {/* Diagram card */}
-      <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4">
-        <p className="text-xs text-slate-500 text-center mb-4">{meta.subtitle}</p>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.18 }}
-          >
-            {active === 'series' ? <SeriesCircuit /> : active === 'parallel' ? <ParallelCircuit /> : <StarDeltaDiagram />}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+        <div className="flex rounded-xl bg-slate-800/70 p-1 gap-1">
+          {BASIC_DIAGRAMS.map(d => (
+            <button
+              key={d.id}
+              onClick={() => setActive(d.id)}
+              className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+                active === d.id
+                  ? 'bg-electric-600 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {d.icon} {d.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4">
+          <p className="text-xs text-slate-500 text-center mb-4">{meta.subtitle}</p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.18 }}
+            >
+              {active === 'series' ? <SeriesCircuit /> : <ParallelCircuit />}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* ── Section 2: Motor wiring ── */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Zapojenie motora</h2>
+        <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4">
+          <p className="text-xs text-slate-500 text-center mb-4">Y–Δ štart motora • napätia • moment</p>
+          <StarDeltaDiagram />
+        </div>
+      </section>
     </div>
   )
 }
