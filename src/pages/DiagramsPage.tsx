@@ -423,8 +423,6 @@ function ParallelCircuit() {
 
 // ─── Star-Delta Motor Diagram ─────────────────────────────────────────────────
 
-type Phase = { id: string; label: string; color: string; x1: number; y1: number; x2: number; y2: number; tx: number; ty: number }
-
 function StarDeltaDiagram() {
   const [mode, setMode] = useState<'star' | 'delta'>('star')
   const [selected, setSelected] = useState<Part | null>(null)
@@ -667,18 +665,510 @@ function StarDeltaDiagram() {
   )
 }
 
+// ─── DOL Diagram ──────────────────────────────────────────────────────────────
+
+function DOLDiagram() {
+  const [running, setRunning] = useState(false)
+  const [selected, setSelected] = useState<Part | null>(null)
+
+  function pick(p: Part) { setSelected(prev => prev?.id === p.id ? null : p) }
+  const W = running ? W_ON : W_OFF
+
+  const STOP_BTN: Part = {
+    id: 'stop', label: 'Tlačidlo STOP (NC)', icon: '🔴',
+    description: 'Normálne-uzavretý (NC) kontakt. V pokoji prepúšťa prúd. Stlačením preruší ovládací obvod → stýkač KM sa odpadne → motor sa zastaví. Zapojuje sa do série.',
+    formula: 'Typ: NC (normally closed)\nZapojenie: séria s ovládacím obvodom',
+    value: 'Bezpečnostný prvok — musí byť vždy funkčný',
+  }
+  const START_BTN: Part = {
+    id: 'start', label: 'Tlačidlo START (NO)', icon: '🟢',
+    description: 'Normálne-otvorený (NO) kontakt. Stlačením uzavrie ovládací obvod → cievka KM dostane napätie → stýkač pritiahne. Po pustení tlačidla obvod drží pomocný kontakt KM (samodržanie).',
+    formula: 'Typ: NO (normally open)\nSamordžanie: pomocný kontakt KM paralel. s tlačidlom START',
+    value: 'Impulzné ovládanie + samodržanie',
+  }
+  const KM: Part = {
+    id: 'km', label: 'Stýkač KM (contactor)', icon: '⚡',
+    description: 'Elektromagnetický spínač s tromi silovými kontaktmi (L1→T1, L2→T2, L3→T3) a pomocnými kontaktmi. Cievka (230 V alebo 400 V) riadi pritiahnutie kontaktov. Určený na časté spínanie.',
+    formula: 'P_kontakt: podľa veľkosti AC1/AC3\nCievka: 230 V AC typicky\nSpínací cyklus: až 1 500 000×',
+    value: 'AC3 kategória — spínanie asynchr. motora',
+  }
+  const RELAY: Part = {
+    id: 'relay', label: 'Tepelné relé FR', icon: '🌡️',
+    description: 'Chráni motor pred preťažením. Bimetalové pásky sa ohrievajú prúdom motora — pri prekročení nastaveného prúdu (In motora) relé vypne. Nastaví sa na menovitý prúd motora.',
+    formula: 'Nastavenie: In motora (z typového štítku)\nTripping class: 10A typicky\nReset: manuálny alebo automatický',
+    value: 'Nastaviť na In = menovitý prúd motora',
+  }
+  const MOTOR: Part = {
+    id: 'motor', label: 'Asynchrónny motor 3~ ', icon: '🔄',
+    description: 'Trojfázový asynchrónny motor s kotvou nakrátko (squirrel cage). Pri priamom rozjazde (DOL) dostane okamžite plné sieťové napätie → záberový prúd 5–8× menovitý prúd, záberový moment 100–200 % menovitého.',
+    formula: 'I_záber ≈ 5–8 × In\nM_záber ≈ 1,0–2,0 × Mn\nVhodné pre: malé motory < 4 kW (alebo sieť to unesie)',
+    value: 'Priamy rozjazd — najjednoduchší spôsob',
+  }
+
+  return (
+    <div>
+      <svg viewBox="0 0 340 260" className="w-full max-w-sm mx-auto select-none">
+
+        {/* ── Power circuit (left column) ── */}
+        {/* L1 L2 L3 supply */}
+        {[0,1,2].map(i => {
+          const x = 30 + i*28
+          const col = ['#ef4444','#f59e0b','#22c55e'][i]
+          return (
+            <g key={i}>
+              <circle cx={x} cy={18} r={8} fill={col} />
+              <text x={x} y={22} textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="Inter">L{i+1}</text>
+              <line x1={x} y1={26} x2={x} y2={50} stroke={W} strokeWidth="2" strokeLinecap="round" />
+            </g>
+          )
+        })}
+
+        {/* Stýkač KM — power contacts */}
+        <g onClick={() => pick(KM)} style={{cursor:'pointer'}}>
+          <rect x="14" y="50" width="100" height="28" rx="6"
+            fill={selected?.id==='km' ? '#1e293b' : '#0f172a'}
+            stroke={selected?.id==='km' ? '#60a5fa' : (running ? W_ON : '#334155')}
+            strokeWidth={selected?.id==='km' ? 2.5 : 1.5} />
+          <text x="64" y="59" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">KM</text>
+          <text x="64" y="71" textAnchor="middle" fill={running ? '#4ade80' : '#64748b'} fontSize="7.5" fontFamily="Inter">
+            {running ? 'pritiahnutý' : 'odpadnutý'}
+          </text>
+        </g>
+
+        {/* Wires after KM */}
+        {[0,1,2].map(i => {
+          const x = 30 + i*28
+          return <line key={i} x1={x} y1={78} x2={x} y2={100} stroke={W} strokeWidth="2" strokeLinecap="round" />
+        })}
+
+        {/* Tepelné relé FR */}
+        <g onClick={() => pick(RELAY)} style={{cursor:'pointer'}}>
+          <rect x="14" y="100" width="100" height="28" rx="6"
+            fill={selected?.id==='relay' ? '#1e293b' : '#0f172a'}
+            stroke={selected?.id==='relay' ? '#f59e0b' : '#334155'}
+            strokeWidth={selected?.id==='relay' ? 2.5 : 1.5} />
+          <text x="64" y="109" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">FR</text>
+          <text x="64" y="121" textAnchor="middle" fill="#f59e0b" fontSize="7" fontFamily="Inter">tepelné relé</text>
+        </g>
+
+        {[0,1,2].map(i => {
+          const x = 30 + i*28
+          return <line key={i} x1={x} y1={128} x2={x} y2={152} stroke={W} strokeWidth="2" strokeLinecap="round" />
+        })}
+
+        {/* Motor */}
+        <g onClick={() => pick(MOTOR)} style={{cursor:'pointer'}}>
+          <circle cx="64" cy="175" r="26"
+            fill={selected?.id==='motor' ? '#0c1a2e' : '#080e1a'}
+            stroke={selected?.id==='motor' ? '#60a5fa' : (running ? W_ON : '#334155')}
+            strokeWidth={selected?.id==='motor' ? 2.5 : 2} />
+          <text x="64" y="171" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Inter">M</text>
+          <text x="64" y="183" textAnchor="middle" fill="#94a3b8" fontSize="7" fontFamily="Inter">3~</text>
+          {running && (
+            <>
+              <path d="M 64,149 A 26,26 0 0,1 88,175" fill="none" stroke="#4ade80" strokeWidth="2.5"
+                strokeLinecap="round" markerEnd="url(#arrowM)" />
+              <defs>
+                <marker id="arrowM" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 Z" fill="#4ade80" />
+                </marker>
+              </defs>
+            </>
+          )}
+        </g>
+
+        {/* ── Control circuit (right column) ── */}
+        {/* N rail */}
+        <line x1="290" y1="30" x2="290" y2="230" stroke="#60a5fa" strokeWidth="1.5" strokeDasharray="4,3" opacity="0.5" />
+        <text x="290" y="22" textAnchor="middle" fill="#60a5fa" fontSize="8" fontFamily="Inter">N</text>
+        {/* L rail */}
+        <line x1="160" y1="30" x2="160" y2="50" stroke="#ef4444" strokeWidth="1.5" opacity="0.6" />
+        <text x="160" y="22" textAnchor="middle" fill="#ef4444" fontSize="8" fontFamily="Inter">L</text>
+
+        {/* STOP button */}
+        <g onClick={() => pick(STOP_BTN)} style={{cursor:'pointer'}}>
+          <rect x="150" y="50" width="50" height="22" rx="5"
+            fill={selected?.id==='stop' ? '#450a0a' : '#1c0a0a'}
+            stroke={selected?.id==='stop' ? '#f87171' : '#7f1d1d'} strokeWidth="1.5" />
+          <text x="175" y="63" textAnchor="middle" fill="#fca5a5" fontSize="8.5" fontWeight="bold" fontFamily="Inter">STOP</text>
+        </g>
+        <text x="205" y="63" fill="#64748b" fontSize="7" fontFamily="Inter">NC</text>
+        <line x1="160" y1="72" x2="160" y2="85" stroke="#94a3b8" strokeWidth="1.5" />
+        <line x1="200" y1="61" x2="240" y2="61" stroke="#94a3b8" strokeWidth="1.5" />
+        <line x1="240" y1="61" x2="240" y2="85" stroke="#94a3b8" strokeWidth="1.5" />
+
+        {/* START button */}
+        <g onClick={() => pick(START_BTN)} style={{cursor:'pointer'}}>
+          <rect x="150" y="85" width="50" height="22" rx="5"
+            fill={selected?.id==='start' ? '#052e16' : '#0a1a0e'}
+            stroke={selected?.id==='start' ? '#4ade80' : '#14532d'} strokeWidth="1.5" />
+          <text x="175" y="99" textAnchor="middle" fill="#86efac" fontSize="8.5" fontWeight="bold" fontFamily="Inter">START</text>
+        </g>
+        <text x="205" y="98" fill="#64748b" fontSize="7" fontFamily="Inter">NO</text>
+
+        {/* Self-hold contact (parallel to START) */}
+        <line x1="240" y1="85" x2="270" y2="85" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3,2" />
+        <line x1="270" y1="85" x2="270" y2="107" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3,2" />
+        <rect x="255" y="107" width="30" height="14" rx="3"
+          fill="#0f172a" stroke={running ? W_ON : '#334155'} strokeWidth="1" />
+        <text x="270" y="118" textAnchor="middle" fill={running ? '#4ade80' : '#64748b'} fontSize="6.5" fontFamily="Inter">KM aux</text>
+        <line x1="270" y1="121" x2="270" y2="140" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3,2" />
+        <line x1="200" y1="107" x2="240" y2="107" stroke="#94a3b8" strokeWidth="1" />
+
+        {/* KM coil */}
+        <line x1="160" y1="107" x2="160" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
+        <line x1="200" y1="107" x2="160" y2="107" stroke="#94a3b8" strokeWidth="1.5" />
+        <line x1="240" y1="140" x2="160" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
+        <rect x="155" y="140" width="90" height="22" rx="5"
+          fill={running ? '#0c1f0c' : '#0f172a'}
+          stroke={running ? W_ON : '#334155'} strokeWidth="1.5" />
+        <text x="200" y="152" textAnchor="middle" fill={running ? '#4ade80' : '#94a3b8'} fontSize="8.5" fontWeight="bold" fontFamily="Inter">
+          KM cievka
+        </text>
+        <line x1="200" y1="162" x2="200" y2="175" stroke="#94a3b8" strokeWidth="1.5" />
+
+        {/* FR NC contact in control circuit */}
+        <rect x="155" y="175" width="90" height="20" rx="4"
+          fill="#0f172a" stroke="#334155" strokeWidth="1" />
+        <text x="200" y="188" textAnchor="middle" fill="#f59e0b" fontSize="7.5" fontFamily="Inter">FR (NC kontakt)</text>
+        <line x1="200" y1="195" x2="200" y2="210" stroke="#94a3b8" strokeWidth="1.5" />
+        <line x1="200" y1="210" x2="290" y2="210" stroke="#94a3b8" strokeWidth="1.5" />
+
+        {/* Label */}
+        <text x="170" y="250" textAnchor="middle" fill="#334155" fontSize="7.5" fontFamily="Inter">Silový obvod</text>
+        <text x="225" y="250" textAnchor="middle" fill="#334155" fontSize="7.5" fontFamily="Inter">Ovládací obvod</text>
+        <line x1="128" y1="235" x2="128" y2="255" stroke="#334155" strokeWidth="1" strokeDasharray="3,2" />
+      </svg>
+
+      <div className="flex justify-center mt-1 mb-3">
+        <button
+          onClick={() => { setRunning(r => !r); setSelected(null) }}
+          className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+            running
+              ? 'bg-green-500/20 border-green-500/50 text-green-400'
+              : 'bg-slate-700/50 border-slate-600 text-slate-400'
+          }`}
+        >
+          {running ? '🟢 Motor BEŽÍ' : '🔴 Motor STOJÍ'} — klikni
+        </button>
+      </div>
+      <p className="text-center text-xs text-slate-500 mb-3">Klikni na súčiastky pre detaily</p>
+
+      <AnimatePresence>
+        {selected && <InfoPanel part={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ─── Reversal Diagram ─────────────────────────────────────────────────────────
+
+function ReversalDiagram() {
+  const [dir, setDir] = useState<'off'|'fwd'|'rev'>('off')
+  const [selected, setSelected] = useState<Part | null>(null)
+  function pick(p: Part) { setSelected(prev => prev?.id === p.id ? null : p) }
+
+  const WF = dir === 'fwd' ? W_ON : W_OFF
+  const WR = dir === 'rev' ? '#f59e0b' : W_OFF
+
+  const KM1: Part = {
+    id:'km1', label:'Stýkač KM1 — VPRED', icon:'➡️',
+    description:'Priamo pripája L1→U, L2→V, L3→W na motor. Sled fáz určuje smer otáčania. KM1 a KM2 nesmú byť zopnuté súčasne — mohlo by dôjsť ku skratu medzi fázami.',
+    formula:'Sled fáz: L1-L2-L3 → motor sa otáča dopredu\nBlokovanie: NC kontakt KM2 v série s cievkou KM1',
+    value:'Vpred: L1→U, L2→V, L3→W',
+  }
+  const KM2: Part = {
+    id:'km2', label:'Stýkač KM2 — VZAD', icon:'⬅️',
+    description:'Obracia sled fáz zmenou dvoch vodičov: L1→W, L2→V, L3→U. Zmenou dvoch fáz sa otočí magnetické pole statora → motor ide opačným smerom.',
+    formula:'Sled fáz: L1→W, L2→V, L3→U (L1 a L3 vymenené)\nBlokovanie: NC kontakt KM1 v série s cievkou KM2',
+    value:'Vzad: L1→W, L2→V, L3→U',
+  }
+  const BLOCK: Part = {
+    id:'block', label:'Elektrická blokovka', icon:'🔒',
+    description:'Každý stýkač má NC pomocný kontakt zaradený do ovládacieho obvodu druhého stýkača. Keď KM1 pritiahne, jeho NC kontakt rozopne obvod cievky KM2 — a naopak. Zabraňuje súčasnému zopnutiu.',
+    formula:'KM1 NC v sérii s cievkou KM2\nKM2 NC v sérii s cievkou KM1\n+ voliteľne mechanická blokovka (páka)',
+    value:'Ochrana pred skratom fáz!',
+  }
+  const MOTOR_R: Part = {
+    id:'motorR', label:'Motor — reverzácia', icon:'🔄',
+    description:'Asymetrčný motor 3~ mení smer otáčania pri zmene sledu fáz. Pred reverzáciou je nutné motor najprv zastaviť (nechať klesať otáčky), inak nastane veľký mechanický ráz a el. prechodový jav.',
+    formula:'Zmena sledu 2 fáz → otočenie smeru\nOdporúča sa zastaviť pred reverzáciou\nPri priamej reverzácii: I až 15× In',
+    value:'Smer: závisí od sledu L1-L2-L3',
+  }
+
+  return (
+    <div>
+      <svg viewBox="0 0 320 230" className="w-full max-w-sm mx-auto select-none">
+
+        {/* Supply L1 L2 L3 */}
+        {[0,1,2].map(i => {
+          const x = 50 + i*30
+          const col = ['#ef4444','#f59e0b','#22c55e'][i]
+          return (
+            <g key={i}>
+              <circle cx={x} cy={16} r={8} fill={col} />
+              <text x={x} y={20} textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="Inter">L{i+1}</text>
+              <line x1={x} y1={24} x2={x} y2={45} stroke="#475569" strokeWidth="2" strokeLinecap="round" />
+              {/* split to KM1 and KM2 */}
+              <line x1={x} y1={45} x2={x-5} y2={60} stroke={WF} strokeWidth="2" strokeLinecap="round" />
+              <line x1={x} y1={45} x2={x+75} y2={60} stroke={WR} strokeWidth="2" strokeLinecap="round" />
+            </g>
+          )
+        })}
+
+        {/* KM1 block — forward */}
+        <g onClick={() => pick(KM1)} style={{cursor:'pointer'}}>
+          <rect x="22" y="60" width="90" height="28" rx="6"
+            fill={selected?.id==='km1' ? '#1e293b' : '#0f172a'}
+            stroke={selected?.id==='km1' ? '#60a5fa' : (dir==='fwd' ? W_ON : '#334155')}
+            strokeWidth={selected?.id==='km1' ? 2.5 : 1.5} />
+          <text x="67" y="70" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">KM1</text>
+          <text x="67" y="81" textAnchor="middle" fill={dir==='fwd' ? '#4ade80' : '#64748b'} fontSize="7" fontFamily="Inter">VPRED</text>
+        </g>
+
+        {/* KM2 block — reverse */}
+        <g onClick={() => pick(KM2)} style={{cursor:'pointer'}}>
+          <rect x="200" y="60" width="90" height="28" rx="6"
+            fill={selected?.id==='km2' ? '#1e293b' : '#0f172a'}
+            stroke={selected?.id==='km2' ? '#60a5fa' : (dir==='rev' ? '#f59e0b' : '#334155')}
+            strokeWidth={selected?.id==='km2' ? 2.5 : 1.5} />
+          <text x="245" y="70" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">KM2</text>
+          <text x="245" y="81" textAnchor="middle" fill={dir==='rev' ? '#fbbf24' : '#64748b'} fontSize="7" fontFamily="Inter">VZAD</text>
+        </g>
+
+        {/* Blokovka symbol between */}
+        <g onClick={() => pick(BLOCK)} style={{cursor:'pointer'}}>
+          <rect x="127" y="65" width="58" height="18" rx="4"
+            fill="#1c1917" stroke="#78350f" strokeWidth="1.5" />
+          <text x="156" y="77" textAnchor="middle" fill="#fbbf24" fontSize="7.5" fontWeight="bold" fontFamily="Inter">🔒 blok.</text>
+        </g>
+
+        {/* Wires KM1 → motor (straight) */}
+        {[0,1,2].map(i => {
+          const x = 45 + i*30
+          return <line key={i} x1={x} y1={88} x2={x} y2={130} stroke={WF} strokeWidth="2" strokeLinecap="round" />
+        })}
+
+        {/* Wires KM2 → motor (crossed: L1↔L3) */}
+        {/* KM2 outputs: x=215,245,275 → motor U,V,W same bus x=45,75,105 but L1 and L3 swapped */}
+        <line x1="215" y1="88" x2="105" y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" strokeDasharray={dir==='rev'?'':'4,3'} />
+        <line x1="245" y1="88" x2="75"  y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" />
+        <line x1="275" y1="88" x2="45"  y2="130" stroke={WR} strokeWidth="2" strokeLinecap="round" strokeDasharray={dir==='rev'?'':'4,3'} />
+
+        {/* Phase labels at motor inputs */}
+        {['U','V','W'].map((l,i) => (
+          <text key={i} x={45+i*30} y={142} textAnchor="middle"
+            fill={dir==='fwd' ? '#4ade80' : dir==='rev' ? '#fbbf24' : '#475569'}
+            fontSize="8" fontWeight="bold" fontFamily="Inter">{l}</text>
+        ))}
+
+        {/* Motor */}
+        <g onClick={() => pick(MOTOR_R)} style={{cursor:'pointer'}}>
+          <circle cx="75" cy="175" r="30"
+            fill={selected?.id==='motorR' ? '#0c1a2e' : '#080e1a'}
+            stroke={selected?.id==='motorR' ? '#60a5fa' : (dir!=='off' ? (dir==='fwd' ? W_ON : '#f59e0b') : '#334155')}
+            strokeWidth={selected?.id==='motorR' ? 2.5 : 2} />
+          <text x="75" y="171" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Inter">M</text>
+          <text x="75" y="183" textAnchor="middle" fill="#94a3b8" fontSize="7" fontFamily="Inter">3~</text>
+          {dir === 'fwd' && (
+            <text x="75" y="196" textAnchor="middle" fill="#4ade80" fontSize="8" fontFamily="Inter">→ vpred</text>
+          )}
+          {dir === 'rev' && (
+            <text x="75" y="196" textAnchor="middle" fill="#fbbf24" fontSize="8" fontFamily="Inter">← vzad</text>
+          )}
+        </g>
+
+        {/* Swap arrows visual for reversal */}
+        {dir === 'rev' && (
+          <>
+            <text x="118" y="120" fill="#f59e0b" fontSize="8" fontFamily="Inter">L1↔L3</text>
+            <text x="118" y="130" fill="#f59e0b" fontSize="7" fontFamily="Inter">vymenené</text>
+          </>
+        )}
+      </svg>
+
+      {/* Direction controls */}
+      <div className="flex gap-2 justify-center mt-1 mb-3">
+        {(['off','fwd','rev'] as const).map(d => (
+          <button key={d}
+            onClick={() => { setDir(d); setSelected(null) }}
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+              dir === d
+                ? d === 'off'  ? 'bg-slate-700 border-slate-500 text-slate-300'
+                : d === 'fwd'  ? 'bg-green-500/20 border-green-500/50 text-green-400'
+                               : 'bg-amber-500/20 border-amber-500/50 text-amber-400'
+                : 'bg-slate-800/50 border-slate-700 text-slate-500'
+            }`}
+          >
+            {d === 'off' ? '⏹ STOP' : d === 'fwd' ? '➡️ VPRED' : '⬅️ VZAD'}
+          </button>
+        ))}
+      </div>
+      <p className="text-center text-xs text-slate-500 mb-3">Klikni na súčiastky pre detaily</p>
+
+      <AnimatePresence>
+        {selected && <InfoPanel part={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ─── VFD Block Diagram ────────────────────────────────────────────────────────
+
+function VFDDiagram() {
+  const [selected, setSelected] = useState<Part | null>(null)
+  const [speed, setSpeed] = useState(50)
+
+  function pick(p: Part) { setSelected(prev => prev?.id === p.id ? null : p) }
+
+  const GRID: Part = {
+    id:'grid', label:'Sieť 3~ 400 V / 50 Hz', icon:'🏭',
+    description:'Trojfázová sieť so striedavým napätím 400 V (mevfázové) a frekvenciou 50 Hz. VFD túto sieť spracuje — najprv jednosmeruje, potom znova vytvára striedavé napätie s premenlivou frekvenciou.',
+    value:'400 V AC / 50 Hz vstup',
+  }
+  const RECT: Part = {
+    id:'rect', label:'Usmerňovač (Rectifier)', icon:'⬇️',
+    description:'Diódový alebo tyristorový mostík. Premení trojfázové striedavé napätie na jednosmerné. Výsledok: jednosmerná zbernica (DC bus) s napätím cca 565 V (= 400 × √2).',
+    formula:'U_DC = U_AC × √2 = 400 × 1,414 ≈ 565 V\nTyp: 6-pulzný diódový mostík',
+    value:'AC 400V → DC ~565V',
+  }
+  const DCBUS: Part = {
+    id:'dcbus', label:'DC zbernica + kondenzátory', icon:'🔋',
+    description:'Kondenzátory vyhladí jednosmerné napätie a uchovávajú energiu. Pri brzdení motor vracia energiu späť do DC zbernice (rekuperácia). Napätie DC zbernice musí byť stabilné.',
+    formula:'C_bus: typicky stovky μF\nU_DC ≈ 565 V\nRekuperácia → brzdný odpor alebo späť do siete',
+    value:'DC zbernica ≈ 565 V',
+  }
+  const INV: Part = {
+    id:'inv', label:'Invertor (IGBT)', icon:'🔀',
+    description:'Striedač so šiestimi IGBT tranzistormi generuje trojfázové striedavé napätie s premenlivou frekvenciou a amplitúdou pomocou PWM (pulzne-šírková modulácia). Frekvencia priamo určuje otáčky motora.',
+    formula:'n = (f × 60) ÷ p\nn = otáčky [ot/min]\nf = frekvencia [Hz]\np = počet párov pólov\nPr.: 30 Hz, 2 páry → 900 ot/min',
+    value:`Výstup: ~${Math.round(speed*0.5)} Hz → ~${Math.round(speed*0.5*60/2)} ot/min`,
+  }
+  const CTRL: Part = {
+    id:'ctrl', label:'Riadiaca jednotka (CPU)', icon:'🧠',
+    description:'Mikroprocesor riadi celý VFD: nastavenie frekvencie, rozbehovej rampy, ochrany (prúd, napätie, teplota), komunikácia (Modbus, Profibus, Ethernet). Parametre sa nastavujú cez panel alebo PC.',
+    formula:'Rampovanie: t_rozjazd nastaviteľný (1–600 s)\nRegulácia: U/f, vektoring, sensorless\nOchrany: prepätie, podpätie, skrat, preťaženie',
+    value:'Riadi frekvenciu, ochrany, komunikáciu',
+  }
+  const MOTO: Part = {
+    id:'motoV', label:'Asynchrónny motor', icon:'🔄',
+    description:'VFD dovoľuje plynulú zmenu otáčok bez mechanických strát (bez prevodovky). Záberový prúd je iba 1,0–1,5× menovitý (vs 5–8× pri DOL). Umožňuje aj presné riadenie momentu.',
+    formula:`f_výstup ≈ ${Math.round(speed*0.5)} Hz\nn ≈ ${Math.round(speed*0.5*60/2)} ot/min (2 pár pólov)\nI_záber ≈ 1,0–1,5 × In`,
+    value:`Otáčky: ~${Math.round(speed*0.5*60/2)} ot/min`,
+  }
+
+  const blocks = [
+    { part: GRID,  x:10,  y:80,  w:55, h:50, col:'#1e3a5f', bc:'#3b82f6', label:'SIEŤ\n3~ 400V' },
+    { part: RECT,  x:78,  y:80,  w:55, h:50, col:'#1a1a2e', bc:'#6366f1', label:'USMER-\nŇOVAČ' },
+    { part: DCBUS, x:146, y:80,  w:55, h:50, col:'#1c1400', bc:'#f59e0b', label:'DC\nZBERNICA' },
+    { part: INV,   x:214, y:80,  w:55, h:50, col:'#0f1f0f', bc:'#22c55e', label:'INVER-\nTOR' },
+    { part: MOTO,  x:282, y:80,  w:48, h:50, col:'#080e1a', bc:'#60a5fa', label:'MOTOR\n3~' },
+  ]
+
+  return (
+    <div>
+      <svg viewBox="0 0 348 220" className="w-full max-w-sm mx-auto select-none">
+
+        {/* Connecting arrows */}
+        {[78,146,214,282].map((x,i) => (
+          <line key={i} x1={x-1} y1={105} x2={x+1} y2={105}
+            stroke="#475569" strokeWidth="8" strokeLinecap="round" />
+        ))}
+        {[66,134,202,270].map((x,i) => (
+          <g key={i}>
+            <line x1={x} y1={105} x2={x+12} y2={105} stroke="#475569" strokeWidth="2.5" strokeLinecap="round" />
+            <polygon points={`${x+13},101 ${x+13},109 ${x+19},105`} fill="#475569" />
+          </g>
+        ))}
+
+        {/* Blocks */}
+        {blocks.map(({ part, x, y, w, h, col, bc, label }) => (
+          <g key={part.id} onClick={() => pick(part)} style={{cursor:'pointer'}}>
+            <rect x={x} y={y} width={w} height={h} rx="6"
+              fill={selected?.id === part.id ? '#1e293b' : col}
+              stroke={selected?.id === part.id ? '#60a5fa' : bc}
+              strokeWidth={selected?.id === part.id ? 2.5 : 1.5} />
+            {label.split('\n').map((line, li) => (
+              <text key={li} x={x+w/2} y={y+18+li*14} textAnchor="middle"
+                fill="white" fontSize="8.5" fontWeight="bold" fontFamily="Inter">{line}</text>
+            ))}
+          </g>
+        ))}
+
+        {/* Control unit (CPU) below */}
+        <g onClick={() => pick(CTRL)} style={{cursor:'pointer'}}>
+          <rect x="78" y="148" width="192" height="28" rx="6"
+            fill={selected?.id==='ctrl' ? '#1e293b' : '#1a0a2e'}
+            stroke={selected?.id==='ctrl' ? '#60a5fa' : '#7c3aed'}
+            strokeWidth={selected?.id==='ctrl' ? 2.5 : 1.5} />
+          <text x="174" y="157" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="Inter">🧠 RIADIACA JEDNOTKA (CPU)</text>
+          <text x="174" y="169" textAnchor="middle" fill="#a78bfa" fontSize="7.5" fontFamily="Inter">Frekv. • Rampa • Ochrany • Komunikácia</text>
+        </g>
+        {/* dashed lines from CPU to blocks */}
+        {[110, 174, 241].map((x,i) => (
+          <line key={i} x1={x} y1={148} x2={x} y2={130} stroke="#7c3aed" strokeWidth="1" strokeDasharray="3,2" opacity="0.6" />
+        ))}
+
+        {/* Speed / frequency label */}
+        <text x="241" y="74" textAnchor="middle" fill="#4ade80" fontSize="8" fontFamily="Inter">
+          {Math.round(speed*0.5)} Hz
+        </text>
+
+        {/* Frequency legend */}
+        <text x="174" y="195" textAnchor="middle" fill="#475569" fontSize="7.5" fontFamily="Inter">
+          f = {Math.round(speed*0.5)} Hz  •  n ≈ {Math.round(speed*0.5*60/2)} ot/min  (2 pól. páry)
+        </text>
+      </svg>
+
+      {/* Speed slider */}
+      <div className="mt-2 mb-3 px-2">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-xs text-slate-400">Frekvencia</span>
+          <span className="text-xs font-bold text-green-400">{Math.round(speed*0.5)} Hz  →  {Math.round(speed*0.5*60/2)} ot/min</span>
+        </div>
+        <input
+          type="range" min={0} max={100} value={speed}
+          onChange={e => { setSpeed(Number(e.target.value)); setSelected(null) }}
+          className="w-full accent-green-500 cursor-pointer"
+        />
+        <div className="flex justify-between text-xs text-slate-600 mt-0.5">
+          <span>0 Hz (stop)</span><span>25 Hz</span><span>50 Hz (max)</span>
+        </div>
+      </div>
+      <p className="text-center text-xs text-slate-500 mb-3">Klikni na bloky pre detaily • Posúvač mení frekvenciu</p>
+
+      <AnimatePresence>
+        {selected && <InfoPanel part={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// ─── Tab IDs ──────────────────────────────────────────────────────────────────
+
 type BasicDiagramId = 'series' | 'parallel'
+type MotorDiagramId = 'star-delta' | 'dol' | 'reversal' | 'vfd'
 
 const BASIC_DIAGRAMS = [
   { id: 'series'   as BasicDiagramId, title: 'Sériový',   subtitle: 'Spínač • Ohmov zákon • 2. Kirchhoff (KVL)', icon: '🔗' },
   { id: 'parallel' as BasicDiagramId, title: 'Paralelný', subtitle: '1. Kirchhoffov zákon (KCL) • Vetvy',        icon: '⚡' },
 ]
 
+const MOTOR_DIAGRAMS = [
+  { id: 'star-delta' as MotorDiagramId, title: 'Y–Δ',     subtitle: 'Y–Δ štart • napätia • moment',             icon: '⭐' },
+  { id: 'dol'        as MotorDiagramId, title: 'DOL',      subtitle: 'Priamy rozjazd • stýkač • tep. relé',      icon: '▶️' },
+  { id: 'reversal'   as MotorDiagramId, title: 'Reverzácia', subtitle: 'Dvojitý stýkač • blokovka • sled fáz',  icon: '🔄' },
+  { id: 'vfd'        as MotorDiagramId, title: 'VFD',      subtitle: 'Frekvenčný menič • PWM • otáčky',          icon: '🎛️' },
+]
+
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 
 export function DiagramsPage() {
   const [active, setActive] = useState<BasicDiagramId>('series')
-  const meta = BASIC_DIAGRAMS.find(d => d.id === active)!
+  const [activeMotor, setActiveMotor] = useState<MotorDiagramId>('star-delta')
+
+  const basicMeta  = BASIC_DIAGRAMS.find(d => d.id === active)!
+  const motorMeta  = MOTOR_DIAGRAMS.find(d => d.id === activeMotor)!
 
   return (
     <div className="space-y-6 py-4">
@@ -708,7 +1198,7 @@ export function DiagramsPage() {
         </div>
 
         <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4">
-          <p className="text-xs text-slate-500 text-center mb-4">{meta.subtitle}</p>
+          <p className="text-xs text-slate-500 text-center mb-4">{basicMeta.subtitle}</p>
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -726,9 +1216,40 @@ export function DiagramsPage() {
       {/* ── Section 2: Motor wiring ── */}
       <section className="space-y-3">
         <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Zapojenie motora</h2>
+
+        <div className="grid grid-cols-4 rounded-xl bg-slate-800/70 p-1 gap-1">
+          {MOTOR_DIAGRAMS.map(d => (
+            <button
+              key={d.id}
+              onClick={() => setActiveMotor(d.id)}
+              className={`py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeMotor === d.id
+                  ? 'bg-electric-600 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <div>{d.icon}</div>
+              <div>{d.title}</div>
+            </button>
+          ))}
+        </div>
+
         <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4">
-          <p className="text-xs text-slate-500 text-center mb-4">Y–Δ štart motora • napätia • moment</p>
-          <StarDeltaDiagram />
+          <p className="text-xs text-slate-500 text-center mb-4">{motorMeta.subtitle}</p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeMotor}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.18 }}
+            >
+              {activeMotor === 'star-delta' ? <StarDeltaDiagram />
+               : activeMotor === 'dol'      ? <DOLDiagram />
+               : activeMotor === 'reversal' ? <ReversalDiagram />
+               :                              <VFDDiagram />}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
     </div>
