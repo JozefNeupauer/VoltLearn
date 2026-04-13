@@ -9,6 +9,7 @@ import { SettingsPage } from './pages/SettingsPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { DiagramsPage } from './pages/DiagramsPage'
 import { SymbolsPage } from './pages/SymbolsPage'
+import { SortGamePage } from './pages/SortGamePage'
 
 function RequireOnboarding() {
   const { state } = useApp()
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="/topic/:topicId" element={<TopicPage />} />
               <Route path="/diagrams" element={<DiagramsPage />} />
               <Route path="/symbols" element={<SymbolsPage />} />
+              <Route path="/sort-game" element={<SortGamePage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/premium" element={<Navigate to="/" replace />} />
               <Route path="/settings" element={<SettingsPage />} />

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ChevronRight, BookOpen, Zap, Flame } from 'lucide-react'
+import { ChevronRight, BookOpen, Zap, Flame, Shuffle } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { topics as allTopics } from '../data/topics'
 import { getLessonsByTopic } from '../data/lessons'
@@ -59,6 +59,25 @@ export function HomePage() {
           </div>
         </motion.button>
       )}
+
+      {/* Mini-game card */}
+      <motion.button
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => navigate('/sort-game')}
+        className="w-full bg-surface-800 border border-violet-700/40 hover:border-violet-500/60 rounded-2xl p-4 flex items-center gap-4 text-left transition-colors"
+      >
+        <div className="w-12 h-12 bg-violet-600/20 border border-violet-500/30 rounded-xl flex items-center justify-center shrink-0">
+          <Shuffle className="w-5 h-5 text-violet-400" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-white font-bold">Zoraď postup</p>
+          <p className="text-slate-400 text-xs mt-0.5">Mini-hra · Ulož si správny sled krokov</p>
+        </div>
+        <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+      </motion.button>
 
       {/* Topics grouped by year */}
       {([1, 2, 3, 4] as const).map((year) => {
